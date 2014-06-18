@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.travcorp.com/api/v3/GetTours" elementFormDefault="qualified" targetNamespace="http://www.travcorp.com/api/v3/GetTours" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd3" namespace="http://www.travcorp.com/api/v3" />
+  <xs:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/TTC.iTropics.PublicApiv3.GetTours.Response" />
+  <xs:complexType name="GetToursMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.travcorp.com/api/v3" base="q1:WSSellingCompanyAuthenticationMessage">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetToursMessage" nillable="true" type="tns:GetToursMessage" />
+  <xs:complexType name="ArrayOfProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Product" nillable="true" type="tns:Product" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfProduct" nillable="true" type="tns:ArrayOfProduct" />
+  <xs:complexType name="Product">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EndCity" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DurationInDays" type="xs:int" />
+      <xs:element minOccurs="0" name="DurationInNights" type="xs:int" />
+      <xs:element minOccurs="0" name="BrochureName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrochureCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OnlineBookable" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsTourPackage" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OperatingProduct" nillable="true" type="tns:OperatingProduct" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/TTC.iTropics.PublicApiv3.GetTours.Response" minOccurs="0" name="IncludedProducts" nillable="true" type="q2:IncludedProducts" />
+      <xs:element minOccurs="0" name="MVStatus" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Product" nillable="true" type="tns:Product" />
+  <xs:complexType name="OperatingProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ContractingSeason" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Category" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Classification" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StandardName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SellableRoomTypes" nillable="true" type="tns:SellableRoomTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperatingProduct" nillable="true" type="tns:OperatingProduct" />
+  <xs:complexType name="SellableRoomTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Single" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Twin" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TwinShare" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Triple" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TripleShare" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Quad" type="xs:boolean" />
+      <xs:element minOccurs="0" name="QuadShare" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SellableRoomTypes" nillable="true" type="tns:SellableRoomTypes" />
+  <xs:complexType name="IncludedProduct">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Category" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ServiceType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IncludedProduct" nillable="true" type="tns:IncludedProduct" />
+  <xs:complexType name="TourProduct">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Product">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TourProduct" nillable="true" type="tns:TourProduct" />
+</xs:schema>

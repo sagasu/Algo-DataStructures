@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.travcorp.com/publicapi/InternalWSAPI" elementFormDefault="qualified" targetNamespace="http://www.travcorp.com/publicapi/InternalWSAPI" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd2" namespace="http://www.travcorp.com/api/v3/GetTours" />
+  <xs:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd5" namespace="http://www.itropics.com/PublicDataRetrievalAPI" />
+  <xs:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/TTC.iTropics.InternalWSAPI" />
+  <xs:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="GetToursSellingPeriodAgnostic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://www.travcorp.com/api/v3/GetTours" minOccurs="1" name="request" nillable="true" type="q1:GetToursMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetToursSellingPeriodAgnosticResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://www.travcorp.com/api/v3/GetTours" minOccurs="0" name="GetToursSellingPeriodAgnosticResult" nillable="true" type="q2:ArrayOfProduct" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBrochuresByBrochureCodeSellingPeriodAgnostic">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" name="brochureCode" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBrochuresByBrochureCodeSellingPeriodAgnosticResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://www.itropics.com/PublicDataRetrievalAPI" minOccurs="0" name="GetBrochuresByBrochureCodeSellingPeriodAgnosticResult" nillable="true" type="q3:BrochureResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadBrochureLookupList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/TTC.iTropics.InternalWSAPI" minOccurs="1" name="brandEnum" type="q4:BrandEnum" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadBrochureLookupListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="LoadBrochureLookupListResult" nillable="true" type="q5:ArrayOfKeyValueOfstringint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBrochureDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" name="brochureId" type="xs:int" />
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="1" name="catalogCodes" nillable="true" type="q6:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBrochureDetailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://www.itropics.com/PublicDataRetrievalAPI" minOccurs="0" name="GetBrochureDetailResult" nillable="true" type="q7:LocationsResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.travcorp.com/publicapi/InternalWSAPI" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="InternalService" targetNamespace="http://www.travcorp.com/publicapi/InternalWSAPI" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.travcorp.com/publicapi/InternalWSAPI/Imports">
+      <xsd:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd0" namespace="http://www.travcorp.com/publicapi/InternalWSAPI" />
+      <xsd:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd3" namespace="http://www.travcorp.com/api/v3" />
+      <xsd:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd2" namespace="http://www.travcorp.com/api/v3/GetTours" />
+      <xsd:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/TTC.iTropics.PublicApiv3.GetTours.Response" />
+      <xsd:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd7" namespace="http://www.itropics.com/PublicAPI/Errors" />
+      <xsd:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd5" namespace="http://www.itropics.com/PublicDataRetrievalAPI" />
+      <xsd:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/TTC.iTropics.InternalWSAPI" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IInternalService_GetToursSellingPeriodAgnostic_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetToursSellingPeriodAgnostic" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_GetToursSellingPeriodAgnostic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetToursSellingPeriodAgnosticResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_GetToursSellingPeriodAgnostic_ApiErrorFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://www.travcorp.com/api/v3" name="detail" element="q1:ApiError" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_GetBrochuresByBrochureCodeSellingPeriodAgnostic_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBrochuresByBrochureCodeSellingPeriodAgnostic" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_GetBrochuresByBrochureCodeSellingPeriodAgnostic_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBrochuresByBrochureCodeSellingPeriodAgnosticResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_GetBrochuresByBrochureCodeSellingPeriodAgnostic_APIErrorDetailFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://www.itropics.com/PublicAPI/Errors" name="detail" element="q2:APIErrorDetail" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_LoadBrochureLookupList_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadBrochureLookupList" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_LoadBrochureLookupList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadBrochureLookupListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_LoadBrochureLookupList_APIErrorDetailFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://www.itropics.com/PublicAPI/Errors" name="detail" element="q3:APIErrorDetail" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_GetBrochureDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBrochureDetail" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_GetBrochureDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBrochureDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IInternalService_GetBrochureDetail_APIErrorDetailFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://www.itropics.com/PublicAPI/Errors" name="detail" element="q4:APIErrorDetail" />
+  </wsdl:message>
+  <wsdl:portType name="IInternalService">
+    <wsdl:operation name="GetToursSellingPeriodAgnostic">
+      <wsdl:input wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetToursSellingPeriodAgnostic" message="tns:IInternalService_GetToursSellingPeriodAgnostic_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetToursSellingPeriodAgnosticResponse" message="tns:IInternalService_GetToursSellingPeriodAgnostic_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetToursSellingPeriodAgnosticApiErrorFault" name="ApiErrorFault" message="tns:IInternalService_GetToursSellingPeriodAgnostic_ApiErrorFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochuresByBrochureCodeSellingPeriodAgnostic">
+      <wsdl:input wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetBrochuresByBrochureCodeSellingPeriodAgnostic" message="tns:IInternalService_GetBrochuresByBrochureCodeSellingPeriodAgnostic_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetBrochuresByBrochureCodeSellingPeriodAgnosticResponse" message="tns:IInternalService_GetBrochuresByBrochureCodeSellingPeriodAgnostic_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetBrochuresByBrochureCodeSellingPeriodAgnosticAPIErrorDetailFault" name="APIErrorDetailFault" message="tns:IInternalService_GetBrochuresByBrochureCodeSellingPeriodAgnostic_APIErrorDetailFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadBrochureLookupList">
+      <wsdl:input wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/LoadBrochureLookupList" message="tns:IInternalService_LoadBrochureLookupList_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/LoadBrochureLookupListResponse" message="tns:IInternalService_LoadBrochureLookupList_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/LoadBrochureLookupListAPIErrorDetailFault" name="APIErrorDetailFault" message="tns:IInternalService_LoadBrochureLookupList_APIErrorDetailFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureDetail">
+      <wsdl:input wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetBrochureDetail" message="tns:IInternalService_GetBrochureDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetBrochureDetailResponse" message="tns:IInternalService_GetBrochureDetail_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetBrochureDetailAPIErrorDetailFault" name="APIErrorDetailFault" message="tns:IInternalService_GetBrochureDetail_APIErrorDetailFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IInternalService" type="tns:IInternalService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetToursSellingPeriodAgnostic">
+      <soap:operation soapAction="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetToursSellingPeriodAgnostic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ApiErrorFault">
+        <soap:fault use="literal" name="ApiErrorFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochuresByBrochureCodeSellingPeriodAgnostic">
+      <soap:operation soapAction="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetBrochuresByBrochureCodeSellingPeriodAgnostic" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="APIErrorDetailFault">
+        <soap:fault use="literal" name="APIErrorDetailFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LoadBrochureLookupList">
+      <soap:operation soapAction="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/LoadBrochureLookupList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="APIErrorDetailFault">
+        <soap:fault use="literal" name="APIErrorDetailFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrochureDetail">
+      <soap:operation soapAction="http://www.travcorp.com/publicapi/InternalWSAPI/IInternalService/GetBrochureDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="APIErrorDetailFault">
+        <soap:fault use="literal" name="APIErrorDetailFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="InternalService">
+    <wsdl:port name="BasicHttpBinding_IInternalService" binding="tns:BasicHttpBinding_IInternalService">
+      <soap:address location="http://londvwl01/PublicAPI/InternalWSAPI.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

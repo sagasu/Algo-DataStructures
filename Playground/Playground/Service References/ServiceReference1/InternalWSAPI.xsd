@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.travcorp.com/api/v3" elementFormDefault="qualified" targetNamespace="http://www.travcorp.com/api/v3" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="WSSellingCompanyAuthenticationMessage">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AuthenticationMessage">
+        <xs:sequence>
+          <xs:element name="SellingCompanyCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="WSSellingCompanyAuthenticationMessage" nillable="true" type="tns:WSSellingCompanyAuthenticationMessage" />
+  <xs:complexType name="AuthenticationMessage">
+    <xs:sequence>
+      <xs:element name="ApiKey" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AuthenticationMessage" nillable="true" type="tns:AuthenticationMessage" />
+  <xs:complexType name="ApiError">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Errors" nillable="true" type="tns:Errors" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApiError" nillable="true" type="tns:ApiError" />
+  <xs:complexType name="Errors">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Error" nillable="true" type="tns:ApiErrorDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Errors" nillable="true" type="tns:Errors" />
+  <xs:complexType name="ApiErrorDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApiErrorDetail" nillable="true" type="tns:ApiErrorDetail" />
+</xs:schema>

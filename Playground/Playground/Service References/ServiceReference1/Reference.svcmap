@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4ee52fd1-a369-44b4-a4fa-e6671ed3c1d9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8090/PublicApi/InternalWSAPI.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="InternalWSAPI8.xsd" MetadataType="Schema" ID="e11ba674-0cf0-43dc-8b11-9c6617c8e207" SourceId="1" SourceUrl="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd8" />
+    <MetadataFile FileName="InternalWSAPI.xsd" MetadataType="Schema" ID="1add65e4-7ccc-4d1d-82a9-b6a37fff1837" SourceId="1" SourceUrl="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd3" />
+    <MetadataFile FileName="InternalWSAPI1.xsd" MetadataType="Schema" ID="03437f33-dd3e-4c76-93d7-61a6387156d4" SourceId="1" SourceUrl="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd2" />
+    <MetadataFile FileName="InternalWSAPI2.xsd" MetadataType="Schema" ID="086d0fa5-017a-435b-b8cb-3bf6e41d89f5" SourceId="1" SourceUrl="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd1" />
+    <MetadataFile FileName="InternalWSAPI3.xsd" MetadataType="Schema" ID="48010194-1cb4-4800-b928-a5363a03d18f" SourceId="1" SourceUrl="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd0" />
+    <MetadataFile FileName="InternalWSAPI4.xsd" MetadataType="Schema" ID="de322a81-6d25-40d5-a209-26067a99df7e" SourceId="1" SourceUrl="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd7" />
+    <MetadataFile FileName="InternalWSAPI5.xsd" MetadataType="Schema" ID="fdad0f25-8330-490f-8cee-43589ed5c557" SourceId="1" SourceUrl="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd6" />
+    <MetadataFile FileName="InternalWSAPI6.xsd" MetadataType="Schema" ID="21cea02c-e694-40d6-9f6b-0bee9cd8e7eb" SourceId="1" SourceUrl="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd5" />
+    <MetadataFile FileName="InternalWSAPI7.xsd" MetadataType="Schema" ID="a5a40dbe-76fc-45ec-9e72-45d53201ff1a" SourceId="1" SourceUrl="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd4" />
+    <MetadataFile FileName="InternalService.wsdl" MetadataType="Wsdl" ID="2f8909e8-bbd6-452a-b24c-27fac18bcc6c" SourceId="1" SourceUrl="http://localhost:8090/PublicApi/InternalWSAPI.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

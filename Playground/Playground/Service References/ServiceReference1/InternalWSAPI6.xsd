@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.itropics.com/PublicDataRetrievalAPI" elementFormDefault="qualified" targetNamespace="http://www.itropics.com/PublicDataRetrievalAPI" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://londvwl01/PublicAPI/InternalWSAPI.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="BrochureResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Brochure" nillable="true" type="tns:Brochure" />
+      <xs:element minOccurs="0" name="Header" nillable="true" type="tns:ResponseHeader" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BrochureResponse" nillable="true" type="tns:BrochureResponse" />
+  <xs:complexType name="Brochure">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BrandCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrochureCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrochureId" type="xs:long" />
+      <xs:element minOccurs="0" name="BrochureName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BrochureYear" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LongDescription" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NumberOfPages" type="xs:int" />
+      <xs:element minOccurs="0" name="OperatingPeriodEndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OperatingPeriodStartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SellingCompanyCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SellingPeriodEndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SellingPeriodStartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ShortDescription" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Brochure" nillable="true" type="tns:Brochure" />
+  <xs:complexType name="ResponseHeader">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ErrorMessages" nillable="true" type="q1:ArrayOfstring" />
+      <xs:element minOccurs="0" name="Successful" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseHeader" nillable="true" type="tns:ResponseHeader" />
+  <xs:complexType name="LocationsResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Header" nillable="true" type="tns:ResponseHeader" />
+      <xs:element minOccurs="0" name="MarketVariations" nillable="true" type="tns:ArrayOfMarketVariation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LocationsResponse" nillable="true" type="tns:LocationsResponse" />
+  <xs:complexType name="ArrayOfMarketVariation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MarketVariation" nillable="true" type="tns:MarketVariation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMarketVariation" nillable="true" type="tns:ArrayOfMarketVariation" />
+  <xs:complexType name="MarketVariation">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsProductCancelled" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Segments" nillable="true" type="tns:ArrayOfSegment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MarketVariation" nillable="true" type="tns:MarketVariation" />
+  <xs:complexType name="ArrayOfSegment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Segment" nillable="true" type="tns:Segment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSegment" nillable="true" type="tns:ArrayOfSegment" />
+  <xs:complexType name="Segment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Day" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Locations" nillable="true" type="q2:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Segment" nillable="true" type="tns:Segment" />
+</xs:schema>
