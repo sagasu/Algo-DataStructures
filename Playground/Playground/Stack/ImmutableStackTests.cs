@@ -9,30 +9,30 @@ namespace Playground.Stack
         [Test]
         public void VerbatimStack_PushOneElement_ShouldReturnInOnTop()
         {
-            var foo = ImmutableStack<bool>.Empty.Push(true);
+            var immutableStack = ImmutableStack<bool>.Empty.Push(true);
 
-            Assert.AreEqual(true, foo.Top);
+            Assert.AreEqual(true, immutableStack.Top);
         }
 
         [Test]
         public void VerbatimStack_PopAndTop_ShouldReturnFirstPushedElement()
         {
-            var foo = ImmutableStack<bool>.Empty.Push(false).Push(true);
+            var immutableStack = ImmutableStack<bool>.Empty.Push(false).Push(true);
 
-            Assert.AreEqual(false, foo.Pop().Top);
+            Assert.AreEqual(false, immutableStack.Pop().Top);
         }
 
         [Test]
         public void VerbatimStack_Iterator_ShouldReturnAllElementsInOrder()
         {
-            var foo = ImmutableStack<bool>.Empty.Push(true).Push(false).Push(false);
+            var immutableStack = ImmutableStack<bool>.Empty.Push(true).Push(false).Push(false);
 
-            using (var e1 = foo.GetEnumerator())
-            using (var e2 = new List<bool> { true, false, false }.GetEnumerator())
+            using (var actualEnumerator = immutableStack.GetEnumerator())
+            using (var expectedEnumerator = new List<bool> { true, false, false }.GetEnumerator())
             {
-                while (e1.MoveNext() && e2.MoveNext())
+                while (actualEnumerator.MoveNext() && expectedEnumerator.MoveNext())
                 {
-                    Assert.AreEqual(e1.Current, e2.Current);
+                    Assert.AreEqual(actualEnumerator.Current, expectedEnumerator.Current);
                 }
             }
         }

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace Playground.Stack
 {
+    /// <summary>
+    /// My favorite stack impl. there is so much OO paradigm patterns and methods applied here, that I always enjoyed writing such code.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class ImmutableStack<T> : IEnumerable<T>
     {
         public static readonly ImmutableStack<T> Empty = new EmptyStack();
