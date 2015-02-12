@@ -53,7 +53,8 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="SitecoreWebAPIClient\Client.cs" />
-    <Compile Include="Stack\VerbatimStack.cs" />
+    <Compile Include="Stack\ImmutableStack.cs" />
+    <Compile Include="Stack\ImmutableStackTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
