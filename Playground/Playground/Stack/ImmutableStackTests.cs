@@ -7,7 +7,7 @@ namespace Playground.Stack
     public class ImmutableStackTests
     {
         [Test]
-        public void VerbatimStack_PushOneElement_ShouldReturnInOnTop()
+        public void Push_OneElement_ShouldReturnInOnTop()
         {
             var immutableStack = ImmutableStack<bool>.Empty.Push(true);
 
@@ -15,7 +15,7 @@ namespace Playground.Stack
         }
 
         [Test]
-        public void VerbatimStack_PopAndTop_ShouldReturnFirstPushedElement()
+        public void Pop_PopAndTop_ShouldReturnFirstPushedElement()
         {
             var immutableStack = ImmutableStack<bool>.Empty.Push(false).Push(true);
 
@@ -23,7 +23,7 @@ namespace Playground.Stack
         }
 
         [Test]
-        public void VerbatimStack_Iterator_ShouldReturnAllElementsInOrder()
+        public void ImmutableStack_Iterator_ShouldReturnAllElementsInOrder()
         {
             var immutableStack = ImmutableStack<bool>.Empty.Push(true).Push(false).Push(false);
 
