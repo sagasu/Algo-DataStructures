@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace Playground.Stack
@@ -50,6 +51,28 @@ namespace Playground.Stack
                     Assert.AreEqual(actualEnumerator.Current, expectedEnumerator.Current);
                 }
             }
+        }
+
+        [Test]
+        public void Top_EmptyStack_ThrowsException()
+        {
+            var arrayStack = new ArrayStack<bool>();
+            Assert.Throws<IndexOutOfRangeException>(() => arrayStack.Top());
+        }
+
+        [Test]
+        public void Pop_EmptyStack_ThrowsException()
+        {
+            var arrayStack = new ArrayStack<bool>();
+            Assert.Throws<IndexOutOfRangeException>(() => arrayStack.Top());
+        }
+
+        [Test]
+        public void Enumerator_EmptyStack_ReturnsFalse()
+        {
+            var arrayStack = new ArrayStack<bool>();
+            // Cool behavior
+            Assert.IsFalse(arrayStack.GetEnumerator().Current);
         }
     }
 }
