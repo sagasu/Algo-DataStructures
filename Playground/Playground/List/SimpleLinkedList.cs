@@ -20,7 +20,7 @@ namespace Playground.List
             _tail = _tail.Add(t);
         }
 
-        public void Add(int index, T t)
+        public void Add(T t, int index)
         {
             PerformActionOnIndexElement(index, _head, _ => _.Add(t));
         }
@@ -45,9 +45,11 @@ namespace Playground.List
 
         public IEnumerator<T> GetEnumerator()
         {
-            while (_head.Next != null)
+            var current = _head;
+            while (current.Next != null)
             {
-                yield return _head.Current;
+                yield return current.Current;
+                current = current.Next;
             }
         }
 
