@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Playground.List
@@ -19,14 +20,27 @@ namespace Playground.List
             _tail = _tail.Add(t);
         }
 
-        public void Add(int index)
+        public void Add(int index, T t)
         {
-
+            PerformActionOnIndexElement(index, _head, _ => _.Add(t));
         }
 
         public void Remove(int index)
         {
+            PerformActionOnIndexElement(index, _head, _ => _.Remove());
+        }
 
+        private void PerformActionOnIndexElement(int index, SimpleLinkedListNode<T> current, Action<SimpleLinkedListNode<T>> action)
+        {
+            if (index == 0)
+            {
+                action(current);
+                return;
+            }
+
+            if (current.Next == null) throw new ArgumentException("List doesn't have so many elements.");
+
+            PerformActionOnIndexElement(--index, current.Next, action);
         }
 
         public IEnumerator<T> GetEnumerator()

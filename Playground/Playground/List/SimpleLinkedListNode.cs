@@ -12,5 +12,14 @@
             Next = new SimpleLinkedListNode<T> {Previous = this};
             return Next;
         }
+
+        public void Remove()
+        {
+            if(Previous != null)
+                Previous.Next = Next;
+
+            if(Next != null)
+                Next.Previous = Previous;
+        }
     }
 }
