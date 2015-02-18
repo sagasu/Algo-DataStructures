@@ -6,49 +6,56 @@ namespace Playground.List
 {
     public class SimpleLinkedList<T> : IEnumerable<T>
     {
-        private readonly SimpleLinkedListNode<T> _head;
+        private SimpleLinkedListNode<T> _head;
         private SimpleLinkedListNode<T> _tail;
-
-        public SimpleLinkedList()
-        {
-            _head = new SimpleLinkedListNode<T>();
-            _tail = _head;
-        }
             
         public void Add(T t)
         {
+            if (_tail == null)
+            {
+                _tail = new SimpleLinkedListNode<T>(t, null, null);
+                _head = _tail;
+                return;
+            }
+
             _tail = _tail.Add(t);
         }
 
         public void Add(T t, int index)
         {
-            PerformActionOnIndexElement(index, _head, _ => _.Add(t));
+            if (index == 0)
+            {
+                Add(t);
+                return;
+            }
+
+            PerformActionOnIndexElement(--index, _head, _ => _.Add(t));
         }
 
         public void Remove(int index)
         {
-            PerformActionOnIndexElement(index, _head, _ => _.Remove());
+            _head = PerformActionOnIndexElement(index, _head, _ => _.Remove());
         }
 
-        private void PerformActionOnIndexElement(int index, SimpleLinkedListNode<T> current, Action<SimpleLinkedListNode<T>> action)
+        private SimpleLinkedListNode<T> PerformActionOnIndexElement(int index, SimpleLinkedListNode<T> current, Func<SimpleLinkedListNode<T>, SimpleLinkedListNode<T>> func)
         {
             if (index == 0)
             {
-                action(current);
-                return;
+                return func(current);
             }
 
-            if (current.Next == null) throw new ArgumentException("List doesn't have so many elements.");
+            if (current == null || current.Next == null) throw new ArgumentException("List doesn't have so many elements.");
 
-            PerformActionOnIndexElement(--index, current.Next, action);
+            return PerformActionOnIndexElement(--index, current.Next, func);
         }
 
         public IEnumerator<T> GetEnumerator()
         {
             var current = _head;
-            while (current.Next != null)
+            while (current != null)
             {
                 yield return current.Current;
+
                 current = current.Next;
             }
         }
