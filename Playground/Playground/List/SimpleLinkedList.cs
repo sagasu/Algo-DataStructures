@@ -6,11 +6,29 @@ namespace Playground.List
 {
     public class SimpleLinkedList<T> : IEnumerable<T>
     {
+        /// <summary>
+        /// Reference to first node;
+        /// </summary>
         private SimpleLinkedListNode<T> _head;
+
+        /// <summary>
+        /// Reference to last node;
+        /// </summary>
         private SimpleLinkedListNode<T> _tail;
-            
+
+        /// <summary>
+        /// Number of elements in simple linked list;
+        /// </summary>
+        private int _count = 0;
+
+        public int Count 
+        {
+            get { return _count; }
+        }
+
         public void Add(T t)
         {
+            _count++;
             if (_tail == null)
             {
                 _tail = new SimpleLinkedListNode<T>(t, null, null);
@@ -23,18 +41,26 @@ namespace Playground.List
 
         public void Add(T t, int index)
         {
+            _count++;
             if (index == 0)
             {
                 Add(t);
                 return;
             }
 
-            PerformActionOnIndexElement(--index, _head, _ => _.Add(t));
+            var modifiedNode = PerformActionOnIndexElement(--index, _head, _ => _.Add(t));
+            if (index == _count - 1)
+            {
+                _tail = modifiedNode;
+            }
         }
 
         public void Remove(int index)
         {
-            _head = PerformActionOnIndexElement(index, _head, _ => _.Remove());
+            _count--;
+            var modifiedNode = PerformActionOnIndexElement(index, _head, _ => _.Remove());
+            if (modifiedNode == null) 
+                _head = null;
         }
 
         private SimpleLinkedListNode<T> PerformActionOnIndexElement(int index, SimpleLinkedListNode<T> current, Func<SimpleLinkedListNode<T>, SimpleLinkedListNode<T>> func)

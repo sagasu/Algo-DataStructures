@@ -97,7 +97,7 @@ namespace Playground.List
             Assert.AreEqual(2, sll.Skip(2).First());
             Assert.AreEqual(3, sll.Skip(3).First());
             Assert.AreEqual(5, sll.Skip(4).First());
-            //Assert.AreEqual(5, sll.Last());
+            Assert.AreEqual(5, sll.Last());
         }
 
     }
