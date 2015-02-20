@@ -70,7 +70,7 @@ namespace Playground.List
         }
 
         [Test]
-        public void TestHeadAssignmenet_RemoveSecondElementAndAddToFirstPosition_ElementShouldBeAssignedToSecondPosition()
+        public void TestHeadAssignmenet_RemoveSecondElementAndAddToSecondPosition_ElementShouldBeAssignedToSecondPosition()
         {
             var sll = new SimpleLinkedList<int> { 1, 2, 3, 4, 5 };
             sll.Remove(1);
@@ -85,7 +85,7 @@ namespace Playground.List
         }
 
         [Test]
-        public void TestHeadAssignmenet_RemoveFourthElementAndAddToFirstPosition_ElementShouldBeAssignedToSecondPosition()
+        public void TestHeadAssignmenet_RemoveFourthElementAndAddToSecondPosition_ElementShouldBeAssignedToSecondPosition()
         {
             var sll = new SimpleLinkedList<int> { 1, 2, 3, 4, 5 };
             sll.Remove(3);
@@ -100,5 +100,52 @@ namespace Playground.List
             Assert.AreEqual(5, sll.Last());
         }
 
+        [Test]
+        public void TestHeadAssignmenet_RemoveLastElementAndAddToSecondPosition_ElementShouldBeAssignedToSecondPosition()
+        {
+            var sll = new SimpleLinkedList<int> { 1, 2, 3, 4, 5 };
+            sll.Remove(4);
+            sll.Add(6, 1);
+
+            Assert.AreEqual(5, sll.Count());
+            Assert.AreEqual(1, sll.First());
+            Assert.AreEqual(6, sll.Skip(1).First());
+            Assert.AreEqual(2, sll.Skip(2).First());
+            Assert.AreEqual(3, sll.Skip(3).First());
+            Assert.AreEqual(4, sll.Skip(4).First());
+            Assert.AreEqual(4, sll.Last());
+        }
+
+        [Test]
+        public void TestHeadAssignmenet_RemoveFirstElementAndAddToSecondPosition_ElementShouldBeAssignedToSecondPosition()
+        {
+            var sll = new SimpleLinkedList<int> { 1, 2, 3, 4, 5 };
+            sll.Remove(0);
+            sll.Add(6, 1);
+
+            Assert.AreEqual(5, sll.Count());
+            Assert.AreEqual(1, sll.First());
+            Assert.AreEqual(6, sll.Skip(1).First());
+            Assert.AreEqual(2, sll.Skip(2).First());
+            Assert.AreEqual(3, sll.Skip(3).First());
+            Assert.AreEqual(4, sll.Skip(4).First());
+            Assert.AreEqual(4, sll.Last());
+        }
+
+        [Test]
+        public void TestHeadAssignmenet_RemoveFirstElementAndAddToFirstPosition_ElementShouldBeAssignedToSecondPosition()
+        {
+            var sll = new SimpleLinkedList<int> { 1, 2, 3, 4, 5 };
+            sll.Remove(0);
+            sll.Add(6, 0);
+
+            Assert.AreEqual(5, sll.Count());
+            Assert.AreEqual(1, sll.First());
+            Assert.AreEqual(6, sll.Skip(1).First());
+            Assert.AreEqual(2, sll.Skip(2).First());
+            Assert.AreEqual(3, sll.Skip(3).First());
+            Assert.AreEqual(4, sll.Skip(4).First());
+            Assert.AreEqual(4, sll.Last());
+        }
     }
 }
