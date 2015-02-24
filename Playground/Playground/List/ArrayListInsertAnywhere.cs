@@ -19,6 +19,11 @@ namespace Playground.List
             _elements = new T[_maxNrOfElements];
         }
 
+        /// <summary>
+        /// It is more Set than Add.
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="index"></param>
         public void Add(T t, int index)
         {
             if (index > _elementMaxIndex)
