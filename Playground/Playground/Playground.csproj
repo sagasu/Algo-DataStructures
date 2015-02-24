@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="List\ArrayListInsertAnywhere.cs" />
+    <Compile Include="List\ArrayListInsertAnywhereTest.cs" />
     <Compile Include="List\SimpleLinkedList.cs" />
     <Compile Include="List\SimpleLinkedListNode.cs" />
     <Compile Include="List\SimpleLinkedListTests.cs" />
