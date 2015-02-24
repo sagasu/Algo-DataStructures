@@ -44,7 +44,8 @@ namespace Playground.List
             _count++;
             if (index == 0)
             {
-                Add(t);
+                var newHead = new SimpleLinkedListNode<T>(t, _head, null);
+                _head = newHead;
                 return;
             }
 
@@ -59,8 +60,14 @@ namespace Playground.List
         {
             _count--;
             var modifiedNode = PerformActionOnIndexElement(index, _head, _ => _.Remove());
-            if (modifiedNode == null) 
+            if (modifiedNode != null)
+            {
+                _head = modifiedNode;
+            }
+            if (_count == 0)
+            {
                 _head = null;
+            }
         }
 
         private SimpleLinkedListNode<T> PerformActionOnIndexElement(int index, SimpleLinkedListNode<T> current, Func<SimpleLinkedListNode<T>, SimpleLinkedListNode<T>> func)

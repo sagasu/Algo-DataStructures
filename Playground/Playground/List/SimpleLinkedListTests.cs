@@ -124,12 +124,12 @@ namespace Playground.List
             sll.Add(6, 1);
 
             Assert.AreEqual(5, sll.Count());
-            Assert.AreEqual(1, sll.First());
+            Assert.AreEqual(2, sll.First());
             Assert.AreEqual(6, sll.Skip(1).First());
-            Assert.AreEqual(2, sll.Skip(2).First());
-            Assert.AreEqual(3, sll.Skip(3).First());
-            Assert.AreEqual(4, sll.Skip(4).First());
-            Assert.AreEqual(4, sll.Last());
+            Assert.AreEqual(3, sll.Skip(2).First());
+            Assert.AreEqual(4, sll.Skip(3).First());
+            Assert.AreEqual(5, sll.Skip(4).First());
+            Assert.AreEqual(5, sll.Last());
         }
 
         [Test]
@@ -140,12 +140,12 @@ namespace Playground.List
             sll.Add(6, 0);
 
             Assert.AreEqual(5, sll.Count());
-            Assert.AreEqual(1, sll.First());
-            Assert.AreEqual(6, sll.Skip(1).First());
-            Assert.AreEqual(2, sll.Skip(2).First());
-            Assert.AreEqual(3, sll.Skip(3).First());
-            Assert.AreEqual(4, sll.Skip(4).First());
-            Assert.AreEqual(4, sll.Last());
+            Assert.AreEqual(6, sll.First());
+            Assert.AreEqual(2, sll.Skip(1).First());
+            Assert.AreEqual(3, sll.Skip(2).First());
+            Assert.AreEqual(4, sll.Skip(3).First());
+            Assert.AreEqual(5, sll.Skip(4).First());
+            Assert.AreEqual(5, sll.Last());
         }
     }
 }

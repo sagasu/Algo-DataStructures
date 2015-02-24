@@ -33,7 +33,7 @@
             if(Next != null)
                 Next.Previous = Previous;
 
-            return Previous;
+            return Previous == null ? Next : null;
         }
     }
 }
