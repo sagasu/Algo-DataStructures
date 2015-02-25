@@ -19,6 +19,7 @@ namespace Playground.Sort
         private static IList<T> Sort(IEnumerable<T> elements, T mediumElement)
         {
             var sortNode = Split(elements, mediumElement);
+
             IList<T> sortedSmallerValues;
             IList<T> sortedGreaterValues;
             if (sortNode.SmallerValues.Count > 1)
@@ -41,6 +42,11 @@ namespace Playground.Sort
                 sortedGreaterValues = sortNode.GreaterValues;
             }
 
+            return Merge(mediumElement, sortedSmallerValues, sortedGreaterValues);
+        }
+
+        private static List<T> Merge(T mediumElement, IEnumerable<T> sortedSmallerValues, IEnumerable<T> sortedGreaterValues)
+        {
             var sorted = new List<T>();
             sorted.AddRange(sortedSmallerValues);
             sorted.Add(mediumElement);
