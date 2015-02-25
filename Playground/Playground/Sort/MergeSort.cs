@@ -28,7 +28,7 @@ namespace Playground.Sort
                 sortedSmallerValues = sortNode.SmallerValues;
             }
 
-            if (sortNode.SmallerValues.Count > 1)
+            if (sortNode.GreaterValues.Count > 1)
             {
                 var firstGreaterValue = sortNode.GreaterValues.First();
                 sortedGreaterValues = Sort(sortNode.GreaterValues.Skip(1), firstGreaterValue);
