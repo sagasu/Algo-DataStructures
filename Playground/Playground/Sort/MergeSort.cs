@@ -9,6 +9,9 @@ namespace Playground.Sort
         public IEnumerable<T> Sort(IEnumerable<T> elements)
         {
             var enumerable = elements as IList<T> ?? elements.ToList();
+
+            if (!enumerable.Any()) return enumerable;
+
             var firstElement = enumerable.First();
             return Sort(enumerable.Skip(1), firstElement);
         }
