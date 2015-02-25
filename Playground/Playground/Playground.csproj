@@ -64,6 +64,8 @@
     <Compile Include="SitecoreWebAPIClient\Client.cs" />
     <Compile Include="Sort\MergeSort.cs" />
     <Compile Include="Sort\MergeSortTest.cs" />
+    <Compile Include="Sort\QuickSort.cs" />
+    <Compile Include="Sort\QuickSortTest.cs" />
     <Compile Include="Stack\ArrayStack.cs" />
     <Compile Include="Stack\ArrayStackTests.cs" />
     <Compile Include="Stack\ImmutableStack.cs" />
