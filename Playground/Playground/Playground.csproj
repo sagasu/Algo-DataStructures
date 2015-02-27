@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Casting\CastingMethodParameters.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="List\ArrayListInsertAnywhere.cs" />
     <Compile Include="List\ArrayListInsertAnywhereTest.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="SitecoreWebAPIClient\Client.cs" />
     <Compile Include="Sort\MergeSort.cs" />
     <Compile Include="Sort\MergeSortTest.cs" />
+    <Compile Include="Sort\MergeSortTwo.cs" />
     <Compile Include="Sort\QuickSort.cs" />
     <Compile Include="Sort\QuickSortTest.cs" />
     <Compile Include="Stack\ArrayStack.cs" />
@@ -132,9 +134,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Casting\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

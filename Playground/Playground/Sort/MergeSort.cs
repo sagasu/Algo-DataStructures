@@ -16,6 +16,7 @@ namespace Playground.Sort
             return Sort(enumerable.Skip(1), firstElement);
         }
 
+        // It is more QuickSort, because it first sorts than it goes deeper
         private static IList<T> Sort(IEnumerable<T> elements, T mediumElement)
         {
             var sortNode = Split(elements, mediumElement);
