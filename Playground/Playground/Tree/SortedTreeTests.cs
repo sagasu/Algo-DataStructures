@@ -92,5 +92,17 @@ namespace Playground.Tree
             var st = new SortedTree<int>(true);
             Assert.Throws<ArgumentException>(() => st.AddRange(null));
         }
+
+        [Test]
+        public void Remove_AddThreeElementsRemoveOne_ShouldRemoveElement()
+        {
+            var st = new SortedTree<int>(true);
+            st.Add(2);
+            st.Add(4);
+            st.Add(1);
+            st.Remove(1);
+
+            CollectionAssert.AreEqual(new List<int> { 2,4 }, st.Traverse());
+        }
     }
 }
