@@ -35,5 +35,20 @@ namespace Playground.Tree
 
             CollectionAssert.AreEqual(new List<int> { 1,3,9,11,23,44,52 }, st.Traverse());
         }
+
+        [Test]
+        public void AddRange_TwoSameElements_ShouldThrowArgumentException()
+        {
+            var st = new SortedTree<int>();
+            
+            Assert.Throws<ArgumentException>(() => st.AddRange(new List<int> { 3, 23, 3, }));
+        }
+
+        [Test]
+        public void AddRange_NullPassedAsElements_ShouldThrowArgumentException()
+        {
+            var st = new SortedTree<int>();
+            Assert.Throws<ArgumentException>(() => st.AddRange(null));
+        }
     }
 }
