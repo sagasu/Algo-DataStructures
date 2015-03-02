@@ -50,5 +50,47 @@ namespace Playground.Tree
             var st = new SortedTree<int>();
             Assert.Throws<ArgumentException>(() => st.AddRange(null));
         }
+
+
+        [Test]
+        public void Add_OneElementAlternativeTraverse_ShouldReturnWhenTravers()
+        {
+            var st = new SortedTree<int>(true);
+            st.Add(3);
+
+            CollectionAssert.AreEqual(new List<int> { 3 }, st.Traverse());
+        }
+
+        [Test]
+        public void Travers_EmptyListAlternativeTraverse_ShouldReturnEmptyCollection()
+        {
+            var st = new SortedTree<int>(true);
+
+            CollectionAssert.AreEqual(new List<int>(), st.Traverse());
+        }
+
+        [Test]
+        public void AddRage_MultipleElementsAlternativeTraverse_ShouldSortWhenTravers()
+        {
+            var st = new SortedTree<int>(true);
+            st.AddRange(new List<int> { 3, 23, 52, 1, 44, 11, 9 });
+
+            CollectionAssert.AreEqual(new List<int> { 1, 3, 9, 11, 23, 44, 52 }, st.Traverse());
+        }
+
+        [Test]
+        public void AddRange_TwoSameElementsAlternativeTraverse_ShouldThrowArgumentException()
+        {
+            var st = new SortedTree<int>(true);
+
+            Assert.Throws<ArgumentException>(() => st.AddRange(new List<int> { 3, 23, 3, }));
+        }
+
+        [Test]
+        public void AddRange_NullPassedAsElementsAlternativeTraverse_ShouldThrowArgumentException()
+        {
+            var st = new SortedTree<int>(true);
+            Assert.Throws<ArgumentException>(() => st.AddRange(null));
+        }
     }
 }

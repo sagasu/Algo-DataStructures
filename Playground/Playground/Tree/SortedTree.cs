@@ -8,6 +8,13 @@ namespace Playground.Tree
     {
         private TreeNode _head;
 
+
+        private readonly bool _isSecondWayOfTraversing;
+        public SortedTree(bool isSecondWayOfTraversing = false)
+        {
+            _isSecondWayOfTraversing = isSecondWayOfTraversing;
+        }
+
         public void AddRange(IEnumerable<T> elements)
         {
             if(elements == null) throw new ArgumentException("Collection of elements can not be empty.");
@@ -31,7 +38,8 @@ namespace Playground.Tree
 
         public IEnumerable<T> Traverse()
         {
-            return _head == null ? Enumerable.Empty<T>() : Traverse(_head);
+            return _head == null ? Enumerable.Empty<T>() :
+                _isSecondWayOfTraversing ? TraverseAlternative(_head) :Traverse(_head);
         }
 
         private static IEnumerable<T> Traverse(TreeNode head)
@@ -48,6 +56,27 @@ namespace Playground.Tree
             }
             return smallerFirst;
 
+        }
+
+        private static IEnumerable<T> TraverseAlternative(TreeNode head)
+        {
+            
+            if (head.Smaller != null)
+            {
+                foreach (var smallerValue in Traverse(head.Smaller))
+                {
+                    yield return smallerValue;   
+                }
+                
+            }
+            yield return head.Value;
+
+            if (head.Greater == null) yield break;
+
+            foreach (var greaterValue in Traverse(head.Greater))
+            {
+                yield return greaterValue;
+            }
         }
 
         private class TreeNode
