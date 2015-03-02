@@ -63,7 +63,7 @@ namespace Playground.Tree
             
             if (head.Smaller != null)
             {
-                foreach (var smallerValue in Traverse(head.Smaller))
+                foreach (var smallerValue in TraverseAlternative(head.Smaller))
                 {
                     yield return smallerValue;   
                 }
@@ -73,7 +73,7 @@ namespace Playground.Tree
 
             if (head.Greater == null) yield break;
 
-            foreach (var greaterValue in Traverse(head.Greater))
+            foreach (var greaterValue in TraverseAlternative(head.Greater))
             {
                 yield return greaterValue;
             }
