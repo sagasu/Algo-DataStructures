@@ -72,6 +72,8 @@
     <Compile Include="Stack\ArrayStackTests.cs" />
     <Compile Include="Stack\ImmutableStack.cs" />
     <Compile Include="Stack\ImmutableStackTests.cs" />
+    <Compile Include="Tree\SortedTree.cs" />
+    <Compile Include="Tree\SortedTreeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
