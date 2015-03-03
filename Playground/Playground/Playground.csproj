@@ -68,6 +68,8 @@
     <Compile Include="Sort\MergeSortTest.cs" />
     <Compile Include="Sort\MergeSortTwo.cs" />
     <Compile Include="Sort\QuickSort.cs" />
+    <Compile Include="Sort\QuickSortArray.cs" />
+    <Compile Include="Sort\QuickSortArrayTests.cs" />
     <Compile Include="Sort\QuickSortTest.cs" />
     <Compile Include="Stack\ArrayStack.cs" />
     <Compile Include="Stack\ArrayStackTests.cs" />
