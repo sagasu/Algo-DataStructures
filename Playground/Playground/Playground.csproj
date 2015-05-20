@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncAwait\GeneralTest.cs" />
     <Compile Include="Casting\CastingMethodParameters.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
