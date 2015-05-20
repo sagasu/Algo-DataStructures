@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Playground.AsyncAwait
 {
     [TestFixture]
-    public class GeneralTest
+    public class GeneralTest : AsyncHelper
     {
         [Test]
         public void TestAsync_WithoutWaitingForLongRunningOperationToFinish_NotDisplayResultsAndFinishWaiting()
@@ -16,7 +16,7 @@ namespace Playground.AsyncAwait
             //finish test
 
             Console.WriteLine("start test");
-            MyMethod();
+            ReturnOneAfterThreeSecondsAsync();
             Console.WriteLine("finish test");
         }
 
@@ -34,7 +34,7 @@ namespace Playground.AsyncAwait
 
 
             Console.WriteLine("start test");
-            await MyMethod();
+            await ReturnOneAfterThreeSecondsAsync();
             Console.WriteLine("finish test");
         }
 
@@ -52,7 +52,7 @@ namespace Playground.AsyncAwait
 
 
             Console.WriteLine("start test");
-            MyMethod();
+            ReturnOneAfterThreeSecondsAsync();
             WaitAndDontBlockThread(4);
 
 
@@ -60,37 +60,6 @@ namespace Playground.AsyncAwait
         }
 
 
-        // It will use CPU
-        void WaitAndDontBlockThread(int x)
-        {
-            DateTime t = DateTime.Now;
-            DateTime tf = DateTime.Now.AddSeconds(x);
-
-            while (t < tf)
-            {
-                t = DateTime.Now;
-            }
-        }
-
-        public async Task MyMethod()
-        {
-            Task<int> longRunningTask = LongRunningOperation();
-            //indeed you can do independent to the int result work here 
-
-            int result = 0;
-
-            //and now we call await on the task 
-            result = await longRunningTask;
-            //use the result 
-            Console.WriteLine(result);
-        }
-
-        public async Task<int> LongRunningOperation() // assume we return an int from this long running operation 
-        {
-            Console.WriteLine("starts waiting");
-            await Task.Delay(3000); //1 seconds delay
-            Console.WriteLine("finished waiting");
-            return 1;
-        }
+        protected override void DoAfterWork(){}
     }
 }

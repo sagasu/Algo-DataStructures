@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncAwait\AsyncHelper.cs" />
     <Compile Include="AsyncAwait\ExceptionTests.cs" />
     <Compile Include="AsyncAwait\GeneralTest.cs" />
     <Compile Include="Casting\CastingMethodParameters.cs" />
