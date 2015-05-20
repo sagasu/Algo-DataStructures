@@ -6,3 +6,11 @@ C:\worek\github\Playground\Playground\Playground\bin\Debug\nunit.framework.xml
 C:\worek\github\Playground\Playground\Playground\obj\Debug\Playground.csprojResolveAssemblyReference.cache
 C:\worek\github\Playground\Playground\Playground\obj\Debug\Playground.dll
 C:\worek\github\Playground\Playground\Playground\obj\Debug\Playground.pdb
+D:\worek\gitHub\Playground\Playground\Playground\bin\Debug\Playground.dll.config
+D:\worek\gitHub\Playground\Playground\Playground\bin\Debug\Playground.dll
+D:\worek\gitHub\Playground\Playground\Playground\bin\Debug\Playground.pdb
+D:\worek\gitHub\Playground\Playground\Playground\bin\Debug\nunit.framework.dll
+D:\worek\gitHub\Playground\Playground\Playground\bin\Debug\nunit.framework.xml
+D:\worek\gitHub\Playground\Playground\Playground\obj\Debug\Playground.csprojResolveAssemblyReference.cache
+D:\worek\gitHub\Playground\Playground\Playground\obj\Debug\Playground.dll
+D:\worek\gitHub\Playground\Playground\Playground\obj\Debug\Playground.pdb
