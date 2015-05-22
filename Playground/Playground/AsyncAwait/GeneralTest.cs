@@ -40,6 +40,25 @@ namespace Playground.AsyncAwait
 
 
         [Test]
+        public void TestAsync_WaitForTask_DisplayResultsAndFinishWaiting()
+        {
+            //Expected behaviour:
+            //start test
+            //starts waiting
+            // *** Majority of time spend here
+            //finished waiting
+            //1
+            //finish test
+
+
+            Console.WriteLine("start test");
+            var task = ReturnOneAfterThreeSecondsAsync();
+            task.Wait();
+            Console.WriteLine("finish test");
+        }
+
+
+        [Test]
         public void TestAsync_NotWaitingForLongRunningOperationToFinish_ButCodeInMainThreadWillRunLongEnoughtForLongRunningTaskToFinish_DisplayResultsAndFinishWaiting()
         {
             //Expected behaviour:
