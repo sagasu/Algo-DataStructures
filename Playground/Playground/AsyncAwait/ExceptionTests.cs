@@ -8,7 +8,7 @@ namespace Playground.AsyncAwait
     public class ExceptionTest : AsyncHelper
     {
         [Test]
-        public void TestAsync_WithoutWaitingForLongRunningOperationToFinish_NotDisplayResultsAndFinishWaiting()
+        public void TestAsync_WithoutWaitingForLongRunningOperationToFinish_ShouldntThrowException()
         {
             //Expected behaviour:
             //start test
@@ -22,7 +22,7 @@ namespace Playground.AsyncAwait
 
         [Test]
         [ExpectedException(typeof(Exception))]
-        public async void TestAsync_WaitingForLongRunningOperationToFinish_DisplayResultsAndFinishWaiting()
+        public async void TestAsync_WaitingForLongRunningOperationToFinish_ShouldThrowException()
         {
             //Expected behaviour:
             //start test
@@ -35,9 +35,39 @@ namespace Playground.AsyncAwait
             Console.WriteLine("finish test");
         }
 
+        [Test]
+        // Notice that It is a different Exception than with async, it is AggregateException not Exception
+        [ExpectedException(typeof(AggregateException))]
+        public void TestAsync_WaitForTask_ShouldThrowDifferentExceptionThanOneThatWasThrown()
+        {
+            //Expected behaviour:
+            //start test
+            //starts waiting
+            //*exception being thrown
+
+
+            Console.WriteLine("start test");
+            var task = ReturnOneAfterThreeSecondsAsync();
+            task.Wait();
+            Console.WriteLine("finish test");
+        }
 
         [Test]
-        public void TestAsync_NotWaitingForLongRunningOperationToFinish_ButCodeInMainThreadWillRunLongEnoughtForLongRunningTaskToFinish_DisplayResultsAndFinishWaiting()
+        public void TestAsync_ReceiveTask_DontThrowException()
+        {
+            //Expected behaviour:
+            //start test
+            //starts waiting
+            //finish test
+
+
+            Console.WriteLine("start test");
+            var task = ReturnOneAfterThreeSecondsAsync();
+            Console.WriteLine("finish test");
+        }
+
+        [Test]
+        public void TestAsync_NotWaitingForLongRunningOperationToFinish_ButCodeInMainThreadWillRunLongEnoughtForLongRunningTaskToFinish_ShouldntThrowException()
         {
             //Expected behaviour:
             //start test

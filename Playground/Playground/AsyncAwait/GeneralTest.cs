@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace Playground.AsyncAwait
@@ -54,6 +53,20 @@ namespace Playground.AsyncAwait
             Console.WriteLine("start test");
             var task = ReturnOneAfterThreeSecondsAsync();
             task.Wait();
+            Console.WriteLine("finish test");
+        }
+
+        [Test]
+        public void TestAsync_ReceiveTask_DisplayResultsAndFinishWaiting()
+        {
+            //Expected behaviour:
+            //start test
+            //starts waiting
+            //finish test
+
+
+            Console.WriteLine("start test");
+            var task = ReturnOneAfterThreeSecondsAsync();
             Console.WriteLine("finish test");
         }
 
