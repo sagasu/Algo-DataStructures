@@ -54,6 +54,7 @@
     <Compile Include="Casting\CastingMethodParameters.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Inheritance\MethodCallsToSubClass.cs" />
     <Compile Include="List\ArrayListInsertAnywhere.cs" />
     <Compile Include="List\ArrayListInsertAnywhereTest.cs" />
     <Compile Include="List\SimpleLinkedList.cs" />
