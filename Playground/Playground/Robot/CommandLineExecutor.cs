@@ -10,10 +10,8 @@ namespace Playground.Robot
     class CommandLineExecutor
     {
         Simulator _simulator = new Simulator();
-        private IDictionary<string, Expression<Action<string>>> validOperations = new Dictionary
-            <string, Expression<Action<string>>>()
-        {
-            { "Place", (x) => _simulator.Place(1, 2, new EastEngine()) }
-        }
+
+        private static IDictionary<string, Expression<Action<string>>> validOperations = new Dictionary
+            <string, Expression<Action<string>>>();
     }
 }

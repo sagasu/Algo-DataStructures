@@ -14,10 +14,10 @@ namespace Playground.Robot
             Simulator _simulator = new Simulator();
 
             validOperations.Add("PLACE", (x) => _simulator.Place(1, 2, new EastEngine()) );
-            validOperations.Add("REPORT", (x) => _simulator.Place(1, 2, new EastEngine()) );
-            validOperations.Add("MOVE", (x) => _simulator.Place(1, 2, new EastEngine()) );
-            validOperations.Add("LEFT", (x) => _simulator.Place(1, 2, new EastEngine()) );
-            validOperations.Add("RIGHT", (x) => _simulator.Place(1, 2, new EastEngine()) );
+            validOperations.Add("REPORT", (x) => _simulator.Report() );
+            validOperations.Add("MOVE", (x) => _simulator.Move() );
+            validOperations.Add("LEFT", (x) => _simulator.Left() );
+            validOperations.Add("RIGHT", (x) => _simulator.Right() );
 
             string inputCommand;
             while (string.IsNullOrEmpty(inputCommand = Console.ReadLine()))
@@ -25,7 +25,7 @@ namespace Playground.Robot
                 var command = inputCommand.Split(' ');
                 if(validOperations.ContainsKey(command.First()))
                 {
-                    validOperations[command.First()].Compile().Invoke("a");
+                    validOperations[command.First()].Compile().Invoke(string.Concat(command.Skip(1)));
                 }
             }
             

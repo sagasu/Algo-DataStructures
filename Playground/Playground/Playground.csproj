@@ -72,6 +72,7 @@
     <Compile Include="Queue\SimpleArrayQueueTests.cs" />
     <Compile Include="Robot\Board.cs" />
     <Compile Include="Robot\CardinalEngine.cs" />
+    <Compile Include="Robot\CommandLineExecutor.cs" />
     <Compile Include="Robot\Position.cs" />
     <Compile Include="Robot\Robot.cs" />
     <Compile Include="Robot\Simulator.cs" />
