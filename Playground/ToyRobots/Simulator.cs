@@ -5,11 +5,11 @@ namespace ToyRobots
     class Simulator
     {
         private readonly Board _board;
-        private readonly ToyRobots.Robot _robot;
+        private readonly Robot _robot;
 
-        public Simulator() : this(new Board(), new ToyRobots.Robot()){}
+        public Simulator() : this(new Board(), new Robot()){}
 
-        public Simulator(Board board, ToyRobots.Robot robot)
+        public Simulator(Board board, Robot robot)
         {
             _board = board;
             _robot = robot;

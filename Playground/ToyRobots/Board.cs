@@ -13,8 +13,8 @@
 
         public bool IsValidPosition(Position position)
         {
-            return position.X >= 0 && position.X > _boardHight &&
-                   position.Y >= 0 && position.Y > _boardWidth;
+            return position.X >= 0 && position.X < _boardHight &&
+                   position.Y >= 0 && position.Y < _boardWidth;
         }
     }
 }

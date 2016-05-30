@@ -25,27 +25,27 @@ namespace ToyRobots
     {
         public Position Move(Position position)
         {
-            return new Position(position.X, position.Y++);
+            return new Position(position.X, position.Y + 1);
         }
 
         public ICardinalEngine GetLeftEngine()
         {
-            return new EastEngine();
+            return new WestEngine();
         }
 
         public ICardinalEngine GetRightEngine()
         {
-            return new WestEngine();
+            return new EastEngine();
         }
 
-        public string CardinalDirection => "North";
+        public string CardinalDirection => "NORTH";
     }
 
     internal class SouthEngine : ICardinalEngine
     {
         public Position Move(Position position)
         {
-            return new Position(position.X, position.Y--);
+            return new Position(position.X, position.Y - 1);
         }
 
         public ICardinalEngine GetLeftEngine()
@@ -58,14 +58,14 @@ namespace ToyRobots
             return new WestEngine();
         }
 
-        public string CardinalDirection => "South";
+        public string CardinalDirection => "SOUTH";
     }
 
     internal class WestEngine : ICardinalEngine
     {
         public Position Move(Position position)
         {
-            return new Position(position.X--, position.Y);
+            return new Position(position.X - 1, position.Y);
         }
 
         public ICardinalEngine GetLeftEngine()
@@ -78,14 +78,14 @@ namespace ToyRobots
             return new NorthEngine();
         }
 
-        public string CardinalDirection => "West";
+        public string CardinalDirection => "WEST";
     }
 
     internal class EastEngine : ICardinalEngine
     {
         public Position Move(Position position)
         {
-            return new Position(position.X++, position.Y);
+            return new Position(position.X + 1, position.Y);
         }
 
         public ICardinalEngine GetLeftEngine()
@@ -98,7 +98,7 @@ namespace ToyRobots
             return new SouthEngine();
         }
 
-        public string CardinalDirection => "East";
+        public string CardinalDirection => "EAST";
     }
 
 
