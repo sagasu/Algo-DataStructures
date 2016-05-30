@@ -70,6 +70,12 @@
     <Compile Include="Queue\ArrayQueueTests.cs" />
     <Compile Include="Queue\SimpleArrayQueue.cs" />
     <Compile Include="Queue\SimpleArrayQueueTests.cs" />
+    <Compile Include="Robot\Board.cs" />
+    <Compile Include="Robot\CardinalEngine.cs" />
+    <Compile Include="Robot\Position.cs" />
+    <Compile Include="Robot\Robot.cs" />
+    <Compile Include="Robot\Simulator.cs" />
+    <Compile Include="Robot\ToyRobot.cs" />
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
