@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using playCore.Services;
 using FishTank.Services;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace playCore
 {
@@ -18,8 +20,11 @@ namespace playCore
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore();
+            //services.AddMvcCore().AddViews();
+            services.AddMvc();
 
+            //services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddSingleton<ISensorDataService, SensorDataService>();
             services.AddSingleton<IViewModelService, ViewModelService>();
         }
