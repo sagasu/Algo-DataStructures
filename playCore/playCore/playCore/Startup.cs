@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using playCore.Services;
+using FishTank.Services;
 
 namespace playCore
 {
@@ -20,6 +21,7 @@ namespace playCore
             services.AddMvcCore();
 
             services.AddSingleton<ISensorDataService, SensorDataService>();
+            services.AddSingleton<IViewModelService, ViewModelService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

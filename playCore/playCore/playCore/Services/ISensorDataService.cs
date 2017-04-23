@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace playCore.Services
 {
-    interface ISensorDataService
+    public interface ISensorDataService
     {
         IntHistoryModel GetWaterTemperatureFahrenheit();
         IEnumerable<IntHistoryModel> GetWaterTemperatureFahrenheitHistory();

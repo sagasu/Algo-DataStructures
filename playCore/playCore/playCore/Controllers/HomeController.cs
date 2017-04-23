@@ -3,14 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using FishTank.Services;
 
 namespace playCore.Controllers
 {
     public class HomeController : Controller
     {
-        public string Index()
+        private IViewModelService viewModelService;
+
+        public HomeController(IViewModelService viewModelService) {
+            this.viewModelService = viewModelService;
+
+        }
+
+
+        public IActionResult Index()
         {
-            return "This is my default action...";
+            ViewBag.Title = "Fish tank dashboard";
+            return View(viewModelService.GetDashboardViewModel());
         }
 
         public string Welcome()
