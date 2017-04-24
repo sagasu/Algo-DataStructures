@@ -1,12 +1,9 @@
-﻿using FishTank.ViewModels;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Routing;
-using playCore.Services;
 using playCore.ViewModels;
 
-namespace FishTank.Services
+namespace playCore.Services
 {
     public class ViewModelService : IViewModelService
     {

@@ -1,6 +1,6 @@
-﻿using FishTank.ViewModels;
+﻿using playCore.ViewModels;
 
-namespace FishTank.Services
+namespace playCore.Services
 {
     public interface IViewModelService
     {

@@ -1,7 +1,7 @@
 ﻿using playCore.ViewModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace FishTank.ViewModels
+namespace playCore.ViewModels
 {
     public class DashboardViewModel
     { 
