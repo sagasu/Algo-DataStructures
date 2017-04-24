@@ -12,5 +12,34 @@
             @Html.DisplayFor(m => m.WaterOpacityTile)
             @Html.DisplayFor(m => m.LightIntensityTile)
         </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <label asp-for="FoodAmount"></label>
+                            <span class="small">
+                                <label asp-for="LastFed"></label>
+                                @Model.LastFed
+                            </span>
+                        </div>
+                        <form asp-controller="Home" asp-action="Feed" method="POST">
+                            <div class="col-xs-3">
+                                <input asp-for="FoodAmount" class="form-control input-lg"
+                                       type="number" />
+                            </div>
+                            <div class="col-xs-3">
+                                <span class="center">
+                                    <button type="submit" class="btn btn-primary input-lg"
+                                            style="width: 100%">
+                                        Feed!
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
