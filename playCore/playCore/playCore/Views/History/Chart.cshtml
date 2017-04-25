@@ -1,0 +1,37 @@
+﻿@model playCore.ViewModels.ChartViewModel
+
+@{
+    ViewBag.Title = @Model.Title;
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">@Model.Title Chart</div>
+                <div class="panel-body">
+                    <div id="chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+        $.getJSON("@Model.DataUrl", function(data) {
+            Morris.Line({
+                element: 'chart',
+                data: data,
+                xkey: 'TimeStamp',
+                ykeys: ['Value'],
+                labels: ['Value'],
+                resize: true,
+                dateFormat: function (d) {
+                    var date = new Date(d);
+                    return date.getHours() + ":" + date.getMinutes();
+                }
+            });
+        });
+    });
+</script>

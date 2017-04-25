@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Views\History\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
