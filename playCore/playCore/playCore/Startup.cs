@@ -1,58 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using playCore.Options;
+using playCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using playCore.Services;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace playCore
 {
     public class Startup
     {
+        private readonly IHostingEnvironment hostingEnvironment;
+
+        public Startup(IHostingEnvironment env)
+        {
+            hostingEnvironment = env;
+        }
+
+        private void ConfigureSettings(IServiceCollection services)
+        {
+            var configBuilder = new ConfigurationBuilder()
+                .SetBasePath(hostingEnvironment.ContentRootPath)
+                .AddJsonFile("alertThresholds.json")
+                .AddJsonFile($"alertThresholds{hostingEnvironment.EnvironmentName}.json", optional: true);
+            var config = configBuilder.Build();
+
+            services.Configure<ThresholdOptions>(config);
+            services.AddOptions();
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddMvcCore().AddViews();
+            ConfigureSettings(services);
             services.AddMvc();
 
-            //services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddSingleton<ISensorDataService, SensorDataService>();
-            services.AddSingleton<IViewModelService, ViewModelService>();
+            services.AddScoped<IViewModelService, ViewModelService>();
+            services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app)
         {
-            loggerFactory.AddConsole();
-
-            if (env.IsDevelopment())
-            {
+            if (hostingEnvironment.IsDevelopment())
                 app.UseDeveloperExceptionPage();
-            }
-
-           
-            app.UseMvcWithDefaultRoute();
-            //app.UseStaticFiles();
             app.UseStatusCodePages();
-
-            // default route
-            /*
-            app.UseMvc(routes => {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Home", action = "Index"}
-                    );
-            });
-            */
-
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
