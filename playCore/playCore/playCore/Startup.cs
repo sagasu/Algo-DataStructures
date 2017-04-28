@@ -46,8 +46,17 @@ namespace playCore
         {
             if (hostingEnvironment.IsDevelopment())
                 app.UseDeveloperExceptionPage();
+
+            app.Use(next => context =>
+            {
+                context.Response.Headers["IGNITE-HEADER"] = "WOOT!";
+                return next(context);
+            });
+            
             app.UseStatusCodePages();
             app.UseMvcWithDefaultRoute();
+
+
         }
     }
 }
