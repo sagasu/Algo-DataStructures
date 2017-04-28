@@ -44,6 +44,9 @@ namespace playCore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
+            
+
+
             if (hostingEnvironment.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
@@ -52,7 +55,10 @@ namespace playCore
                 context.Response.Headers["IGNITE-HEADER"] = "WOOT!";
                 return next(context);
             });
-            
+
+            //app.XHttpHeaderOverrideMiddleware();
+            app.UseMiddleware(typeof(MyMiddleware), "yo");
+
             app.UseStatusCodePages();
             app.UseMvcWithDefaultRoute();
 
