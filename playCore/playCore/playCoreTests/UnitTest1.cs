@@ -32,6 +32,7 @@ namespace playCoreTests
             Trace.WriteLine("End trace");
 
             Assert.AreEqual("last name", propertyChanged[0]);
+            Assert.AreEqual("LastName", propertyChanged[1]);
         }
         
     }
@@ -46,6 +47,7 @@ namespace playCoreTests
             set {
                 _lastName = value;
                 PropertyChanged.SafeInvoke(this, new PropertyChangedEventArgs("last name"));
+                PropertyChanged.SafeInvoke(this, x => x.LastName);
             } }
         
         public event PropertyChangedEventHandler PropertyChanged;
@@ -61,9 +63,12 @@ namespace playCoreTests
         public static void SafeInvoke<TSource, TValue>(this PropertyChangedEventHandler handler, 
             TSource sender, Expression<Func<TSource, TValue>> selector)
         {
+            var body = selector.Body;
+            var property = (MemberExpression)body;
+
             if (handler != null)
             {
-                handler(sender, new PropertyChangedEventArgs(""));
+                handler(sender, new PropertyChangedEventArgs(property.Member.Name));
             }
         }
     }
