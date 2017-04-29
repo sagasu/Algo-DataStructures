@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace playCoreTests
 {
@@ -54,6 +55,15 @@ namespace playCoreTests
         public static void SafeInvoke(this PropertyChangedEventHandler handler, object sender, PropertyChangedEventArgs args) {
             if (handler != null) {
                 handler(sender, args);
+            }
+        }
+
+        public static void SafeInvoke<TSource, TValue>(this PropertyChangedEventHandler handler, 
+            TSource sender, Expression<Func<TSource, TValue>> selector)
+        {
+            if (handler != null)
+            {
+                handler(sender, new PropertyChangedEventArgs(""));
             }
         }
     }
