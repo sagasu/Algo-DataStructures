@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace playCoreTests
 {
@@ -33,6 +34,7 @@ namespace playCoreTests
 
             Assert.AreEqual("last name", propertyChanged[0]);
             Assert.AreEqual("LastName", propertyChanged[1]);
+            Assert.AreEqual("LastName", propertyChanged[2]);
         }
         
     }
@@ -48,6 +50,7 @@ namespace playCoreTests
                 _lastName = value;
                 PropertyChanged.SafeInvoke(this, new PropertyChangedEventArgs("last name"));
                 PropertyChanged.SafeInvoke(this, x => x.LastName);
+                PropertyChanged.SafeInvoke2(this);
             } }
         
         public event PropertyChangedEventHandler PropertyChanged;
@@ -69,6 +72,15 @@ namespace playCoreTests
             if (handler != null)
             {
                 handler(sender, new PropertyChangedEventArgs(property.Member.Name));
+            }
+        }
+
+        public static void SafeInvoke2(this PropertyChangedEventHandler handler,
+            object sender, [CallerMemberName] string member = null)
+        {
+            if (handler != null)
+            {
+                handler(sender, new PropertyChangedEventArgs(member));
             }
         }
     }
