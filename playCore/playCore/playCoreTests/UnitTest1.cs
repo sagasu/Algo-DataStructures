@@ -35,6 +35,7 @@ namespace playCoreTests
             Assert.AreEqual("last name", propertyChanged[0]);
             Assert.AreEqual("LastName", propertyChanged[1]);
             Assert.AreEqual("LastName", propertyChanged[2]);
+            Assert.AreEqual("LastName", propertyChanged[3]);
         }
         
     }
@@ -51,6 +52,7 @@ namespace playCoreTests
                 PropertyChanged.SafeInvoke(this, new PropertyChangedEventArgs("last name"));
                 PropertyChanged.SafeInvoke(this, x => x.LastName);
                 PropertyChanged.SafeInvoke2(this);
+                PropertyChanged.SafeInvoke(this, new PropertyChangedEventArgs(nameof(LastName)));
             } }
         
         public event PropertyChangedEventHandler PropertyChanged;
