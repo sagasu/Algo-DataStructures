@@ -44,8 +44,8 @@ namespace playCore
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app)
         {
-            
 
+            app.UseStaticFiles();
 
             if (hostingEnvironment.IsDevelopment())
                 app.UseDeveloperExceptionPage();
@@ -56,7 +56,7 @@ namespace playCore
                 return next(context);
             });
 
-            //app.XHttpHeaderOverrideMiddleware();
+            app.UseMiddleware<XHttpHeaderOverrideMiddleware>();
             app.UseMiddleware(typeof(MyMiddleware), "yo");
 
             app.UseStatusCodePages();
