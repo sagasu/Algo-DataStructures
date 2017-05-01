@@ -1,16 +1,19 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 
 namespace playCoreTests
-{    
-    [TestFixture]
+{
+    [TestClass]
     public class ExceptionFiltering
     {
-        [Test]
+        [TestMethod]
         public void Filter() {
+            Console.WriteLine("start");
             Debug.WriteLine("test start");
             Trace.WriteLine("test start");
+            bool isExceptionThrown;
             var per = new Person2();
             try
             {
@@ -22,7 +25,10 @@ namespace playCoreTests
             catch (Exception e) when (WhenMethod(e))
             {
                 Trace.WriteLine("exception catch");
+                isExceptionThrown = true;
             }
+
+            Assert.IsTrue(isExceptionThrown);
         }
 
         private bool WhenMethod(Exception exception)
