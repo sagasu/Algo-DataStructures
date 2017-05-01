@@ -6,18 +6,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace playCoreTests
 {
     [TestClass]
-    public class Class1
+    public class DigitSeparator
     {
         [TestMethod]
-        public void DigitSeparator()
-        {
-
-            Assert.AreEqual(1_000_000, 1000000);
-
-        }
-
-        [TestMethod]
-        public void DigitSeparator()
+        public void DigitSeparator_ExpectItToBeSame()
         {
 
             Assert.AreEqual(1_000_000, 1000000);
