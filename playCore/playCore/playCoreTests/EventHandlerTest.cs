@@ -6,7 +6,7 @@ using System.Text;
 namespace playCoreTests
 {
     [TestClass]
-    class EventHandlerTest
+    public class EventHandlerTest
     {
         public event EventHandler Clicked;
 
