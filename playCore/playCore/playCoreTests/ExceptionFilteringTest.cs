@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace playCoreTests
 {
     [TestClass]
-    public class ExceptionFiltering
+    public class ExceptionFilteringTest
     {
         [TestMethod]
         public void Filter() {

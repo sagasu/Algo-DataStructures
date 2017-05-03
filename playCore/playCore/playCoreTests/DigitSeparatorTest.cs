@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace playCoreTests
 {
     [TestClass]
-    public class DigitSeparator
+    public class DigitSeparatorTest
     {
         [TestMethod]
         public void DigitSeparator_ExpectItToBeSame()
