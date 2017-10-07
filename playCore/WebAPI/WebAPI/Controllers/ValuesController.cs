@@ -11,16 +11,16 @@ namespace WebAPI.Controllers
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<MyCustomType> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new MyCustomType[] { new MyCustomType { Id=1, Text="foo"}, new MyCustomType { Id=2, Text="bar"} };
         }
 
         // GET api/values/5
         [HttpGet("{id:int}")]
-        public string Get(int id)
+        public MyCustomType Get(int id)
         {
-            return "value";
+            return new MyCustomType { Id=id};
         }
 
         // POST api/values
@@ -40,5 +40,10 @@ namespace WebAPI.Controllers
         public void Delete(int id)
         {
         }
+    }
+
+    public class MyCustomType {
+        public int Id { get; set; }
+        public string Text { get; set; }
     }
 }
