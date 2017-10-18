@@ -85,9 +85,13 @@
     </Compile>
     <Compile Include="SitecoreWebAPIClient\Client.cs" />
     <Compile Include="Sort\MergeSort.cs" />
+    <Compile Include="Sort\mergeSort\MergeSort4.cs" />
+    <Compile Include="Sort\mergeSort\MergeSort3.cs" />
     <Compile Include="Sort\mergeSort\MergeSort2.cs" />
     <Compile Include="Sort\MergeSortTest.cs" />
     <Compile Include="Sort\MergeSortTwo.cs" />
+    <Compile Include="Sort\mergeSort\MergeSort4Tests.cs" />
+    <Compile Include="Sort\mergeSort\MergeSort3Tests.cs" />
     <Compile Include="Sort\mergeSort\MergeSort2Tests.cs" />
     <Compile Include="Sort\QuickSort.cs" />
     <Compile Include="Sort\QuickSortArray.cs" />
