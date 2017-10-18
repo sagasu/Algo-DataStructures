@@ -20,7 +20,7 @@ namespace Playground.Sort.mergeSort
             var middle = leftStart + (rightEnd - leftStart) / 2;
             Sort(tmp, arr, leftStart, middle);
             Sort(tmp, arr, middle + 1, rightEnd);
-            Merge(arr, tmp, leftStart, rightEnd, middle);
+            Merge(tmp, arr, leftStart, rightEnd, middle);
         }
 
         private void Merge(int[] arr, int[] tmp, int leftStart, int rightEnd, int middle)
@@ -32,20 +32,20 @@ namespace Playground.Sort.mergeSort
             {
                 if (left > middle)
                 {
-                    arr[index] = tmp[right];
+                    tmp[index] = arr[right];
                     right++;
                 } else if (right > rightEnd)
                 {
-                    arr[index] = tmp[left];
+                    tmp[index] = arr[left];
                     left++;
-                } else if (tmp[left] <= tmp[right])
+                } else if (arr[left] <= arr[right])
                 {
-                    arr[index] = tmp[left];
+                    tmp[index] = arr[left];
                     left++;
                 }
                 else
                 {
-                    arr[index] = tmp[right];
+                    tmp[index] = arr[right];
                     right++;
                 }
 
