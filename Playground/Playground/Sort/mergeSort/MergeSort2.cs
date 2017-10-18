@@ -31,7 +31,7 @@ namespace Playground.Sort.mergeSort
             var right = middle + 1;
             while (left <= middle && right <= rightEnd)
             {
-                if (arr[left] < arr[right])
+                if (arr[left] <= arr[right])
                 {
                     tmp[index] = arr[left];
                     left++;
@@ -45,8 +45,8 @@ namespace Playground.Sort.mergeSort
                 index++;
             }
 
-            Array.Copy(arr, left, tmp, middle, middle - left + 1);
-            Array.Copy(arr, right, tmp, rightEnd, rightEnd - right + 1);
+            Array.Copy(arr, left, tmp, index, middle - left + 1);
+            Array.Copy(arr, right, tmp, index, rightEnd - right + 1);
             Array.Copy(tmp, leftStart, arr, leftStart, rightEnd - leftStart + 1);
         }
     }
