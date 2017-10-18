@@ -85,8 +85,10 @@
     </Compile>
     <Compile Include="SitecoreWebAPIClient\Client.cs" />
     <Compile Include="Sort\MergeSort.cs" />
+    <Compile Include="Sort\mergeSort\MergeSort2.cs" />
     <Compile Include="Sort\MergeSortTest.cs" />
     <Compile Include="Sort\MergeSortTwo.cs" />
+    <Compile Include="Sort\mergeSort\MergeSort2Tests.cs" />
     <Compile Include="Sort\QuickSort.cs" />
     <Compile Include="Sort\QuickSortArray.cs" />
     <Compile Include="Sort\QuickSortArrayTests.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="Stack\ArrayStackTests.cs" />
     <Compile Include="Stack\ImmutableStack.cs" />
     <Compile Include="Stack\ImmutableStackTests.cs" />
+    <Compile Include="Tree\BinaryTreeDistinct.cs" />
     <Compile Include="Tree\SortedTree.cs" />
     <Compile Include="Tree\SortedTreeTests.cs" />
   </ItemGroup>
