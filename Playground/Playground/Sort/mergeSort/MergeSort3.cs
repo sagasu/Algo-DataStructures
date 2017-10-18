@@ -18,6 +18,8 @@ namespace Playground.Sort.mergeSort
                 return;
 
             var middle = leftStart + (rightEnd - leftStart) / 2;
+            // You can not change order of tmp, and arr in 3 calls bellow
+            // , because it is arr that's needs to be sorted, and is checked in tests, not tmp that is lost in return.
             Sort(tmp, arr, leftStart, middle);
             Sort(tmp, arr, middle + 1, rightEnd);
             Merge(tmp, arr, leftStart, rightEnd, middle);
@@ -51,10 +53,6 @@ namespace Playground.Sort.mergeSort
 
                 index++;
             }
-
-            //Array.Copy(arr, left, tmp, index, middle - left + 1);
-            //Array.Copy(arr, right, tmp, index, rightEnd - right + 1);
-            //Array.Copy(tmp, leftStart, arr, leftStart, rightEnd - leftStart + 1);
         }
     }
 }
