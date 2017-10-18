@@ -32,20 +32,20 @@ namespace Playground.Sort.mergeSort
             {
                 if (left > middle)
                 {
-                    tmp[index] = arr[right];
+                    arr[index] = tmp[right];
                     right++;
                 } else if (right > rightEnd)
                 {
-                    tmp[index] = arr[left];
+                    arr[index] = tmp[left];
                     left++;
-                } else if (arr[left] <= arr[right])
+                } else if (tmp[left] <= tmp[right])
                 {
-                    tmp[index] = arr[left];
+                    arr[index] = tmp[left];
                     left++;
                 }
                 else
                 {
-                    tmp[index] = arr[right];
+                    arr[index] = tmp[right];
                     right++;
                 }
 
