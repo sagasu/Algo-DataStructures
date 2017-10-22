@@ -62,7 +62,9 @@
     <Compile Include="List\SimpleLinkedList.cs" />
     <Compile Include="List\SimpleLinkedListNode.cs" />
     <Compile Include="List\SimpleLinkedListTests.cs" />
+    <Compile Include="MinCostPath\MinCostPath2.cs" />
     <Compile Include="MinCostPath\MinCostPath.cs" />
+    <Compile Include="MinCostPath\MinCostPath2Tests.cs" />
     <Compile Include="MinCostPath\MinCostPathTests.cs" />
     <Compile Include="NullConditionalOperator\OperatorTests.cs" />
     <Compile Include="Null\AssignNullTests.cs" />

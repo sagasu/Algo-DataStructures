@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Playground.MinCostPath
 {
+    // In this implementation we allowed recursion to go outside the grid, and we just punish such path with ultra large pathcost
     class MinCostPath
     {
         public int GetMinCostPath(int[,] grid, int m, int n)
