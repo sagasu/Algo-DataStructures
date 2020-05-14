@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Algo.Graph
 {
@@ -54,6 +55,33 @@ namespace Algo.Graph
             }
             return false;
 
+        }
+
+        private bool HasPathBFS(int source, int destination) {
+            var s = GetNode(source);
+            var d = GetNode(destination);
+            var visitedNodesIds = new HashSet<int>();
+            var nodesToVisit = new Queue<Node>();
+            nodesToVisit.Enqueue(s);
+            return HasPathBFS(s, d, visitedNodesIds, nodesToVisit);
+        }
+
+        private bool HasPathBFS(Node s, Node d, HashSet<int> visitedNodesIds, Queue<Node> nodesToVisit) {
+            if (nodesToVisit.Count == 0)
+                return false;
+
+            if (s == d)
+                return true;
+
+            visitedNodesIds.Add(s.id);
+            foreach (var nei in s.Neighbours){
+                if (visitedNodesIds.Contains(nei.id))
+                    continue;
+
+                nodesToVisit.Enqueue(nei);
+            }
+
+            return HasPathBFS(nodesToVisit.Dequeue(), d, visitedNodesIds, nodesToVisit);
         }
     }
 }

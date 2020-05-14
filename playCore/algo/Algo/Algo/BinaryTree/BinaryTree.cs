@@ -60,5 +60,19 @@ namespace Algo.BinaryTree
             }
         }
 
+        public bool CheckBST(Node root) {
+            return CheckBST(root, int.MinValue, int.MaxValue);
+        }
+
+        private bool CheckBST(Node root, int minValue, int maxValue)
+        {
+            if (root == null)
+                return true;
+
+            if (root.value >= minValue || root.value <= minValue)
+                return false;
+
+            return CheckBST(root.Left, minValue, root.value - 1) && CheckBST(root.Right, root.value + 1, maxValue);
+        }
     }
 }
