@@ -67,21 +67,23 @@ namespace Algo.Graph
         }
 
         private bool HasPathBFS(Node s, Node d, HashSet<int> visitedNodesIds, Queue<Node> nodesToVisit) {
-            if (nodesToVisit.Count == 0)
-                return false;
 
-            if (s == d)
-                return true;
+            while (nodesToVisit.Any()) {
+                s = nodesToVisit.Dequeue();
+                if (s == d)
+                    return true;
 
-            visitedNodesIds.Add(s.id);
-            foreach (var nei in s.Neighbours){
-                if (visitedNodesIds.Contains(nei.id))
-                    continue;
+                visitedNodesIds.Add(s.id);
+                foreach (var nei in s.Neighbours)
+                {
+                    if (visitedNodesIds.Contains(nei.id))
+                        continue;
 
-                nodesToVisit.Enqueue(nei);
+                    nodesToVisit.Enqueue(nei);
+                }
             }
 
-            return HasPathBFS(nodesToVisit.Dequeue(), d, visitedNodesIds, nodesToVisit);
+            return false;
         }
     }
 }
