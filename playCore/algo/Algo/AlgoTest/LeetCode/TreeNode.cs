@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AlgoTest.LeetCode
 {
-    class TreeNode
+    public class TreeNode
     {
         public int val;
         public TreeNode left;
