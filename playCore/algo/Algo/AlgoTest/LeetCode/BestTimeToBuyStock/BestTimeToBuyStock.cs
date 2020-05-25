@@ -11,6 +11,7 @@ namespace AlgoTest.LeetCode.BestTimeToBuyStock
             return MaxProfit(prices, 0, -1);
         }
 
+        //solution for Best Time to Buy and Sell Stock II
         // buying and selling next day.
         // this is what LeetCode is looking for, but it has so many assumptions... the real solution is dynamic programming.
         public int MaxProfitNaiveImplementation(int[] prices)
@@ -30,6 +31,33 @@ namespace AlgoTest.LeetCode.BestTimeToBuyStock
             }
 
             return profit;
+        }
+
+
+        //solution for Best Time to Buy and Sell Stock I, that is in dynamic programming section!,
+        // again very naive solution
+        public int MaxProfitINaiveImplementation(int[] prices)
+        {
+            if (prices == null || prices.Length == 0)
+            {
+                return 0;
+            }
+
+            var minValue = int.MaxValue;
+            var maxProfit = 0;
+
+            for (var i = 0; i < prices.Length; i++)
+            {
+                if (prices[i] < minValue)
+                {
+                    minValue = prices[i];
+                }else if (prices[i] - minValue > maxProfit)
+                {
+                    maxProfit = prices[i] - minValue;
+                }
+            }
+
+            return maxProfit;
         }
 
         // beginning of dynamic programming implementation.
