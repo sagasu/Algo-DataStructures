@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +13,7 @@ namespace AlgoTest.LeetCode._3SumClosest
         [TestMethod]
         public void Test()
         {
-            //var nums = new int[] {-1, 2, 1, -4};
+            //var nums = new int[] { -1, 2, 1, -4 };
             //Assert.AreEqual(2, ThreeSumClosest(nums, 1));
 
             var nums = new int[] { 1, 1, 1, 0 };
@@ -21,36 +22,34 @@ namespace AlgoTest.LeetCode._3SumClosest
 
         public int ThreeSumClosest(int[] nums, int target)
         {
-            this.target = target;
-            if (target < 0)
-                isNegative = true;
-            ThreeSumClosest(nums, new List<int>(), 0);
-            return closestSolution;
-        }
+            Array.Sort(nums);
+            var bestResult = nums[0] + nums[1] + nums[nums.Length - 1];
 
-        private bool isNegative = false;
-        private int target;
-        private int closestSolution = Int32.MaxValue;
-
-        public void ThreeSumClosest(int[] nums, IList<int> results, int index)
-        {
-            if (results.Count == 3)
+            for (var i = 0; i < nums.Length - 2; i++)
             {
-                var sum = results.Sum();
-                var distance = isNegative ? target + sum : target - sum;
-                if(Math.Abs(distance) < Math.Abs(closestSolution))
-                    closestSolution = sum;
-                return;
-            }
-            
-            for (var i = index; i < nums.Length; i++)
-            {
-                if(index == 0)
-                    results = new List<int>();
+                var pointerA = i + 1;
+                var pointerB = nums.Length - 1;
+                
 
-                results.Add(nums[i]);
-                ThreeSumClosest(nums, results, index + 1);
+                while (pointerA < pointerB)
+                {
+                    var currentSum = nums[i] + nums[pointerA] + nums[pointerB];
+                    if (currentSum > target)
+                    {
+                        pointerB -= 1;
+                    }
+                    else
+                    {
+                        pointerA += 1;
+                        
+                    }
+
+                    if (Math.Abs(currentSum - target) < Math.Abs(bestResult-target))
+                        bestResult = currentSum;
+                }
             }
+
+            return bestResult;
         }
     }
 }
