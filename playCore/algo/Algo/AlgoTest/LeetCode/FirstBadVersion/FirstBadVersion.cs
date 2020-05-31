@@ -13,7 +13,11 @@ namespace AlgoTest.LeetCode.FirstBadVersion
         [TestMethod]
         public void Test()
         {
-            Assert.AreEqual(4, FirstBadVersion(5));
+            //Assert.AreEqual(4, FirstBadVersion(5));
+            //Assert.AreEqual(1702766719, FirstBadVersion(2126753390));
+            //Assert.AreEqual(1150769282, FirstBadVersion(1420736637));
+            Assert.AreEqual(1, FirstBadVersion(2));
+            //Assert.AreEqual(3, FirstBadVersion(3));
         }
 
         public int FirstBadVersion(int n)
@@ -22,6 +26,7 @@ namespace AlgoTest.LeetCode.FirstBadVersion
                 return 1;
 
             var nextCheck = n / 2;
+            var delta = nextCheck;
             while (true)
             {
                 if (!isBadVersion(nextCheck))
@@ -31,12 +36,18 @@ namespace AlgoTest.LeetCode.FirstBadVersion
 
                     if (isBadVersion(nextCheck + 1))
                         return nextCheck + 1;
-
-                    nextCheck = nextCheck + (n - nextCheck) / 2;
+                    delta = Math.Max(delta / 2, 1);
+                    nextCheck = nextCheck + delta;
                 }
                 else
                 {
-                    nextCheck = nextCheck / 2;
+                    if (nextCheck == 1)
+                    {
+                        return 1;
+                    }
+
+                    delta = Math.Max(delta / 2, 1);
+                    nextCheck = nextCheck - delta;
                 }
                 
             }
@@ -47,7 +58,10 @@ namespace AlgoTest.LeetCode.FirstBadVersion
 
         public bool isBadVersion(int version)
         {
-            return new int[] {4, 5}.Any(x => x == version);
+            //return version >= 1702766719;
+            //return version >= 1150769282;
+            return version >= 1;
+            //return version >= 3;
         }
     }
 }
