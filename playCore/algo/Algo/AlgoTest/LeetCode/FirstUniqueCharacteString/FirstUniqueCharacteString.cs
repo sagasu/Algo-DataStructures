@@ -29,14 +29,12 @@ namespace AlgoTest.LeetCode.FirstUniqueCharacteString
                     dic[s[i]] = new ValueTuple<int,int>(1,i);
                 }
             }
-
-            int position = 0;
+            
             foreach (var dicKey in dic.Keys)
             {
-                if (dic[dicKey] == 1)
-                    return position;
-
-                position += 1;
+                if (dic[dicKey].Item1 == 1)
+                    return dic[dicKey].Item2;
+                
             }
 
             return -1;
