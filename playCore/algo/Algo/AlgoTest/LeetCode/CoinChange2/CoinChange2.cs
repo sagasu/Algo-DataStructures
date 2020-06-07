@@ -11,37 +11,26 @@ namespace AlgoTest.LeetCode.CoinChange2
         [TestMethod]
         public void Test()
         {
-            //Assert.AreEqual(5, Change(5, new []{1,2,5}));
-            Assert.AreEqual(5, Change(500, new []{3,5,7,8,9,10,11}));
+            Assert.AreEqual(4, Change(5, new[] { 1, 2, 5 }));
+            //Assert.AreEqual(35502874, Change(500, new []{3,5,7,8,9,10,11}));
         }
 
-        private int amount;
-        private int[] coins;
-        private int ways = 0;
         public int Change(int amount, int[] coins)
         {
-            this.amount = amount;
-            this.coins = coins;
+            int[] dp = new int[amount+1];
+            dp[0] = 1;
 
-            CalculateChange(0, 0);
-            return ways;
-        }
-
-        public void CalculateChange(int value, int index)
-        {
-            if (value == amount)
+            for (var i = 0; i < coins.Length; i++)
             {
-                ways += 1;
-                return;
+                for (var j = coins[i]; j <= amount; j++)
+                {
+                    dp[j] += dp[j - coins[i]];
+                }
             }
 
-            if(value > amount)
-                return;
-
-            for (var i = index; i < coins.Length; i++)
-            {
-                CalculateChange(value + coins[i], i);
-            }
+            return dp[amount];
         }
+
+        
     }
 }
