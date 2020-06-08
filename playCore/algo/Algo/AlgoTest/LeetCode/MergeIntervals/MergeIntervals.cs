@@ -33,6 +33,9 @@ namespace AlgoTest.LeetCode.MergeIntervals
                 }else if (res[index][0] == sorted[i][0])
                 {
                     res[index][1] = Math.Max(res[index][1], sorted[i][1]);
+                }else if (res[index][1] > sorted[i][1])
+                {
+                    continue;
                 }
                 else
                 {
