@@ -11,21 +11,14 @@ namespace AlgoTest.LeetCode.SpiralMatrix
         [TestMethod]
         public void TesT()
         {
-            var t = new int[][]
-            {
-                new int[]{ 1, 2, 3 },
-                new int[]{ 4, 5, 6 },
-                new int[]{ 7, 8, 9 }
-            };
+            //var t = new int[][]
+            //{
+            //    new int[]{ 1, 2, 3 },
+            //    new int[]{ 4, 5, 6 },
+            //    new int[]{ 7, 8, 9 }
+            //};
+            var t = new int[][]{ new[] { 1, 2, 3, 4 }, new[] { 5, 6, 7, 8 }, new[] { 9, 10, 11, 12 } };
             var res = SpiralOrder(t);
-        }
-
-        enum direction
-        {
-            up,
-            right,
-            down,
-            left
         }
 
         public IList<int> SpiralOrder(int[][] matrix)
@@ -40,79 +33,27 @@ namespace AlgoTest.LeetCode.SpiralMatrix
             var right= matrix[0].Length-1;
             var down = matrix.Length-1;
             var left = 0;
-            var index = new int[]{ 0, 0 };
-            direction dir = direction.right;
-            var isChange = false;
-            while (true)
-            {
-                if (right == left && up == down)
-                    break;
-
-                if (!isChange)
-                {
-                    ret.Add(matrix[index[0]][index[1]]);
+            var size = matrix.Length * matrix[0].Length;
+            while (ret.Count < size) {
+                for (var i = left; i <= right && ret.Count < size; i++) {
+                    ret.Add(matrix[up][i]);
                 }
-                
-                switch (dir)
+                up+=1;
+                for (var i = up; i <= down && ret.Count < size; i++)
                 {
-                    case direction.right:
-                        if (index[1] == right)
-                        {
-                            right -= 1;
-                            dir = direction.down;
-                            isChange = true;
-                        }
-                        else
-                        {
-                            index[1] += 1;
-                            isChange = false;
-                        }
-
-                        break;
-                    case direction.down:
-                        if (index[0] == down)
-                        {
-                            down -= 1;
-                            dir = direction.left;
-                            isChange = true;
-                        }
-                        else
-                        {
-                            index[0] += 1;
-                            isChange = false;
-                        }
-
-                        break;
-                    case direction.left:
-                        if (index[1] == left)
-                        {
-                            left += 1;
-                            dir = direction.up;
-                            isChange = true;
-                        }
-                        else
-                        {
-                            index[1] -= 1;
-                            isChange = false;
-                        }
-
-                        break;
-                    case direction.up:
-                        if (index[0] == up)
-                        {
-                            up += 1;
-                            dir = direction.right;
-                            isChange = true;
-                        }
-                        else
-                        {
-                            index[0] -= 1;
-                            isChange = false;
-                        }
-
-                        break;
+                    ret.Add(matrix[i][right]);
                 }
-                
+                right -= 1;
+                for (var i = right; i >= left && ret.Count < size; i--)
+                {
+                    ret.Add(matrix[down][i]);
+                }
+                down -= 1;
+                for (var i = down; i >= up && ret.Count < size; i--)
+                {
+                    ret.Add(matrix[i][left]);
+                }
+                left += 1;
             }
 
             return ret;
