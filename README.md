@@ -1,4 +1,3 @@
-Playground
-==========
+#LeetCode and Hackerrank solutions
 
-Playground repository to check some C# specific behaviours
+Abusing C# language, checkign various language specific behaviours, but mainly abusing :) 
