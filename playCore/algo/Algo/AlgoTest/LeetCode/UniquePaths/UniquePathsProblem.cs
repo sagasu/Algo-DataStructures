@@ -12,30 +12,27 @@ namespace AlgoTest.LeetCode.UniquePaths
         [TestMethod]
         public void Test() {
             //Assert.AreEqual(3, UniquePaths(3, 2));
-            Assert.AreEqual(3, UniquePaths(23, 12));
+            Assert.AreEqual(193536720, UniquePaths(23, 12));
         }
 
         public int UniquePaths(int m, int n)
         {
-            CalculatePath(m, n, 1, 1);
-            return ways;
-        }
-
-        int ways;
-        void CalculatePath(int m, int n, int row, int column) {
-            if (column == m && row == n) {
-                ways += 1;
-                return;
+            var dp = new int[m,n];
+            for (var i = 0; i < m; i++) {
+                dp[i,0] = 1;
             }
 
-            if (column < m) {
-                CalculatePath(m, n, row, column + 1);
-            }
-
-            if (row < n)
+            for (var i = 0; i < n; i++)
             {
-                CalculatePath(m, n, row+1, column);
+                dp[0,i] = 1;
             }
+
+            for (var i = 1; i < m; i++)
+                for (var j = 1; j < n; j++) {
+                    dp[i,j] = dp[i - 1,j] + dp[i,j - 1];
+                }
+
+            return dp[m - 1,n - 1];
         }
     }
 }
