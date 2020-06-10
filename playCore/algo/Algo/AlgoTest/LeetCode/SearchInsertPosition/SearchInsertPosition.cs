@@ -18,6 +18,8 @@ namespace AlgoTest.LeetCode.SearchInsertPosition
         }
         public int SearchInsert(int[] nums, int target)
         {
+            if (nums[nums.Length - 1] < target)
+                return nums.Length;
             var low = 0;
             var hight = nums.Length - 1;
             while (low < hight) {
