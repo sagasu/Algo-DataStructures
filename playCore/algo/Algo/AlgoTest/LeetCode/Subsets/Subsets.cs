@@ -23,19 +23,12 @@ namespace AlgoTest.LeetCode.Subsets
 
         IList<IList<int>> ret = new List<IList<int>>();
         public void Subsets(int[] nums, int index, List<int> values) {
-            //if (nums.Length == index)
-            //{
-            //    ret.Add(new List<int>(values));
-            //    return;
-            //}
 
             ret.Add(new List<int>(values));
             for (var i = index; i < nums.Length; i++) {
-                //var vals = new List<int>(values);
                 values.Add(nums[i]);
                 Subsets(nums, i + 1, values);
                 values.RemoveAt(values.Count - 1);
-                //Subsets(nums, index + 1, vals);
             }
         }
     }
