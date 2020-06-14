@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,18 @@ using System.Xml;
 
 namespace AlgoTest.LeetCode.CheapestFlightsWithinKStops
 {
-    class CheapestFlightsWithinKStops
+    // Not working for some cases because SortedSet is not really a heap
+    [TestClass]
+    public class CheapestFlightsWithinKStops
     {
+        [TestMethod]
+        public void Test() {
+            var t = new int[][] { new int[] { 3, 4, 7 }, new int[] { 6, 2, 2 }, new int[] { 0, 2, 7 }, new int[] { 0, 1, 2 }, new int[] { 1, 7, 8 }, new int[] { 4, 5, 2 }, new int[] { 0, 3, 2 }, new int[] { 7, 0, 6 }, new int[] { 3, 2, 7 }, new int[] { 1, 3, 10 }, new int[] { 1, 5, 1 }, new int[] { 4, 1, 6 }, new int[] { 4, 7, 5 }, new int[] { 5, 7, 10 } };
+
+            var ret = FindCheapestPrice(8, t, 4, 3, 7);
+            Assert.AreEqual(13, ret);
+        }
+
         Dictionary<int, IList<ValueTuple<int, int>>> adj = new Dictionary<int, IList<ValueTuple<int, int>>>();
         public int FindCheapestPrice(int n, int[][] flights, int src, int dst, int K)
         {
