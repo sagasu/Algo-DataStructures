@@ -8,7 +8,7 @@ namespace AlgoTest.LeetCode.MaximumSubarray
     {
         public int MaxSubArray(int[] nums)
         {
-            if (nums.Length == 1)
+            if (nums.Length == 0)
                 return 0;
 
             if (nums.Length == 1)
