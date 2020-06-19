@@ -9,6 +9,7 @@ namespace AlgoTest.LeetCode.PermutationsII
     {
         public IList<IList<int>> PermuteUnique(int[] nums)
         {
+            Array.Sort(nums);
             BuildPermutation(nums, 0, new List<int>(), new List<int>());
             return ret;
         }
@@ -17,21 +18,6 @@ namespace AlgoTest.LeetCode.PermutationsII
 
         void BuildPermutation(int[] nums, int index, IList<int> curr, IList<int> indexVisited) {
             if (index == nums.Length) {
-                var same = false;
-                for (var i = 0; i < ret.Count; i++) {
-                    same = true;
-                    var ar = ret[i].ToArray();
-                    var curar = curr.ToArray();
-                    for (var j = 0; j < ar.Length; j++) {
-                        if (ar[j] != curar[j])
-                        {
-                            same = false;
-                            break;
-                        }
-                    }
-                    if (same)
-                        return;
-                }
                 
                 ret.Add(new List<int>(curr));
                 return;
@@ -46,6 +32,8 @@ namespace AlgoTest.LeetCode.PermutationsII
                 BuildPermutation(nums, index + 1, curr, indexVisited);
                 curr.RemoveAt(curr.Count - 1);
                 indexVisited.RemoveAt(indexVisited.Count - 1);
+                while (i+1 < nums.Length && nums[i] == nums[i+1])
+                    i++;
             }
         }
     }
