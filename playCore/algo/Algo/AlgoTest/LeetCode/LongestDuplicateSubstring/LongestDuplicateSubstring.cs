@@ -1,38 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.LongestDuplicateSubstring
 {
-    class LongestDuplicateSubstringProblem
+    [TestClass]
+    public class LongestDuplicateSubstringProblem
     {
+        [TestMethod]
+        public void Test()
+        {
+            var t = "banana";
+            Assert.AreEqual("ana",LongestDupSubstring(t));
+        }
+
+
         public string LongestDupSubstring(string S)
         {
             if (string.IsNullOrEmpty(S))
                 return "";
 
-            var longestSub = 0;
-            var index = 0;
-            var currentLength = 0;
-            var isSub = false;
-            for (var i = 0; i < S.Length; i++) {
-                for (var j = index; j <= i; j++) {
-                    if (S[i] == S[j])
+            var dp = new int[S.Length+1,S.Length+1];
+            var max = 0;
+            var indexRow = 0;
+            for (var row = 0; row < S.Length; row++) {
+                for (var column = 0; column < S.Length; column++)
+                {
+                    if (S[row] == S[column] && row != column)
                     {
-                        currentLength += 1;
-                        isSub = true;
-                        index = i;
-                    }
-                    else {
-                        if (isSub) {
-                            if (currentLength > longestSub)
-                                longestSub = currentLength;
+                        dp[row+1, column+1] = dp[row, column] + 1;
+                        if (dp[row+1, column+1] > max)
+                        {
+                            max = dp[row+1, column+1];
+                            indexRow = row;
                         }
-                        currentLength = 0;
-                        isSub = false;
                     }
                 }
             }
+
+            if (max > 0)
+            {
+                return S.Substring(indexRow - max +1, max);
+            }
+
+            return "";
         }
     }
 }
