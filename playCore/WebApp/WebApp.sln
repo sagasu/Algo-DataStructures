@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{CE396AAD-94BF-4463-A0DB-CCBCF6A0AEBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{CB9C03FE-D906-4DD6-9282-692218205569}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Test", "Services.Test\Services.Test.csproj", "{DB6C192E-CD92-48BA-AAD2-370F7BA8A7E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE396AAD-94BF-4463-A0DB-CCBCF6A0AEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE396AAD-94BF-4463-A0DB-CCBCF6A0AEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE396AAD-94BF-4463-A0DB-CCBCF6A0AEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE396AAD-94BF-4463-A0DB-CCBCF6A0AEBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB9C03FE-D906-4DD6-9282-692218205569}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB9C03FE-D906-4DD6-9282-692218205569}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB9C03FE-D906-4DD6-9282-692218205569}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB9C03FE-D906-4DD6-9282-692218205569}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB6C192E-CD92-48BA-AAD2-370F7BA8A7E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB6C192E-CD92-48BA-AAD2-370F7BA8A7E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB6C192E-CD92-48BA-AAD2-370F7BA8A7E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB6C192E-CD92-48BA-AAD2-370F7BA8A7E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B62C2C3-FEAC-408A-BC52-1CF89EB8390A}
+	EndGlobalSection
+EndGlobal
