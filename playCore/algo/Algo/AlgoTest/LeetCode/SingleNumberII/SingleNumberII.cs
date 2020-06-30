@@ -24,7 +24,7 @@ namespace AlgoTest.LeetCode.SingleNumberII
                 }
             }
 
-            return dic.First().Value;
+            return dic.First().Key;
         }
     }
 }
