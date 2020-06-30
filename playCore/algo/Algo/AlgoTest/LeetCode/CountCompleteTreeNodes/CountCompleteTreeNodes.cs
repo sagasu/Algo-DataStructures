@@ -16,23 +16,19 @@ namespace AlgoTest.LeetCode.CountCompleteTreeNodes
 
         private int GetNumberOfNodes(TreeNode root, int index)
         {
-            var left = 0;
-            var right = 0;
+            var sum = 0;
 
             if (root.left != null)
             {
-                if (root.right == null)
-                    return root.left.val;
-
-                left = GetNumberOfNodes(root.left, index + 1);
+                sum += GetNumberOfNodes(root.left, index + 1);
             }
 
+            sum += 1;
+
             if (root.right != null)
-                right = GetNumberOfNodes(root.right, index + 1);
+                sum += GetNumberOfNodes(root.right, index + 1);
 
-            return Math.Max(root.val, Math.Max(left, right));
-
-
+            return sum;
         }
     }
 }
