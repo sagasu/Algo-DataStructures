@@ -11,25 +11,16 @@ namespace AlgoTest.LeetCode.ArrangingCoins
             if (n == 1 || n == 0)
                 return n;
 
-            var current = 1;
-            var taken = 1;
             var count = 1;
-            while (true)
+            while (n > 0)
             {
-                var newLimit = current + 1;
-                taken += newLimit;
-                if (taken <= n)
-                {
-                    count += 1;
-                    current = newLimit;
-                }
-                else
-                {
+                n = n - count;
+                if (n < 0)
                     break;
-                }
+                count += 1;
             }
 
-            return count;
+            return count - 1;
         }
     }
 }
