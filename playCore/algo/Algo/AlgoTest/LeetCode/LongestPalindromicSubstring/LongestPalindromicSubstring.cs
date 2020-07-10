@@ -8,7 +8,7 @@ namespace AlgoTest.LeetCode.LongestPalindromicSubstring
     {
         public string LongestPalindrome(string s)
         {
-
+            return "";
         }
     }
 }
