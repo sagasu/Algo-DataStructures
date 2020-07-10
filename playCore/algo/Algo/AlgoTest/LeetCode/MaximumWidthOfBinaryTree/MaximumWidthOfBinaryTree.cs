@@ -23,53 +23,25 @@ namespace AlgoTest.LeetCode.MaximumWidthOfBinaryTree
 
         public int WidthOfBinaryTree(TreeNode root)
         {
-            
-            SetWidthOfBinaryTree(root, 0);
-            int? maxWidth = 0;
-            foreach (var row in nodes)
-            {
-                int? leftMost = null;
-                int? rightMost = null;
-                for (var i=0; i < row.Count;i++)
-                {
-                    if (row[i] != null && leftMost == null)
-                        leftMost = i;
-                    else if (row[i] != null && leftMost != null)
-                        rightMost = i;
-                }
 
-                if (rightMost.HasValue && leftMost.HasValue)
-                {
-                    var max = rightMost - leftMost +1;
-                    if (max > maxWidth)
-                        maxWidth = max;
-                }
-                
-            }
-
-            return maxWidth ?? 0;
+            max = 0;
+            SetWidthOfBinaryTree(root, 0, 1);
+            return max;
         }
 
-        List<IList<int?>> nodes = new List<IList<int?>>();
-
-        public void SetWidthOfBinaryTree(TreeNode root, int index)
+        Dictionary<int, int> leftMost = new Dictionary<int, int>();
+        private int max;
+        public void SetWidthOfBinaryTree(TreeNode root, int depth, int position)
         {
-            while (nodes.Count <= index)
-            {
-                nodes.Add(new List<int?>());
-            }
 
-            if (root == null)
-            {
-                nodes[index].Add(null);
-                return;
-            }
+            if(root == null) return;
 
-            SetWidthOfBinaryTree(root.left, index + 1);
+            
+            leftMost.TryAdd(depth, position);
+            max = Math.Max(max, position - leftMost[depth] + 1);
 
-            nodes[index].Add(root.val);
-
-            SetWidthOfBinaryTree(root.right, index + 1);
+            SetWidthOfBinaryTree(root.left, depth + 1, position * 2);
+            SetWidthOfBinaryTree(root.right, depth + 1, position * 2 + 1);
         }
     }
 }
