@@ -43,9 +43,9 @@ namespace AlgoTest.LeetCode.PerfectSquares
                 return;
             }
 
-            for (var i = 0; i < perfectSquares.Count; i++)
+            for (var i = perfectSquares.Count-1; i >= 0; i--)
             {
-                if (sum > n)
+                if (sum > n || count + 1 > min)
                     return;
 
                 FindNumSquares(n, count + 1, sum + perfectSquares[i]);
