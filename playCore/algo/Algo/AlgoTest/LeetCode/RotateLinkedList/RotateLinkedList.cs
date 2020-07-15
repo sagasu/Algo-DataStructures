@@ -5,18 +5,20 @@ using System.Text;
 
 namespace AlgoTest.LeetCode.RotateList
 {
+    public class ListNode
+    {
+        public int val;
+        public ListNode next;
+        public ListNode(int val = 0, ListNode next = null)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
     class RotateLinkedList
     {
-        public class ListNode
-        {
-      public int val;
-      public ListNode next;
-      public ListNode(int val = 0, ListNode next = null)
-            {
-                this.val = val;
-                this.next = next;
-                     }
-  }
+        
 
         public ListNode RotateRight(ListNode head, int k)
         {
