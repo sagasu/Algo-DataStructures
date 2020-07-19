@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AlgoTest.Codility.OddOccurrencesInArray
@@ -13,7 +14,7 @@ namespace AlgoTest.Codility.OddOccurrencesInArray
             {
                 if (dic.ContainsKey(element))
                 {
-                    dic[element] += 1;
+                    dic.Remove(element);
                 }
                 else
                 {
@@ -21,12 +22,7 @@ namespace AlgoTest.Codility.OddOccurrencesInArray
                 }
             }
 
-            foreach (var dicKey in dic.Keys)
-            {
-                if (dic[dicKey] == 1) return dicKey;
-            }
-
-            throw new ArgumentException("Incorrect collection");
+            return dic.Keys.First();
         }
     }
 }
