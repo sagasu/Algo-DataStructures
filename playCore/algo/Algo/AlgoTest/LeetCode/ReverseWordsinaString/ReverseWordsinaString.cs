@@ -14,17 +14,19 @@ namespace AlgoTest.LeetCode.ReverseWordsinaString
             var reversed = "";
             var isFirst = true;
             var words = s.Split(" ");
-            foreach (var fullWord in words)
+            for(var i = words.Length - 1; i >= 0 ; i--)
             {
-                var word = fullWord.Trim();
+                var word = words[i].Trim();
                 if(string.IsNullOrEmpty(word))
                     continue;
+
                 if (isFirst)
                 {
-                    reversed += $"{word.Reverse()}";
+                    reversed += $"{word}";
                 }
                 else {
-                    reversed += $" {word.Reverse()}";
+                    
+                    reversed += $" {word}";
                 }
 
                 isFirst = false;
