@@ -15,11 +15,12 @@ namespace AlgoTest.LeetCode.CourseScheduleII
             FindOrder(2, t);
         }
 
-        // Topological sort implementation with adj matrix and stack, going for BFS approach.
+        // Topological sort implementation with adj matrix and stack, going for DFS approach.
 
         public int[] FindOrder(int numCourses, int[][] prerequisites)
         {
             var adj = new HashSet<int>[numCourses];
+            //var depNodes = new int[numCourses];
 
             for (var i = 0; i < numCourses; i++)
             {
@@ -30,12 +31,13 @@ namespace AlgoTest.LeetCode.CourseScheduleII
             {
                 var req = prerequisites[i][1];
                 var course= prerequisites[i][0];
-                adj[req].Add(course);
+                adj[course].Add(req);
+                //depNodes[req] += 1;
             }
 
             var stack = new Stack<int>();
             var order = new List<int>(numCourses);
-
+            var nextDepth = 1;
             for (var i = 0; i < numCourses; i++)
             {
                 if (adj[i].Count == 0)
@@ -59,6 +61,16 @@ namespace AlgoTest.LeetCode.CourseScheduleII
 
                     stack.Push(prereq);
                 }
+
+                for(var i =0;i< adj.Length;i++)
+                {
+                    if (adj[i].Count == nextDepth && !order.Contains(i))
+                    {
+                        stack.Push(i);
+                    }
+                }
+
+                nextDepth += 1;
             }
 
             if(order.Count != numCourses)
