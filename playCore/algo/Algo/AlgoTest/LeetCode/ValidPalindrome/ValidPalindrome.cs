@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.RegularExpressions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.ValidPalindrome
 {
@@ -22,9 +18,7 @@ namespace AlgoTest.LeetCode.ValidPalindrome
 
             var i = 0;
             var j = s.Length-1;
-
-            var alphanumeric = new Regex("^[a-zA-Z0-9]*$");
-
+            
             while (i<j)
             {
                 while (i < j)
