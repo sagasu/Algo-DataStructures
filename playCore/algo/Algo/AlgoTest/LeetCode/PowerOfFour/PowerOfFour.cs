@@ -8,6 +8,9 @@ namespace AlgoTest.LeetCode.PowerOfFour
     {
         public bool IsPowerOfFour(int num)
         {
+            if (num == 1)
+                return true;
+
             if (num == 0)
                 return false;
 
@@ -17,21 +20,8 @@ namespace AlgoTest.LeetCode.PowerOfFour
             if (num < 0)
                 return false;
 
-            if (num == 1)
-                return true;
-
-            return IsPowerOfFour(num, 4);
+            return IsPowerOfFour(num / 4);
         }
 
-        public bool IsPowerOfFour(int num, int acc)
-        {
-            if (acc > num)
-                return false;
-
-            if (acc == num)
-                return true;
-
-            return IsPowerOfFour(num, acc * 4);
-        }
     }
 }
