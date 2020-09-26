@@ -19,17 +19,27 @@ namespace AlgoTest.LeetCode.TeemoAttacking
 
         public int FindPoisonedDuration(int[] timeSeries, int duration)
         {
-            if (timeSeries.Length == 0)
-                return 0;
 
-            var timeline = new int[timeSeries[timeSeries.Length - 1] + duration + 1];
+            var previousStart = 0;
+            var posisonEnd = 0;
+            var result = 0;
+
             foreach (var series in timeSeries)
             {
-                Array.Fill(timeline, 1, series, duration);
+                if (series >= posisonEnd)
+                {
+                    result += duration;
+                }
+                else
+                {
+                    result += series - previousStart;
+                }
+
+                posisonEnd = series + duration;
+                previousStart = series;
             }
 
-            return timeline.Sum(x => x);
-
+            return result;
         }
     }
 }
