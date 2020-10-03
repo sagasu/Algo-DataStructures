@@ -23,8 +23,6 @@ namespace AlgoTest.LeetCode.NumberofRecentCalls
         public class RecentCounter
         {
             IList<int> time = new List<int>();
-            private int index = 0;
-            private int count = 0;
             public RecentCounter()
             {
 
