@@ -25,26 +25,26 @@ namespace AlgoTest.LeetCode.ThroneInheritance
 
     public class ThroneInheritance
     {
-        IDictionary<string, List<string>> inheritance = new Dictionary<string,List<string>>();
-        public ThroneInheritance(string kingName)
-        {
+        //IDictionary<string, List<string>> inheritance = new Dictionary<string,List<string>>();
+        //public ThroneInheritance(string kingName)
+        //{
 
-        }
+        //}
 
-        public void Birth(string parentName, string childName)
-        {
+        //public void Birth(string parentName, string childName)
+        //{
 
-        }
+        //}
 
-        public void Death(string name)
-        {
-            if(inheritance.ContainsKey(name))
-        }
+        //public void Death(string name)
+        //{
+        //    if(inheritance.ContainsKey(name))
+        //}
 
-        public IList<string> GetInheritanceOrder()
-        {
+        //public IList<string> GetInheritanceOrder()
+        //{
 
-        }
+        //}
         
     }
 }
