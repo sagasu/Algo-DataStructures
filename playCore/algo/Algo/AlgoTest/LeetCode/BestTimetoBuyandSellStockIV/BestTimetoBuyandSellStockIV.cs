@@ -16,11 +16,11 @@ namespace AlgoTest.LeetCode.BestTimetoBuyandSellStockIV
             //Assert.AreEqual(2, MaxProfit(2, t));
 
 
-            //var t = new int[] {3, 2, 6, 5, 0, 3};
-            //Assert.AreEqual(7, MaxProfit(2, t));
-            
-            var t = new int[] {1, 3};
-            Assert.AreEqual(2, MaxProfit(0, t));
+            var t = new int[] { 3, 2, 6, 5, 0, 3 };
+            Assert.AreEqual(7, MaxProfit(2, t));
+
+            //var t = new int[] {1, 3};
+            //Assert.AreEqual(2, MaxProfit(0, t));
 
         }
 
@@ -43,6 +43,7 @@ namespace AlgoTest.LeetCode.BestTimetoBuyandSellStockIV
             Array.Fill(buy, Int32.MinValue);
             var sell = new int[k];
 
+            // All these calculation are in truth DP, just hidden in name
             for(var i =0; i < prices.Length;i++)
             for (var j = 0; j < k; j++)
             {
