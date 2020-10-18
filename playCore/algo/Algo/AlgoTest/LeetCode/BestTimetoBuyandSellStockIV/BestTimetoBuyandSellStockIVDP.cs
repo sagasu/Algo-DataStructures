@@ -42,6 +42,7 @@ namespace AlgoTest.LeetCode.BestTimetoBuyandSellStockIV
          * so ? = profit[t,d] =  90 + 3 = 93
          *
          * time = O(n^2 k)
+         * space = O(nk)
         */
         public int MaxProfit(int k, int[] prices)
         {
