@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace AlgoTest.LeetCode.SortColors
 {
@@ -9,7 +6,7 @@ namespace AlgoTest.LeetCode.SortColors
     {
         public void SortColors(int[] nums)
         {
-            int[] copy = new int[nums.Length]; 
+            var copy = new int[nums.Length]; 
             Array.Copy(nums, copy, nums.Length);
 
             var startIndex = 0;
