@@ -30,8 +30,8 @@ namespace AlgoTest.LeetCode.SpiralMatrix
 
             var ret = new List<int>();
             var up = 0;
-            var right= matrix[0].Length-1;
-            var down = matrix.Length-1;
+            var right= matrix[0].Length -1;
+            var down = matrix.Length -1;
             var left = 0;
             var size = matrix.Length * matrix[0].Length;
             while (ret.Count < size) {
