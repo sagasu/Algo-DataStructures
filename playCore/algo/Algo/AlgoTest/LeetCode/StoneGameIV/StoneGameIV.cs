@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AlgoTest.LeetCode.StoneGameIV
 {
     [TestClass]
+    // This solution doesn't work
     public class StoneGameIV
     {
         [TestMethod]
@@ -14,6 +15,7 @@ namespace AlgoTest.LeetCode.StoneGameIV
             Assert.IsTrue(WinnerSquareGame(1));
             Assert.IsTrue(WinnerSquareGame(4));
             Assert.IsFalse(WinnerSquareGame(7));
+            Assert.IsTrue(WinnerSquareGame(8));
         }
 
         public bool WinnerSquareGame(int n)
