@@ -18,14 +18,21 @@ namespace AlgoTest.LeetCode.StoneGameIV
             Assert.IsTrue(WinnerSquareGame(8));
         }
 
+        bool?[] mnemo = new bool?[100001];
         public bool WinnerSquareGame(int n)
         {
+
+
             if (n == 0)
                 return false;
+            if (mnemo[n].HasValue)
+                return mnemo[n].Value;
 
             for (var i = 1; i * i <= n ; i++)
             {
-                if (!WinnerSquareGame(n - i * i))
+                var num = n - i * i;
+                mnemo[num] = WinnerSquareGame(num);
+                if (!mnemo[num].Value)
                     return true;
             }
 
