@@ -28,9 +28,10 @@ namespace AlgoTest.LeetCode.ChampagneTower
                 arr[i + 1] = new double[i + 2];
                 for (var j = 0; j <= i; j++)
                 {
-                    if (arr[i][j] > 1)
+                    if (arr[i][j] >= 1)
                     {
-                        double next = (arr[i][j] -1) / 2;
+                        arr[i][j] -= 1;
+                        double next = (double)arr[i][j] / (double)2;
 
                         arr[i + 1][j] += next;
                         arr[i + 1][j + 1] += next;
