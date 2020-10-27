@@ -28,10 +28,10 @@ namespace AlgoTest.LeetCode.ChampagneTower
                 arr[i + 1] = new double[i + 2];
                 for (var j = 0; j <= i; j++)
                 {
-                    if (arr[i][j] >= 1)
+                    if (arr[i][j] > 1)
                     {
                         arr[i][j] -= 1;
-                        double next = (double)arr[i][j] / (double)2;
+                        double next = arr[i][j] / (double)2;
 
                         arr[i + 1][j] += next;
                         arr[i + 1][j + 1] += next;
@@ -39,7 +39,7 @@ namespace AlgoTest.LeetCode.ChampagneTower
                 }
             }
 
-            return arr[query_row][query_glass];
+            return arr[query_row][query_glass] < 1 ? arr[query_row][query_glass] : 1;
         }
     }
 }
