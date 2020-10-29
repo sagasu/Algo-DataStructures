@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,10 @@ namespace AlgoTest.LeetCode.MaximizeDistancetoClosestPerson
         [TestMethod]
         public void Test()
         {
-            //var t = new int[] {1, 0, 0, 0, 1, 0, 1};
-            //Assert.AreEqual(2, MaxDistToClosest(t));
+            var t = new int[] {1, 0, 0, 0, 1, 0, 1};
+            Assert.AreEqual(2, MaxDistToClosest(t));
 
-            var t = new int[] { 1, 0, 0, 0 };
+            t = new int[] { 1, 0, 0, 0 };
             Assert.AreEqual(3, MaxDistToClosest(t));
 
             t = new int[] { 0, 1 };
@@ -26,52 +27,20 @@ namespace AlgoTest.LeetCode.MaximizeDistancetoClosestPerson
 
         public int MaxDistToClosest(int[] seats)
         {
-            var maxLeftCount = 0;
-            var maxRightCount = 0;
-            var currCount = 0;
-            var leftCount = 0;
-            var firstRun = true;
-            
-
-            foreach (var seat in seats.Append(1))
+            var n = seats.Length;
+            var previous = -1;
+            var maxDistance = 0;
+            for (var i = 0; i < n; i++)
             {
-                if (seat == 1 && !firstRun)
+                if (seats[i] == 1)
                 {
-                    var min = Math.Min(maxLeftCount, maxRightCount);
-                    if (min == maxLeftCount)
-                    {
-                        if (leftCount >= maxLeftCount && currCount >= maxLeftCount)
-                        {
-                            maxLeftCount = leftCount;
-                            maxRightCount = currCount;
-                        }
-                    }
-                    else if (min == maxRightCount)
-                    {
-                        if (currCount >= maxRightCount && leftCount >= maxRightCount)
-                        {
-                            maxLeftCount = leftCount;
-                            maxRightCount = currCount;
-                        }
-                    }
-
-                    leftCount = currCount;
-                    currCount = 0;
-                    continue;
+                    maxDistance = previous == -1 ? i : Math.Max(maxDistance, (i - previous) / 2);
+                    previous = i;
                 }
-                else if(seat == 1 && firstRun)
-                {
-                    firstRun = false;
-                    leftCount = currCount;
-                    currCount = 0;
-                    continue;
-                }
-
-                currCount += 1;
             }
 
-            var maxDistance = Math.Min(maxLeftCount, maxRightCount);
-            return maxDistance + 1;
+            maxDistance = Math.Max(maxDistance, n -1 - previous);
+            return maxDistance;
         }
     }
 }
