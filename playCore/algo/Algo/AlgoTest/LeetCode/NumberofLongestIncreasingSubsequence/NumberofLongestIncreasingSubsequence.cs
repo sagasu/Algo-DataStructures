@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -13,64 +14,60 @@ namespace AlgoTest.LeetCode.NumberofLongestIncreasingSubsequence
             var t = new int[] { 1, 3, 5, 4, 7 };
             Assert.AreEqual(2, FindNumberOfLIS(t));
 
-
-            max = 0;
-            nrOfSubs = 0;
             t = new int[] { 2, 2, 2, 2, 2};
             Assert.AreEqual(5, FindNumberOfLIS(t));
             
-            max = 0;
-            nrOfSubs = 0;
             t = new int[] { 1, 2, 4, 3, 5, 4, 7, 2};
             Assert.AreEqual(3, FindNumberOfLIS(t));
         }
 
-
-        private int max = 0;
-        private int nrOfSubs = 0;
-        private int usedNr;
-
-
         public int FindNumberOfLIS(int[] nums)
         {
-            SetNumberOfLIS(nums, 0, new List<int>(), new List<int>());
+            if (nums.Length == 1)
+                return 1;
 
-            if (max == 1)
+            var nrOfLIS = new int[nums.Length];
+            var count = new int[nums.Length];
+
+            for (var i = 0; i < nums.Length; i++)
             {
-                return nums.Count(x => x == usedNr);
+                nrOfLIS[i] = 1;
+                count[i] = 1;
             }
 
-            return nrOfSubs;
-        }
-
-        private void SetNumberOfLIS(int[] nums, int index, List<int> taken, List<int> used)
-        {
-            if (index == nums.Length)
+            var maxLength = 0;
+            for (var i = 1; i < nums.Length; i++)
             {
-                if (taken.Count == max)
+                for (var j = 0; j < i; j++)
                 {
-                    nrOfSubs += 1;
+                    if (nums[i] > nums[j])
+                    {
+                        if (nrOfLIS[j] + 1 > nrOfLIS[i])
+                        {
+                            nrOfLIS[i] = nrOfLIS[j] + 1;
+                            count[i] = count[j];
+                        }
+
+                        else if (nrOfLIS[j] + 1 == nrOfLIS[i])
+                        {
+                            count[i] += count[j];
+                        }
+                    }
                 }
-                else if (taken.Count > max)
-                {
-                    max = taken.Count;
-                    usedNr = taken[0];
-                    nrOfSubs = 1;
-                }
-                return;
+
+                maxLength = Math.Max(maxLength, nrOfLIS[i]);
             }
 
-            for (var i = index; i < nums.Length; i++)
+            var maxCount = 0;
+            for (var i = 0; i < nums.Length; i++)
             {
-                if (taken.Count == 0 || (taken[taken.Count - 1] < nums[i]))
+                if (nrOfLIS[i] == maxLength)
                 {
-                    taken.Add(nums[i]);
-                    //used.Add(i);
-                    SetNumberOfLIS(nums, i + 1, taken, used);
-                    taken.RemoveAt(taken.Count - 1);
-                    //used.RemoveAt(used.Count - 1);
+                    maxCount += count[i];
                 }
             }
+
+            return maxCount;
         }
     }
 }
