@@ -19,6 +19,8 @@ namespace AlgoTest.LeetCode.RecoverBinarySearchTree
             RecoverTree(t);
         }
 
+        // This is a recursive solution and space complexity is not O(1) :(
+        // Space complexity here is O(logN) or O(n) depending on how memory is implemented - do we count stack or heap allocation.
         //There are exactly two nodes that were swapped
         public void RecoverTree(TreeNode root)
         {
