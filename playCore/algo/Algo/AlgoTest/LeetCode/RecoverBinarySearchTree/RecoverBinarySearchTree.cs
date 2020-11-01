@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.RecoverBinarySearchTree
 {
@@ -27,43 +28,36 @@ namespace AlgoTest.LeetCode.RecoverBinarySearchTree
             second.val = temp;
         }
 
-        private bool isFirstFound = false;
         private TreeNode first;
         private TreeNode second;
+        private TreeNode previous = new TreeNode(Int32.MinValue);
 
         private void InOrderTraverse(TreeNode root)
         {
-            if (root.left != null)
-            {
-                if (root.left.val > root.val)
-                {
-                    StoreRoot(root, root.left);
-                }
+            if (root == null)
+                return;
 
-                InOrderTraverse(root.left);
+            InOrderTraverse(root.left);
+
+            if (root.val <= previous.val)
+            {
+                StoreRoot(previous, root);
+                StoreRoot(previous, root);
             }
 
-            if (root.right != null)
-            {
-                if (root.right.val < root.val)
-                {
-                    StoreRoot(root, root.right);
-                }
-
-                InOrderTraverse(root.right);
-            }
+            previous = root;
+            InOrderTraverse(root.right);
         }
 
         private void StoreRoot(TreeNode node, TreeNode child)
         {
-            if (!isFirstFound)
+            if (first == null)
             {
                 first = node;
-                isFirstFound = true;
             }
-            else if(child.val != first.val)
+            else
             {
-                second = node;
+                second = child;
             }
             
         }
