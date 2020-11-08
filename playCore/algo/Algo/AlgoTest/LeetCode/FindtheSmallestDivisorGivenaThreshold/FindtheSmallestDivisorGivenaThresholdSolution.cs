@@ -28,7 +28,7 @@ namespace AlgoTest.LeetCode.FindtheSmallestDivisorGivenaThreshold
                 var maxSum = 0;
                 foreach (var num in nums)
                 {
-                    maxSum += (num + divisor - 1) // divisor;
+                    maxSum += (num + divisor - 1) / divisor;
                 }
 
                 return (maxSum <= threshold);
