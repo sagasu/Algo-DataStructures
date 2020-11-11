@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.ValidSquare
@@ -10,63 +11,30 @@ namespace AlgoTest.LeetCode.ValidSquare
         public void Test()
         {
             Assert.IsTrue(ValidSquare(new int[] {0, 0}, new int[] {0, 1}, new int[] { 1, 1 }, new int[] { 1, 0 }));
+            Assert.IsTrue(ValidSquare(new int[] {-1, 0}, new int[] {0, 1}, new int[] { 1, 0 }, new int[] { 0, -1 }));
         }
 
+        // points provided are nodes of a square, but the square can be rotated in a space.
         public bool ValidSquare(int[] p1, int[] p2, int[] p3, int[] p4)
         {
-            var maxRow = Math.Max(Math.Max(p1[0], p2[0]), Math.Max(p3[0], p4[0]));
-            var minRow = Math.Min(Math.Min(p1[0], p2[0]), Math.Min(p3[0], p4[0]));
-
-            var maxCol = Math.Max(Math.Max(p1[0], p2[0]), Math.Max(p3[0], p4[0]));
-            var minCol = Math.Min(Math.Min(p1[0], p2[0]), Math.Min(p3[0], p4[0]));
-
-            var countMinCol = 0;
-            var countMaxCol = 0;
-            var countMinRow = 0;
-            var countMaxRow = 0;
-
-            bool Check(int[] node)
+            var points = new int[][] {p1, p2, p3, p4};
+            var distances = new List<int>();
+            for (var i = 0; i < 4; i++)
+            for (var j = i +1; j < 4; j++)
             {
-                if (node[0] == minRow)
-                {
-                    countMinRow += 1;
-                    return CheckCol(node);
-                }
                 
-                if (node[0] == maxRow)
-                {
-                    countMaxRow += 1;
-                    return CheckCol(node);
-                }
-
-                return false;
+                distances.Add(GetDistance(points[i], points[j]));
             }
 
-            bool CheckCol(int[] node)
-            {
-                if (node[1] == minCol)
-                {
-                    countMinCol += 1;
-                    return true;
-                }
+            distances.Sort();
 
-                if (node[1] == maxCol)
-                {
-                    countMaxCol += 1;
-                    return true;
-                }
+            return distances[0] > 0 && distances[0] == distances[1] && distances[0] == distances[2] && distances[0] == distances[3] && distances[4] == distances[5];
+        }
 
-                return false;
-            }
-
-            if (maxRow == minRow || maxCol == minCol) return false;
-
-            if (!(Check(p1) && Check(p2) && Check(p3) && Check(p4)))
-                return false;
-
-            if (countMinCol == 2 && countMaxCol == 2 && countMinRow == 2 && countMaxRow == 2) return true;
-
-            return false;
+        private int GetDistance(int[] point1, int[] point2)
+        {
+             var distance = Math.Pow(point1[0] - point2[0], 2) + Math.Pow(point1[1] - point2[1],2);
+             return Convert.ToInt32(distance);
         }
     }
 }
