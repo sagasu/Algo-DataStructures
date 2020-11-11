@@ -24,8 +24,10 @@ namespace AlgoTest.LeetCode.BinaryTreeTilt
             while (queue.Count > 0)
             {
                 var node = queue.Dequeue();
-                if(node.left != )
+                //if(node.left != )
             }
+
+            return 0;
         }
 
         private void InOrderTraversal(TreeNode root)
