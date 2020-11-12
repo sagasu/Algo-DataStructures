@@ -15,6 +15,8 @@ namespace AlgoTest.LeetCode.ValidSquare
         }
 
         // points provided are nodes of a square, but the square can be rotated in a space.
+        // so the idea is to realize that the distance between one node should be this same to it's 2 neighbors, as a following after sort distance between one fo these neighbors and it's neighbor. 
+        // and the only distance that is different is the distance between two points that are most far away from each other, there are 2 such cases.
         public bool ValidSquare(int[] p1, int[] p2, int[] p3, int[] p4)
         {
             var points = new int[][] {p1, p2, p3, p4};
