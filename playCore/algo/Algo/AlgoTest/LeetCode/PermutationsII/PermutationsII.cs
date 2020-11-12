@@ -2,11 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.PermutationsII
 {
-    class PermutationsII
+    [TestClass]
+    public class PermutationsII
     {
+        [TestMethod]
+        public void Test()
+        {
+            var t = new int[]{3,3,0,3};
+            PermuteUnique(t);
+        }
+
         public IList<IList<int>> PermuteUnique(int[] nums)
         {
             Array.Sort(nums);
