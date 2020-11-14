@@ -1,3 +1,3 @@
 #LeetCode and HackerRank solutions
 
-Look into AlgoTest project
+Majority of problems are under AlgoTest/LeetCode folder
