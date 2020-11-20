@@ -6,6 +6,7 @@ namespace AlgoTest.LeetCode.MirrorReflection
 {
     public class MirrorReflectionSolution
     {
+        // wip
         public int MirrorReflection(int p, int q)
         {
             if (p == 0) return 0;
