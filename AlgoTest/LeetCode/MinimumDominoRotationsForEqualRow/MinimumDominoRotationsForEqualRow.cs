@@ -22,6 +22,21 @@ namespace AlgoTest.LeetCode.MinimumDominoRotationsForEqualRow
             var t6 = new int[] { 2, 1, 2, 2, 2, 2, 2, 2 };
             Assert.AreEqual(1, MinDominoRotations(t5, t6));
         }
+        [TestMethod]
+        public void Test2() {
+            var t1 = new int[] { 2, 1, 2, 4, 2, 2 };
+            var t2 = new int[] { 5, 2, 6, 2, 3, 2 };
+            Assert.AreEqual(2, MinDominoRotations(t1, t2));
+
+        }
+        [TestMethod]
+        public void Test3() {
+
+            var t3 = new int[] { 3, 5, 1, 2, 3 };
+            var t4 = new int[] { 3, 6, 3, 3, 4 };
+            Assert.AreEqual(-1, MinDominoRotations(t3, t4));
+
+        }
 
         public int MinDominoRotations(int[] A, int[] B)
         {
