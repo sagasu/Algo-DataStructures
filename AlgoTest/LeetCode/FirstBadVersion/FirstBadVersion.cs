@@ -11,13 +11,30 @@ namespace AlgoTest.LeetCode.FirstBadVersion
     public class FirstBadVersion1
     {
         [TestMethod]
-        public void Test()
+        public void Test1()
         {
-            //Assert.AreEqual(4, FirstBadVersion(5));
-            //Assert.AreEqual(1702766719, FirstBadVersion(2126753390));
-            //Assert.AreEqual(1150769282, FirstBadVersion(1420736637));
             Assert.AreEqual(1, FirstBadVersion(2));
-            //Assert.AreEqual(3, FirstBadVersion(3));
+        }
+        [TestMethod]
+        public void Test2()
+        {
+            Assert.AreEqual(4, FirstBadVersion(5));
+        }
+        [TestMethod]
+        public void Test3()
+        {
+            Assert.AreEqual(1702766719, FirstBadVersion(2126753390));
+
+        }
+        [TestMethod]
+        public void Test4()
+        {
+            Assert.AreEqual(1150769282, FirstBadVersion(1420736637));
+        }
+        [TestMethod]
+        public void Test5()
+        {
+            Assert.AreEqual(3, FirstBadVersion(3));
         }
 
         public int FirstBadVersion(int n)
