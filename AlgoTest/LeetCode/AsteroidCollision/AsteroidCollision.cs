@@ -11,16 +11,22 @@ namespace AlgoTest.LeetCode.AsteroidCollision
     {
 
         [TestMethod]
-        public void Test()
+        public void Test1()
         {
-            //var t = new int[] {5, 10, -5};
-            //CollectionAssert.AreEqual(new int[]{5,10}, AsteroidCollision(t));
-            
+            var t = new int[] {5, 10, -5};
+            CollectionAssert.AreEqual(new int[]{5,10}, AsteroidCollision(t));
+        }
+        [TestMethod]
+        public void Test2()
+        {    
             var t= new int[] { 10, 2, -5};
             CollectionAssert.AreEqual(new int[]{10}, AsteroidCollision(t));
-
-            //var t = new int[] { 8, -8 };
-            //CollectionAssert.AreEqual(new int[] { }, AsteroidCollision(t));
+        }
+        [TestMethod]
+        public void Test3()
+        {
+            var t = new int[] { 8, -8 };
+            CollectionAssert.AreEqual(new int[] { }, AsteroidCollision(t));
         }
 
         public int[] AsteroidCollision(int[] asteroids)
