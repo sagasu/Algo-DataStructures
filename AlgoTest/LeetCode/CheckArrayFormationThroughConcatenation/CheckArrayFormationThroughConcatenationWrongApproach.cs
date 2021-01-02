@@ -6,7 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AlgoTest.LeetCode.CheckArrayFormationThroughConcatenation
 {
     [TestClass]
-    public class CheckArrayFormationThroughConcatenation
+    // This is a wrong approach because I thought that elements in arr can be reordered.
+    public class CheckArrayFormationThroughConcatenationWrongApproach
     {
         [TestMethod]
         public void Test1()
@@ -46,20 +47,25 @@ namespace AlgoTest.LeetCode.CheckArrayFormationThroughConcatenation
 
         public bool CanFormArray(int[] arr, int[][] pieces)
         {
-            var dic = new Dictionary<int,int>();
-            for (var i = 0; i < pieces.Length; i++)
-            {
-                dic.Add(pieces[i][0], i);
-            }
+            Array.Sort(arr);
+
+            Array.Sort(pieces, ((a, b) => a[0].CompareTo(b[0])));
+
+            var startIndex = 0;
+            var current = 0;
 
             for (var i = 0; i < arr.Length; i++)
             {
-                if (!dic.ContainsKey(arr[i])) return false;
-                var piece = pieces[dic[arr[i]]];
-                for (var j = 1; j < piece.Length; j++)
+                if (arr[i] != pieces[startIndex][current]) return false;
+
+                if (current == pieces[startIndex].Length - 1)
                 {
-                    if (arr[i] != piece[j]) return false;
-                    i += 1;
+                    startIndex += 1;
+                    current = 0;
+                }
+                else
+                {
+                    current += 1;
                 }
             }
 
