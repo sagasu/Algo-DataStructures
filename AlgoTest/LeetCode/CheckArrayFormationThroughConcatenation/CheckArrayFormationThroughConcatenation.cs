@@ -43,6 +43,15 @@ namespace AlgoTest.LeetCode.CheckArrayFormationThroughConcatenation
 
             Assert.AreEqual(true, CanFormArray(t1,t2));
         }
+        
+        [TestMethod]
+        public void Test5()
+        {
+            var t1 = new [] { 37, 69, 3, 74, 46 };
+            var t2 = new int[][] { new[] { 37, 69, 3, 74, 46 } };
+
+            Assert.AreEqual(true, CanFormArray(t1,t2));
+        }
 
         public bool CanFormArray(int[] arr, int[][] pieces)
         {
@@ -58,8 +67,8 @@ namespace AlgoTest.LeetCode.CheckArrayFormationThroughConcatenation
                 var piece = pieces[dic[arr[i]]];
                 for (var j = 1; j < piece.Length; j++)
                 {
-                    if (arr[i] != piece[j]) return false;
                     i += 1;
+                    if (arr[i] != piece[j]) return false;
                 }
             }
 
