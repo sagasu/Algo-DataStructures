@@ -38,6 +38,14 @@ namespace AlgoTest.LeetCode.Set_Mismatch
             CollectionAssert.AreEqual(new int[]{ 2, 1 }, FindErrorNums(new int[]{ 3, 2, 2 }));
         }
 
+        [TestMethod]
+        public void Test6()
+        {
+            CollectionAssert.AreEqual(new int[] { 2, 1 }, FindErrorNums(new int[] { 2, 2 }));
+        }
+        
+
+
         // 2N
         public int[] FindErrorNums(int[] nums)
         {
@@ -53,8 +61,7 @@ namespace AlgoTest.LeetCode.Set_Mismatch
                 if (count[i] == 2) dupIndex = i;
                 if (count[i] == 0) missingNumber = i;
             }
-
-            return new[] { nums[dupIndex], missingNumber };
+            return new[] { dupIndex, missingNumber };
         }
     }
 }
