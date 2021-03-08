@@ -5,7 +5,7 @@ namespace AlgoTest.LeetCode.Pseudo_Palindromic_Paths_in_a_Binary_Tree
 {
     [TestClass]
     // Ttime out naive implementation
-    public class Pseudo_Palindromic_Paths_in_a_Binary_Tree
+    public class Pseudo_Palindromic_Paths_in_a_Binary_Tree2
     {
 
         [TestMethod]
@@ -30,18 +30,17 @@ namespace AlgoTest.LeetCode.Pseudo_Palindromic_Paths_in_a_Binary_Tree
             return foundPalindromes;
         }
 
+        IList<int> elements = new List<int>();
         private int foundPalindromes = 0;
-        int[] count = new int[10];
-
         public void Traverse(TreeNode root)
         {
             if (root == null) return;
 
-            count[root.val] += 1;
+            elements.Add(root.val);
             if (root.left == null && root.right == null)
             {
                 if(IsPandrome()) foundPalindromes += 1;
-                count[root.val] -= 1;
+                elements.RemoveAt(elements.Count - 1);
                 return;
             }
 
@@ -49,11 +48,17 @@ namespace AlgoTest.LeetCode.Pseudo_Palindromic_Paths_in_a_Binary_Tree
 
             Traverse(root.right);
 
-            count[root.val] -= 1;
+            elements.RemoveAt(elements.Count -1);
         }
 
         private bool IsPandrome()
         {
+            var count = new int[10];
+            for (var i = 0; i < elements.Count; i++)
+            {
+                count[elements[i]] += 1;
+            }
+
             var isFirstOddFound = false;
             for (var i = 1; i < count.Length; i++)
             {
