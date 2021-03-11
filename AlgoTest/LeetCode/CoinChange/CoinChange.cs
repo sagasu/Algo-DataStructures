@@ -39,6 +39,8 @@ namespace AlgoTest.LeetCode.CoinChange
 
         public int CoinChange(int[] coins, int amount)
         {
+            // It is because in c# it will swith to - number quickly.
+            var maxValue = int.MaxValue - 1;
             var cache = new int?[coins.Length, amount + 1];
             
             int GetMinCoinChange(int index, int sum)
@@ -47,14 +49,14 @@ namespace AlgoTest.LeetCode.CoinChange
                     return 0;
 
                 if (sum < 0)
-                    return int.MaxValue;
+                    return maxValue;
 
                 if (index == coins.Length)
-                    return int.MaxValue;
+                    return maxValue;
 
                 if (cache[index, sum].HasValue) return cache[index, sum].Value;
 
-                var min = Int32.MaxValue;
+                var min = maxValue;
                 min = Math.Min(min, GetMinCoinChange(index, sum - coins[index]) + 1);
 
                 min = Math.Min(min, GetMinCoinChange(index + 1, sum));
@@ -65,7 +67,7 @@ namespace AlgoTest.LeetCode.CoinChange
             }
 
             var minCoinChange = GetMinCoinChange(0, amount);
-            return minCoinChange == int.MaxValue ? -1 : minCoinChange;
+            return minCoinChange == maxValue ? -1 : minCoinChange;
         }
 
     }
