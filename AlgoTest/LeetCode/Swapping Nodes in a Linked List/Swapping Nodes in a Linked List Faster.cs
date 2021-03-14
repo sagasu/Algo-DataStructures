@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AlgoTest.LeetCode.RotateList;
+﻿using AlgoTest.LeetCode.RotateList;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.Swapping_Nodes_in_a_Linked_List2
