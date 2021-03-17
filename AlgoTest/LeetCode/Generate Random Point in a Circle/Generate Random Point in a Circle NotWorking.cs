@@ -6,8 +6,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AlgoTest.LeetCode.Generate_Random_Point_in_a_Circle
 {
     [TestClass]
-    // This solution doesn't work for some reason.
-    public class Generate_Random_Point_in_a_Circle
+    // This solution doesn't work for some reason. Probably LeetCode has a random distribution check and it believes that my random distribution is not equal distributing points in the circle.
+    public class Generate_Random_Point_in_a_Circle_NotWorking
     {
         [TestMethod]
         public void Test()
