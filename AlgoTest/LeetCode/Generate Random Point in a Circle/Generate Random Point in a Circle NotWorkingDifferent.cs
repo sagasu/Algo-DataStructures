@@ -54,6 +54,20 @@ namespace AlgoTest.LeetCode.Generate_Random_Point_in_a_Circle2
 
     public class Solution
     {
+
+        public double RandDoubleInclusive()
+        {
+            var smallestDouble = 0.000000000000001;
+            var random = new Random();
+            var randDouble = random.NextDouble();
+            var addExtra = random.Next(0, 2);
+            if (addExtra == 1)
+                randDouble += smallestDouble;
+
+            return randDouble;
+        }
+
+
         private double Radius;
         private double X;
         private double Y;
@@ -64,18 +78,6 @@ namespace AlgoTest.LeetCode.Generate_Random_Point_in_a_Circle2
             X = x_center;
             Y = y_center;
             Rand = new Random();
-        }
-
-        public double RandDoubleInclusive()
-        {
-            var smallestDouble = 0.000000000000001;
-            var random = new Random();
-            var randDouble = random.NextDouble();
-            var isAddExtra = random.Next(0, 2);
-            if (isAddExtra == 1)
-                randDouble += smallestDouble;
-
-            return randDouble;
         }
 
         public double[] RandPoint()
