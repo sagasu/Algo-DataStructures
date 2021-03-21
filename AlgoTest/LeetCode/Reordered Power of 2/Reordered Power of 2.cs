@@ -18,6 +18,10 @@ namespace AlgoTest.LeetCode.Reordered_Power_of_2
             Assert.AreEqual(false, ReorderedPowerOf2(24));
         }
 
+        //int MaxValue = 2 147 483 647
+        // 2 pow 32 =    4,294,967,296
+        // 2 pow 31 =    2,147,483,648
+        // 10 pow 9 =    1,000,000,000
         public bool ReorderedPowerOf2(int N)
         {
             string Normalize(double d)
