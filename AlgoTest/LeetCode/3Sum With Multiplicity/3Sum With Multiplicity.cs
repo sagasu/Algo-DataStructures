@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode._3Sum_With_Multiplicity
 {
-    // This is timeout approach, too slow. even if I add cache it will be too slow.
     [TestClass]
     public class _3Sum_With_Multiplicity
     {
@@ -15,31 +12,44 @@ namespace AlgoTest.LeetCode._3Sum_With_Multiplicity
             var t = new int[] {1, 1, 2, 2, 2, 2};
             Assert.AreEqual(12, ThreeSumMulti(t, 5));
         }
+        
+        [TestMethod]
+        public void Test2()
+        {
+            var t = new int[] { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 };
+            Assert.AreEqual(20, ThreeSumMulti(t, 8));
+        }
 
         public int ThreeSumMulti(int[] arr, int target)
         {
-            var mod = Math.Pow(10, 9) + 7;
+            var mod = (int)Math.Pow(10, 9) + 7;
 
-            double GetThreeSum(int index, int takenNr, int sum)
+            var pdp = new int[4,target + 1];
+            var dp = new int[4, target + 1];
+
+            pdp[0, 0] = 1;
+
+            foreach (var x in arr)
             {
-                double found = 0;
-
-                if (takenNr == 3)
+                for (var i = 0; i < 4; i++)
+                for (var j = 0; j < target+1; j++)
                 {
-                    if (sum == target) return 1;
-                    return 0;
+                    dp[i, j] += pdp[i, j];
+                    dp[i, j] %= mod;
+
+                    if (pdp[i, j] > 0 && x + j <= target && i + 1 < 4)
+                    {
+                        dp[i + 1, j + x] += pdp[i, j];
+                        dp[i + 1, j] %= mod;
+                    }
                 }
-
-                if (index == arr.Length || sum > target) return 0;
-
-                found += GetThreeSum(index + 1, takenNr +1, sum + arr[index]);
-
-                found += GetThreeSum(index + 1, takenNr, sum);
-                return found;
+                pdp = dp;
+                dp = new int[4, target + 1];
             }
 
-            var threesum = GetThreeSum(0, 0, 0);
-            return  (int)(threesum % mod);
+
+            return pdp[3, target] % mod;
+
         }
     }
 }
