@@ -21,35 +21,46 @@ namespace AlgoTest.LeetCode.Longest_Valid_Parentheses
         }
 
         [TestMethod]
+        public void Test3()
+        {
+            Assert.AreEqual(6, LongestValidParentheses("))(())()"));
+            Assert.AreEqual(6, LongestValidParentheses("))(())())"));
+        }
+
+        [TestMethod]
         public void Test2()
         {
             Assert.AreEqual(2, LongestValidParentheses("()"));
+        }
+        
+        [TestMethod]
+        public void Test4()
+        {
+            Assert.AreEqual(4, LongestValidParentheses("(()()"));
         }
 
         public int LongestValidParentheses(string s)
         {
             var chars = s.ToCharArray();
-            var stack = new Stack<char>();
+            var stack = new Stack<int>();
             var max = 0;
-            var start = 0;
+            var start = -1;
 
-            for (int i = 0; i < chars.Length; i++)
+            for (var i = 0; i < chars.Length; i++)
             {
                 if (chars[i] == '(')
-                    stack.Push(chars[i]);
+                    stack.Push(i);
                 else
                 {
-                    if (!stack.TryPop(out var result))
+                    if (!stack.TryPop(out var openIndex))
                     {
                         start = i;
                         continue;
                     }
 
-                    max = Math.Max(max, i - start);
+                    max = stack.Count == 0 ? Math.Max(max, i - start) : Math.Max(max, i - openIndex + 1);
                 }
             }
-
-            if (start == 0) max += 1;
 
             return max;
         }
