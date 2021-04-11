@@ -12,6 +12,7 @@ namespace AlgoTest.LeetCode.Deepest_Leaves_Sum
         }
 
 
+        // Runtime: 120 ms, Memory Usage: 34.9 MB
         public int DeepestLeavesSum(TreeNode root)
         {
 
@@ -33,7 +34,7 @@ namespace AlgoTest.LeetCode.Deepest_Leaves_Sum
 
              BuildDeepestLeavesSum(root, 0);
 
-             return leavesSum[leavesSum.Count];
+             return leavesSum[leavesSum.Count - 1];
         }
     }
 
