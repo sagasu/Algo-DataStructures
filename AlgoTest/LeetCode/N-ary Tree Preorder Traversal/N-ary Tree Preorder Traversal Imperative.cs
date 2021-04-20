@@ -8,7 +8,9 @@ namespace AlgoTest.LeetCode.N_ary_Tree_Preorder_Traversal
     {
         public IList<int> Preorder(Node root)
         {
+            
             IList<int> traverse = new List<int>();
+            if (root == null) return traverse;
 
             var stack = new Stack<Node>();
             stack.Push(root);
