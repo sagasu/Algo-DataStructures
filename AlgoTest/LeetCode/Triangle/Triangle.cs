@@ -35,6 +35,7 @@ namespace AlgoTest.LeetCode.Triangle
         public int MinimumTotal(IList<IList<int>> triangle)
         {
             var min = Int32.MaxValue;
+            var cache = new HashSet<string>();
 
             void MinTraverse(int index, int position, int sum)
             {
@@ -44,6 +45,8 @@ namespace AlgoTest.LeetCode.Triangle
                     return;
                 }
 
+                if (cache.Contains($"{index}_{position}_{sum}")) return;
+
                 var current = triangle[index][position];
 
                 position += 1;
@@ -51,6 +54,7 @@ namespace AlgoTest.LeetCode.Triangle
                 sum += current;
                 MinTraverse(index+1, nextPosition, sum);
                 MinTraverse(index+1, nextPosition+1, sum);
+                cache.Add($"{index}_{position-1}_{sum-current}");
             }
 
             MinTraverse(0, 0,0);
