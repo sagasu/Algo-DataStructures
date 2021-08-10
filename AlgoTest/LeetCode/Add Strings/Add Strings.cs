@@ -8,6 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AlgoTest.LeetCode.Add_Strings
 {
     [TestClass]
+    //92 ms, 27.6 MB
     public class Add_Strings
     {
         [TestMethod]
