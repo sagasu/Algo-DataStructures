@@ -1,3 +1,5 @@
+using AlgoTest.LeetCode;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -11,7 +13,8 @@
  *     }
  * }
  */
-public class Solution {
+public class Convert_Sorted_Array_to_Binary_Search_Tree
+{
     public TreeNode SortedArrayToBST(int[] nums) {
         TreeNode Build(int left, int right){
             if(left == right) return new TreeNode(nums[left]);
