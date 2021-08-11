@@ -17,6 +17,8 @@ namespace AlgoTest.LeetCode.Flip_String_to_Monotone_Increasing
             Assert.AreEqual(1, MinFlipsMonoIncr("00110"));
         }
 
+        // Idea is to notice that the order is not important. We are counting how many switches from 1 to 0 we would need to do to make everything 0, and how many switches from 0 to 1 to make everything 1. If we substract both sums from each other we will have the min amount of switches that we would have to make.
+        //time O(n)
         public int MinFlipsMonoIncr(string s)
         {
             // number of flips from 0 to 1
