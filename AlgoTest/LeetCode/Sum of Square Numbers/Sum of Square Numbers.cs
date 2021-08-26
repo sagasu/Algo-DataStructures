@@ -5,6 +5,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.Sum_of_Square_Numbers
 {
+    // The reason it is faster is because we find the b from the end to each i
+    // so it is like a window problem that is getting smaller and smaller as i increases b decreases.
     [TestClass]
     public class Sum_of_Square_Numbers
     {
