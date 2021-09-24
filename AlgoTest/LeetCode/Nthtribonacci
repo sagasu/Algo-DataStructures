@@ -1,0 +1,11 @@
+if (n ==0)
+     return 0 ;
+    if(n <= 2)
+        return 1;
+    int n_3 = 0;
+    int n_2 = 1;
+    int n_1 = 1;
+
+    while(n-- > 2)
+        (n_3,n_2,n_1) = (n_2,n_1, n_3+n_2+n_1);
+    return n_1;
