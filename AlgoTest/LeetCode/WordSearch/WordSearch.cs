@@ -37,63 +37,64 @@ namespace AlgoTest.LeetCode.WordSearch
             Assert.IsFalse(Exist(t, "AAA"));
         }
 
+        [TestMethod]
+        public void Test2()
+        {
+            var t = new char[][]
+            {
+                new char[] {'A', 'A', 'A', 'A', 'A', 'A'}, new char[] {'A', 'A', 'A', 'A', 'A', 'A'},
+                new char[] {'A', 'A', 'A', 'A', 'A', 'A'}, new char[] {'A', 'A', 'A', 'A', 'A', 'A'},
+                new char[] {'A', 'A', 'A', 'A', 'A', 'A'}, new char[] {'A', 'A', 'A', 'A', 'A', 'A'}
+            };
+            Assert.IsFalse(Exist(t,"AAAAAAAAAAAAAAB"));
+        }
+
+        int n;
+        int m;
         public bool Exist(char[][] board, string word)
         {
-            for (var row = 0; row < board.Length; row++)
+            n = board.Length;
+            if (n == 0) return false;
+            m = board[0].Length;
+
+            var isVisited = new bool[n, m];
+
+            var result = false;
+            for (var i = 0; i < n; i++)
             {
-                for (var col = 0; col < board[row].Length; col++)
+                for (var j = 0; j < m; j++)
                 {
-                    if (board[row][col] == word[0] && Exist(board, word, row, col, 0,new List<string>{GetHash(row,col)}))
-                        return true;
+                    result = DFS(board, isVisited, i, j, word, 0);
+                    if (result) return true;
                 }
             }
 
-            return false;
+            return result;
         }
 
-        private bool Exist(char[][] board, string word, int row, int col, int index, List<string> taken)
+        private bool DFS(char[][] board, bool[,] isVisited, int x, int y, string word, int wordIndex)
         {
-            if (word.Length <= index + 1)
-                return true;
+            if (wordIndex == word.Length) return true;
+            
+            if (x >= n || x < 0 || y >= m || y < 0) return false;
+            
+            if (word[wordIndex] != board[x][y]) return false;
+            
+            if (isVisited[x, y]) return false;
 
-            if (row > 0 && !taken.Any(x => GetHash(row - 1, col) == x) && board[row-1][col] == word[index + 1])
+            isVisited[x, y] = true;
+
+            var directions = new (int, int)[] { (0, 1), (0, -1), (1, 0), (-1, 0) };
+
+            foreach (var direction in directions)
             {
-                taken.Add(GetHash(row -1,col));
-                if (Exist(board, word, row -1, col, index + 1, taken))
-                    return true;
-                taken.RemoveAt(taken.Count -1);
+                var oneResult = DFS(board, isVisited, x + direction.Item1, y + direction.Item2, word, wordIndex + 1);
+                if (oneResult) return true;
             }
 
-            if (row < board.Length-1 && !taken.Any(x => GetHash(row + 1, col) == x) && board[row + 1][col] == word[index + 1])
-            {
-                taken.Add(GetHash(row + 1, col));
-                if (Exist(board, word, row + 1, col, index + 1, taken))
-                    return true;
-                taken.RemoveAt(taken.Count - 1);
-            }
-
-            if (col > 0 && !taken.Any(x => GetHash(row, col - 1) == x) && board[row][col - 1] == word[index + 1])
-            {
-                taken.Add(GetHash(row, col - 1));
-                if (Exist(board, word, row, col - 1, index + 1, taken))
-                    return true;
-                taken.RemoveAt(taken.Count - 1);
-            }
-
-            if (col < board[row].Length - 1 && !taken.Any(x => GetHash(row, col + 1) == x) && board[row][col + 1] == word[index + 1])
-            {
-                taken.Add(GetHash(row, col + 1));
-                if (Exist(board, word, row, col + 1, index + 1, taken))
-                    return true;
-                taken.RemoveAt(taken.Count - 1);
-            }
+            isVisited[x, y] = false;
 
             return false;
-        }
-
-        private static string GetHash(int row, int col)
-        {
-            return $"{row}_{col}";
         }
 
     }
