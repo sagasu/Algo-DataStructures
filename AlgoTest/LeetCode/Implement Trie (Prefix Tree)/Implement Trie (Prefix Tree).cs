@@ -15,8 +15,8 @@ namespace AlgoTest.LeetCode.Implement_Trie__Prefix_Tree_
         public void Insert(string word)
         {
             var n = word.Length;
-            TrieNode curNode = root;
-            for (int i = 0; i < n; i++)
+            var curNode = root;
+            for (var i = 0; i < n; i++)
             {
                 var index = word[i] - 'a';
                 if (curNode.nodes[index] == null)
@@ -34,8 +34,8 @@ namespace AlgoTest.LeetCode.Implement_Trie__Prefix_Tree_
         public bool Search(string word)
         {
             var n = word.Length;
-            TrieNode curNode = root;
-            for (int i = 0; i < n; i++)
+            var curNode = root;
+            for (var i = 0; i < n; i++)
             {
                 var index = word[i] - 'a';
                 if (curNode.nodes[index] == null)
@@ -49,8 +49,8 @@ namespace AlgoTest.LeetCode.Implement_Trie__Prefix_Tree_
         public bool StartsWith(string prefix)
         {
             var n = prefix.Length;
-            TrieNode curNode = root;
-            for (int i = 0; i < n; i++)
+            var curNode = root;
+            for (var i = 0; i < n; i++)
             {
                 var index = prefix[i] - 'a';
                 if (curNode.nodes[index] == null)
@@ -61,17 +61,18 @@ namespace AlgoTest.LeetCode.Implement_Trie__Prefix_Tree_
             }
             return true;
         }
-    }
 
-    class TrieNode
-    {
-        public TrieNode[] nodes;
-        public bool isWord;
-
-        public TrieNode()
+        class TrieNode
         {
-            nodes = new TrieNode[26];
-            isWord = false;
+            public TrieNode[] nodes;
+            public bool isWord;
+
+            public TrieNode()
+            {
+                nodes = new TrieNode[26];
+                isWord = false;
+            }
         }
     }
+
 }

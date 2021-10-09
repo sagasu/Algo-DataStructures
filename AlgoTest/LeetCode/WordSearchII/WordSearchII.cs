@@ -7,66 +7,51 @@ namespace AlgoTest.LeetCode.WordSearchII
 {
     public class WordSearchII
     {
-        public IList<string> FindWords(char[][] board, string[] words)
+        public List<string> FindWords(char[][] board, string[] words)
         {
+            var root = BuildTrieFrom(words);
+            var foundWords = new List<string>();
             for (var row = 0; row < board.Length; row++)
+            for (var col = 0; col < board[0].Length; col++)
+                Dfs(row, col, root);
+
+            return foundWords;
+
+            void Dfs(int row, int col, TrieNode node)
             {
-                for (var column = 0; column < board[row].Length; column++)
+                var letter = board[row][col];
+                if (letter == '#' || node.Next[letter - 'a'] == null)
+                    return;
+
+                node = node.Next[letter - 'a'];
+                if (node.Word != null)
                 {
-                    for (var i = 0; i < words.Length; i++)
-                    {
-                        if (board[row][column] == words[i][0])
-                        {
-                            FindWord(board, row, column, words[i], 0,new List<string>{Hash(row,column)});
-                        }
-                    }
-                    
+                    foundWords.Add(node.Word);
+                    node.Word = null;
                 }
-            }
 
-            return foundWords.ToList();
+                board[row][col] = '#';
+                if (row > 0) Dfs(row - 1, col, node);
+                if (col > 0) Dfs(row, col - 1, node);
+                if (row < board.Length - 1) Dfs(row + 1, col, node);
+                if (col < board[0].Length - 1) Dfs(row, col + 1, node);
+                board[row][col] = letter;
+            }
         }
 
-        private string Hash(int row, int column) => $"{row},{column}";
-
-        private void FindWord(char[][] board, int row, int column, string word, int index, List<string> visited)
+        private static TrieNode BuildTrieFrom(IEnumerable<string> words)
         {
-            if (word.Length == index+1)
-            {
-                foundWords.Add(word);
-                return;
-            }
-
-            if (row > 0 && board[row - 1][column] == word[index + 1] && !visited.Contains(Hash(row - 1, column)))
-            {
-                visited.Add(Hash(row-1, column));
-                FindWord(board, row - 1, column, word, index + 1, visited);
-                visited.RemoveAt(visited.Count-1);
-            }
-
-            if (row < board.Length - 1 && board[row + 1][column] == word[index + 1] && !visited.Contains(Hash(row + 1, column)))
-            {
-                visited.Add(Hash(row + 1, column));
-                FindWord(board, row + 1, column, word, index + 1, visited);
-                visited.RemoveAt(visited.Count - 1);
-            }
-
-            if (column < board[0].Length - 1 && board[row][column + 1] == word[index + 1] && !visited.Contains(Hash(row, column+1)))
-            {
-                visited.Add(Hash(row, column+1));
-                FindWord(board, row, column + 1, word, index + 1, visited);
-                visited.RemoveAt(visited.Count - 1);
-            }
-
-            if (column > 0 && board[row][column - 1] == word[index + 1] && !visited.Contains(Hash(row, column-1)))
-            {
-                visited.Add(Hash(row, column-1));
-                FindWord(board, row, column - 1, word, index + 1, visited);
-                visited.RemoveAt(visited.Count - 1);
-            }
+            var root = new TrieNode();
+            foreach (var word in words)
+                word.Aggregate(root, (node, c) => node.Next[c - 'a'] ??= new TrieNode())
+                    .Word = word;
+            return root;
         }
 
-
-        HashSet<string> foundWords = new HashSet<string>();
+        public class TrieNode
+        {
+            public readonly TrieNode[] Next = new TrieNode[26];
+            public string Word;
+        }
     }
 }
