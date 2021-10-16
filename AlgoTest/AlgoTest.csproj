@@ -4,7 +4,14 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="LeetCode\BreakAPalidrome.cs" />
+    <Compile Remove="LeetCode\DistinctSubsequences.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
@@ -13,7 +20,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="LeetCode\Dungeon Game\" />
+    <Folder Include="LeetCode\Spiral Matrix\" />
     <Folder Include="Problems\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LeetCode\BreakAPalidrome.cs" />
+    <None Include="LeetCode\DistinctSubsequences.cs" />
   </ItemGroup>
 
 </Project>
