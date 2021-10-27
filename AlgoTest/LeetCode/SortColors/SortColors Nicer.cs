@@ -2,7 +2,7 @@
 
 namespace AlgoTest.LeetCode.SortColors
 {
-    class SortColorsProblem
+    class SortColorsProblem_Nicer
     {
         public void SortColors(int[] nums)
         {
@@ -13,7 +13,6 @@ namespace AlgoTest.LeetCode.SortColors
             var endIndex = nums.Length - 1;
 
             for (var i = 0; i < nums.Length; i++)
-            {
                 if (copy[i] == 0)
                 {
                     nums[startIndex] = 0;
@@ -24,12 +23,9 @@ namespace AlgoTest.LeetCode.SortColors
                     nums[endIndex] = 2;
                     endIndex -= 1;
                 }
-            }
+            
 
-            for (var i = startIndex; i <= endIndex; i++)
-            {
-                nums[i] = 1;
-            }
+            for (var i = startIndex; i <= endIndex; i++) nums[i] = 1;
         }
     }
 }
