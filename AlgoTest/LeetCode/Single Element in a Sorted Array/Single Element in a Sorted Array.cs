@@ -9,7 +9,6 @@ namespace AlgoTest.LeetCode.Single_Element_in_a_Sorted_Array
     {
         public int SingleNonDuplicate(int[] nums)
         {
-            var ans = 0;
             var numsCount = (from num in nums
                 group num by num into numGrp
                 orderby numGrp.Count() ascending
