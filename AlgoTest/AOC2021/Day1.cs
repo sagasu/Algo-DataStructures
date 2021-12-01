@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AlgoTest.AdventOfCode2021
+namespace AlgoTest.AOC2021
 {
     [TestClass]
     public class Day1
