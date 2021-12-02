@@ -9,7 +9,7 @@ namespace AlgoTest.AOC2021
     public class Day2
     {
         [TestMethod]
-        public void Test()
+        public void Test1()
         {
             var depth = 0;
             var position = 0;
@@ -35,6 +35,37 @@ namespace AlgoTest.AOC2021
 
             var mult = depth * position;
             Assert.AreEqual(2117664, mult);
+        }
+
+        [TestMethod]
+        public void Test2()
+        {
+            var depth = 0;
+            var aim = 0;
+            var position = 0;
+
+            foreach (var trans in data)
+            {
+                var command = trans.Split(' ');
+                var d = int.Parse(command[1]);
+                var f = command[0];
+                switch (f)
+                {
+                    case "forward":
+                        position += d;
+                        depth += aim * d;
+                        break;
+                    case "up":
+                        aim -= d;
+                        break;
+                    case "down":
+                        aim += d;
+                        break;
+                }
+            }
+
+            var mult = depth * position;
+            Assert.AreEqual(2073416724, mult);
         }
 
         private string[] data = new string[]
