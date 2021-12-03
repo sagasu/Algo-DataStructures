@@ -10,7 +10,7 @@ namespace AlgoTest.AOC2021
     public class Day3
     {
         [TestMethod]
-        public void Test()
+        public void Test1()
         {
             var zeros = new int[data[0].Length]; 
             var gamma = new string[data[0].Length]; 
@@ -26,12 +26,68 @@ namespace AlgoTest.AOC2021
                 gamma[i] = zeros[i] < data.Length / 2 ? "1" : "0";
                 epsilon[i] = zeros[i] < data.Length / 2 ? "0" : "1";
             }
-
+            Assert.AreEqual(string.Join("", gamma), "000110001010");
             var gam = Convert.ToInt32(string.Join("",gamma), 2);
             var ep = Convert.ToInt32(string.Join("", epsilon), 2);
             var pow = gam * ep;
             Assert.AreEqual(1458194, pow);
         }
+        
+        [TestMethod]
+        public void Test2()
+        {
+            int GetRating(bool isOxygen)
+            {
+                var zeros = new List<string>();
+                var ones = new List<string>();
+                var isMoreThanOne = true;
+                var bitPosition = 0;
+
+                var collection = data.ToList();
+                while (isMoreThanOne)
+                {
+                    foreach (var number in collection)
+                    {
+                        if (number[bitPosition] == '0') zeros.Add(number);
+                        else ones.Add(number);
+                    }
+
+                    collection = isOxygen ?
+                        zeros.Count > ones.Count ? zeros : ones :
+                        zeros.Count > ones.Count ? ones : zeros;
+
+                    isMoreThanOne = collection.Count > 1;
+                    bitPosition += 1;
+                    zeros = new List<string>();
+                    ones = new List<string>();
+                }
+
+                var num = collection[0];
+                return Convert.ToInt32(string.Join("", num), 2); ;
+            }
+
+            var oxygen = GetRating(true);
+            var co2 = GetRating(false);
+
+            var lifeSupport = oxygen * co2;
+            Assert.AreEqual(2829354, lifeSupport);
+        }
+
+        private string[] testData = new string[]
+        {
+            "00100",
+            "11110",
+            "10110",
+            "10111",
+            "10101",
+            "01111",
+            "00111",
+            "11100",
+            "10000",
+            "11001",
+            "00010",
+            "01010",
+        };
 
         private string[] data = new string[]
         {
