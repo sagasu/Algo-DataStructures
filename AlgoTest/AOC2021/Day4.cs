@@ -78,6 +78,81 @@ namespace AlgoTest.AOC2021
             Assert.AreEqual(65325, finalScore);
         }
 
+
+        [TestMethod]
+        public void Test2()
+        {
+            void MarkSelectedNumberOnBoard(int[,] board, int num)
+            {
+                for (var row = 0; row < 5; row++)
+                    for (var col = 0; col < 5; col++)
+                        if (board[row, col] == num)
+                            board[row, col] = -1;
+            }
+
+
+            bool IsVerticalMatch(int[,] board, int row)
+            {
+                for (var col = 0; col < 5; col++)
+                    if (board[col, row] != -1) return false;
+
+                return true;
+            }
+
+            bool IsBingo(int[,] board)
+            {
+                for (var row = 0; row < 5; row++)
+                {
+                    var isBingo = true;
+                    for (var col = 0; col < 5; col++)
+                        if (board[row, col] != -1)
+                        {
+                            isBingo = false;
+                            break;
+                        }
+
+                    if (isBingo || IsVerticalMatch(board, row)) return true;
+                }
+
+                return false;
+            }
+
+            int CountReminingNumbers(int[,] board)
+            {
+                var sum = 0;
+                for (var row = 0; row < 5; row++)
+                    for (var col = 0; col < 5; col++)
+                        if (board[row, col] != -1)
+                            sum += board[row, col];
+
+                return sum;
+            }
+
+            var finalScore = -1;
+            var boardss = boards;
+            var ignoredBoards = new List<int>();
+            foreach (var num in input)
+            {
+                for (var i = 0; i < boardss.Length; i++)
+                {
+                    if (ignoredBoards.Contains(i)) continue;
+                    var board = boardss[i];
+                    MarkSelectedNumberOnBoard(board, num);
+
+                    if (IsBingo(board))
+                    {
+                        ignoredBoards.Add(i);
+                        if(ignoredBoards.Count == boardss.Length)
+                            finalScore = CountReminingNumbers(board) * num;
+                    }
+                }
+
+                if (finalScore != -1) break;
+            }
+
+            Assert.AreEqual(4624, finalScore);
+        }
+
         private int[] testInput = new[]
         {
             7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
