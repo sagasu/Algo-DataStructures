@@ -10,7 +10,7 @@ namespace AlgoTest.AOC2021
     public class Day5
     {
         [TestMethod]
-        public void Test()
+        public void Test1()
         {
             var data = realData;
             var cor = new int[1000,1000];
@@ -46,10 +46,70 @@ namespace AlgoTest.AOC2021
 
             var maxCount = cor.Cast<int>().Count(co => co > 1);
 
-            //max = 5
             Assert.AreEqual(8622, maxCount);
+        }
 
+        [TestMethod]
+        public void Test2()
+        {
+            var data = realData;
+            var cor = new int[1000, 1000];
+            var max = 0;
+            foreach (var l in data)
+            {
+                var coord = l.Split(" -> ");
+                var coorA = coord[0].Split(',');
+                var coorB = coord[1].Split(',');
 
+                var x1 = int.Parse(coorA[0]);
+                var y1 = int.Parse(coorA[1]);
+                var x2 = int.Parse(coorB[0]);
+                var y2 = int.Parse(coorB[1]);
+
+                if (x1 == x2)
+                {
+                    var minY = Math.Min(y1, y2);
+                    var maxY = Math.Max(y1, y2);
+                    for (; minY <= maxY; minY++)
+                        cor[x1, minY] += 1;
+
+                }
+
+                if (y1 == y2)
+                {
+                    var minX = Math.Min(x1, x2);
+                    var maxX = Math.Max(x1, x2);
+                    for (; minX <= maxX; minX++)
+                        cor[minX, y1] += 1;
+                }
+
+                if (x1 != x2 && y1 != y2)
+                {
+                    var minY = Math.Min(y1, y2);
+                    var maxY = Math.Max(y1, y2);
+                    var minX = Math.Min(x1, x2);
+                    //var maxX = Math.Max(x1, x2);
+                    var x = x1;
+                    var change = 1;
+                    if (minY == y2)
+                    {
+                        x = x2;
+                        if (minX < x2) change = -1;
+                    }
+                    else if (minX < x1) change = -1;
+
+                    var diff = 0;
+                    for (; minY <= maxY; minY++)
+                    {
+                        cor[x + diff, minY] += 1;
+                        diff += change;
+                    }
+                }
+            }
+
+            var maxCount = cor.Cast<int>().Count(co => co > 1);
+
+            Assert.AreEqual(12, maxCount);
         }
 
         private string[] testData = new[]
