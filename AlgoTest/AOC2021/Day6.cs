@@ -10,7 +10,7 @@ namespace AlgoTest.AOC2021
     public class Day6
     {
         [TestMethod]
-        public void Test()
+        public void Test1()
         {
             var data = realData.ToList();
             var ndData = new List<int>();
@@ -32,6 +32,47 @@ namespace AlgoTest.AOC2021
             }
 
             Assert.AreEqual(5934, data.Count);
+        }
+
+        [TestMethod]
+        public void Test2()
+        {
+            var data = realData.ToList();
+
+            var dic = new Dictionary<int,long>();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                if(!dic.TryAdd(data[i], 1)) dic[data[i]] +=1 ;
+            }
+
+            var dic2 = new Dictionary<int,long>();
+            for (var day = 0; day < 256; day++)
+            {
+                foreach (var key in dic.Keys)
+                {
+                    if (key >= 1)
+                    {
+                        if (!dic2.TryAdd(key - 1, dic[key])) dic2[key - 1] += dic[key];
+                    }
+                    else
+                    {
+                        if (!dic2.TryAdd(6, dic[0])) dic2[6] += dic[0];
+                        dic2.Add(8, dic[0]);
+                    }
+                }
+
+                dic = dic2;
+                dic2 = new Dictionary<int, long>();
+            }
+
+            long sum = 0;
+            foreach (var key in dic.Keys)
+            {
+                sum += dic[key];
+            }
+
+            Assert.AreEqual(1686252324092, sum);
         }
 
 
