@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,7 +10,7 @@ namespace AlgoTest.AOC2021
     public class Day7
     {
         [TestMethod]
-        public void Test()
+        public void Test1()
         {
 
             var data = realData;
@@ -28,6 +29,30 @@ namespace AlgoTest.AOC2021
             }
 
             Assert.AreEqual(349357, best);
+        }
+
+        [TestMethod]
+        public void Test2()
+        {
+
+            var data = realData;
+            Array.Sort(data);
+            var max = data.Max();
+            var best = int.MaxValue;
+            for(var i= data.Min(); i < max + 1; i++)
+            {
+                var total = 0;
+                
+                foreach (var num1 in data)
+                {
+                    var t = Math.Abs(num1 - i);
+                    total += (t * (t+1)) / 2;
+                }
+
+                best = Math.Min(total, best);
+            }
+
+            Assert.AreEqual(96708205, best);
         }
 
         private int[] testData = new[] {16, 1, 2, 0, 4, 2, 7, 1, 2, 14};
