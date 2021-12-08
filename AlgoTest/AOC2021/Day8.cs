@@ -34,6 +34,8 @@ namespace AlgoTest.AOC2021
             Assert.AreEqual(352, count);
         }
 
+        // Part2 is written in python, because solution requires permutations, and python has a nice lib to support it: https://github.com/sagasu/python-algorithms/blob/master/aoc2021/day8.py
+
         string[] testData = new []{"acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf"};
 
         string[] realData = new []{"bgeacd dbfag bcadegf agdce dgfbce bgc bdgca aedcgf bc abec | gcdfbe cbea bc gbc",
