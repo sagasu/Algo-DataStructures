@@ -43,6 +43,7 @@ namespace AlgoTest.AOC2021
             Assert.AreEqual(506, sum);
         }
 
+        // much nicer solution is in python available here: https://github.com/sagasu/python-algorithms/blob/master/aoc2021/day9-amazingsolution.py
         [TestMethod]
         public void Test2()
         {
