@@ -32,29 +32,21 @@ namespace AlgoTest.LeetCode.GasStation
         public int CanCompleteCircuit(int[] gas, int[] cost)
         {
             for (var i = 0; i < gas.Length; i++)
-            {
                 if (CanCompleteCircuit(gas, cost, i, i, 0))
-                {
                     return i;
-                }
-            }
-
+                
             return -1;
         }
 
         public bool CanCompleteCircuit(int[] gas, int[] cost, int index, int startIndex, int gasInTank)
         {
-            if (gasInTank == 0 && index != startIndex)
-                return false;
+            if (gasInTank == 0 && index != startIndex) return false;
 
             gasInTank += gas[index];
-            if (cost[index] > gasInTank)
-                return false;
-
+            if (cost[index] > gasInTank) return false;
 
             var nextIndex = GetNextIndex(index, gas.Length);
-            if (nextIndex == startIndex)
-                return true;
+            if (nextIndex == startIndex) return true;
 
             if (CanCompleteCircuit(gas, cost, nextIndex, startIndex, gasInTank - cost[index]))
                 return true;
