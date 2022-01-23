@@ -20,13 +20,14 @@ namespace AlgoTest.LeetCode.SequentialDigits
         {
             var res = new List<int>();
             var s = "123456789";
+
             for(var i = 2; i<=s.Length;i++)
-            for (var j = 0; j <= s.Length - i; j++)
-            {
-                var num = int.Parse(s.Substring(j,  i));
-                if (num > high) return res;
-                if(num >= low) res.Add(num);
-            }
+                for (var j = 0; j <= s.Length - i; j++)
+                {
+                    var num = int.Parse(s.Substring(j,  i));
+                    if (num > high) return res;
+                    if(num >= low) res.Add(num);
+                }
 
             return res;
         }
