@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="LeetCode\BreakAPalidrome.cs" />
     <Compile Remove="LeetCode\DistinctSubsequences.cs" />
     <Compile Remove="LeetCode\Findawinnerontictactoegame.cs" />
     <Compile Remove="LeetCode\Maxcosecutiveones.cs" />
@@ -29,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="LeetCode\BreakAPalidrome.cs" />
     <None Include="LeetCode\DistinctSubsequences.cs" />
     <None Include="LeetCode\Findawinnerontictactoegame.cs" />
     <None Include="LeetCode\Maxcosecutiveones.cs" />
