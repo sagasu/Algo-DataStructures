@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="LeetCode\DistinctSubsequences.cs" />
+    <None Include="LeetCode\DistinctSubsequences\DistinctSubsequences.cs" />
     <None Include="LeetCode\Findawinnerontictactoegame.cs" />
     <None Include="LeetCode\Maxcosecutiveones.cs" />
     <None Include="LeetCode\Maximumofstringwithuniquechars.cs" />
