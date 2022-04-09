@@ -13,7 +13,7 @@ namespace AlgoTest.LeetCode.Kth_Largest_Element_in_a_Stream
         public KthLargest(int k, int[] nums)
         {
             this.k = k;
-            foreach (int num in nums)
+            foreach (var num in nums)
                 this.Add(num);
         }
 
