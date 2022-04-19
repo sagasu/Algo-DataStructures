@@ -24,8 +24,7 @@ namespace AlgoTest.LeetCode.RecoverBinarySearchTree
         //There are exactly two nodes that were swapped
         public void RecoverTree(TreeNode root)
         {
-            if (root == null)
-                return;
+            if (root == null) return;
 
             InOrderTraverse(root);
 
@@ -45,15 +44,11 @@ namespace AlgoTest.LeetCode.RecoverBinarySearchTree
 
             InOrderTraverse(root.left);
 
-            if (first == null && previous.val > root.val)
-            {
-                first = previous;
-            }
+            if (first == null && previous.val > root.val) first = previous;
+            
 
-            if (first != null && previous.val > root.val)
-            {
-                second = root;
-            }
+            if (first != null && previous.val > root.val) second = root;
+            
             previous = root;
 
             InOrderTraverse(root.right);
