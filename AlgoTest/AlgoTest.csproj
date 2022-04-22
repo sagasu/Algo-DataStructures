@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Compile Remove="LeetCode\DistinctSubsequences.cs" />
-    <Compile Remove="LeetCode\Maximumofstringwithuniquechars.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,7 +26,6 @@
 
   <ItemGroup>
     <None Include="LeetCode\DistinctSubsequences\DistinctSubsequences.cs" />
-    <None Include="LeetCode\Maximumofstringwithuniquechars.cs" />
   </ItemGroup>
 
 </Project>
