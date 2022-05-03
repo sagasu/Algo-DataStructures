@@ -18,7 +18,7 @@ namespace AlgoTest.LeetCode.CourseSchedule
 
         public bool CanFinish(int numCourses, int[][] prerequisites)
         {
-            int[] pre = new int[numCourses];
+            var pre = new int[numCourses];
 
             for (var i = 0; i < prerequisites.Length; i++)
             {
@@ -36,8 +36,7 @@ namespace AlgoTest.LeetCode.CourseSchedule
                 }
             }
 
-            if (courses >= numCourses)
-                return true;
+            if (courses >= numCourses) return true;
 
             while (st.Count > 0)
             {
@@ -51,8 +50,7 @@ namespace AlgoTest.LeetCode.CourseSchedule
                         {
                             st.Push(prerequisites[i][0]);
                             courses += 1;
-                            if (courses >= numCourses)
-                                return true;
+                            if (courses >= numCourses) return true;
                         }
                     }
                 }
