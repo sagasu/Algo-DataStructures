@@ -22,10 +22,9 @@ namespace AlgoTest.LeetCode.CourseScheduleII
             var adj = new HashSet<int>[numCourses];
             //var depNodes = new int[numCourses];
 
-            for (var i = 0; i < numCourses; i++)
-            {
+            for (var i = 0; i < numCourses; i++)            
                 adj[i] = new HashSet<int>();
-            }
+            
 
             for (int i = 0; i < prerequisites.Length; i++)
             {
@@ -39,15 +38,10 @@ namespace AlgoTest.LeetCode.CourseScheduleII
             var order = new List<int>(numCourses);
             var nextDepth = 1;
             for (var i = 0; i < numCourses; i++)
-            {
-                if (adj[i].Count == 0)
-                {
-                    stack.Push(i);
-                }
-            }
+                if (adj[i].Count == 0) stack.Push(i);
+            
 
-            if (stack.Count == 0)
-                return new int[0];
+            if (stack.Count == 0) return new int[0];
 
             while(stack.Count > 0)
             {
@@ -63,18 +57,12 @@ namespace AlgoTest.LeetCode.CourseScheduleII
                 }
 
                 for(var i =0;i< adj.Length;i++)
-                {
-                    if (adj[i].Count == nextDepth && !order.Contains(i))
-                    {
-                        stack.Push(i);
-                    }
-                }
+                    if (adj[i].Count == nextDepth && !order.Contains(i)) stack.Push(i);
 
                 nextDepth += 1;
             }
 
-            if(order.Count != numCourses)
-                return new int[0];
+            if(order.Count != numCourses) return new int[0];
 
             return order.ToArray();
         }
