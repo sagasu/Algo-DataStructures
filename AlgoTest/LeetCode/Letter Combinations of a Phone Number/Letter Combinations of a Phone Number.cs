@@ -35,20 +35,14 @@ namespace AlgoTest.LeetCode.Letter_Combinations_of_a_Phone_Number
 
             var number = digits[0];
 
-            if (digits.Length == 1)
-            {
-                return dic[number];
-            }
+            if (digits.Length == 1) return dic[number];
+            
             var ret = new List<string>();
             var lc = LetterCombinations(digits.Substring(1));
             for (var i = 0; i < dic[number].Count; i++)
-            {
                 for (var j = 0; j < lc.Count; j++)
-                {
                      ret.Add(dic[number][i]+lc[j]);
-                }
-            }
-
+                
             return ret;
 
         }
