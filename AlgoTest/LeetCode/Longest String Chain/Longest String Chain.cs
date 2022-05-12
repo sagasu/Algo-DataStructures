@@ -29,21 +29,17 @@ namespace AlgoTest.LeetCode.Longest_String_Chain
         {
             Array.Sort(words, (a,b) => a.Length.CompareTo(b.Length));
 
-            var best = 0;
             var dp = new Dictionary<string, int>();
-
             foreach (var word in words)
             {
                 var bestPrev = 0;
                 for (var i = 0; i < word.Length; i++)
                 {
                     var prevWord = word.Substring(0, i - 1 < 0 ? 0 : i-1) + word.Substring(i, word.Length-i);
-                    if (dp.ContainsKey(prevWord))
-                        bestPrev = Math.Max(bestPrev, dp[prevWord]);
+                    if (dp.ContainsKey(prevWord)) bestPrev = Math.Max(bestPrev, dp[prevWord]);
                 }
 
                 dp[word] = bestPrev + 1;
-
             }
 
             return dp.Values.Max();
