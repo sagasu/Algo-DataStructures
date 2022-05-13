@@ -29,10 +29,8 @@ namespace AlgoTest.LeetCode.Ones_and_Zeroes
                 var ones = 0;
                 foreach (var chr in str)
                 {
-                    if (chr == '0')
-                        zeros += 1;
-                    else
-                        ones += 1;
+                    if (chr == '0') zeros += 1;
+                    else ones += 1;
 
                     if (zeros == m || ones == n) break;
                 }
