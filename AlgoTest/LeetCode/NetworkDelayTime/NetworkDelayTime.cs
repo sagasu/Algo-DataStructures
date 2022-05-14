@@ -21,13 +21,8 @@ namespace AlgoTest.LeetCode.NetworkDelayTime
 
             for (var i = 0; i < times.Length; i++) {
                 var src = times[i][0];
-                if (adj.ContainsKey(src))
-                {
-                    adj[src].Add(times[i][1], times[i][2]);
-                }
-                else {
-                    adj[src] = new Dictionary<int, int> { { times[i][1], times[i][2] } };
-                }
+                if (adj.ContainsKey(src)) adj[src].Add(times[i][1], times[i][2]);
+                else adj[src] = new Dictionary<int, int> { { times[i][1], times[i][2] } };
             }
             return Dijkstra(K, N);
         }
@@ -43,8 +38,7 @@ namespace AlgoTest.LeetCode.NetworkDelayTime
             while (queue.Count > 0) {
                 var src = queue.Dequeue();
 
-                if (!adj.ContainsKey(src))
-                    continue;
+                if (!adj.ContainsKey(src)) continue;
 
                 foreach (var key in adj[src].Keys) {
                     var cost = minCost[src] + adj[src][key];
@@ -59,11 +53,8 @@ namespace AlgoTest.LeetCode.NetworkDelayTime
 
             var maxCost = int.MinValue;
             for (var i = 1; i < minCost.Length; i++) {
-                if (minCost[i] == int.MaxValue)
-                    return -1;
-
-                if (minCost[i] > maxCost)
-                    maxCost = minCost[i];
+                if (minCost[i] == int.MaxValue) return -1;
+                if (minCost[i] > maxCost) maxCost = minCost[i];
             }
             return maxCost;
         }
