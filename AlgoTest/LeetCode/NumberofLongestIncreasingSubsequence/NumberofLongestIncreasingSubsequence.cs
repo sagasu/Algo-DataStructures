@@ -23,8 +23,7 @@ namespace AlgoTest.LeetCode.NumberofLongestIncreasingSubsequence
 
         public int FindNumberOfLIS(int[] nums)
         {
-            if (nums.Length == 1)
-                return 1;
+            if (nums.Length == 1) return 1;
 
             var nrOfLIS = new int[nums.Length];
             var count = new int[nums.Length];
@@ -47,11 +46,7 @@ namespace AlgoTest.LeetCode.NumberofLongestIncreasingSubsequence
                             nrOfLIS[i] = nrOfLIS[j] + 1;
                             count[i] = count[j];
                         }
-
-                        else if (nrOfLIS[j] + 1 == nrOfLIS[i])
-                        {
-                            count[i] += count[j];
-                        }
+                        else if (nrOfLIS[j] + 1 == nrOfLIS[i]) count[i] += count[j];
                     }
                 }
 
@@ -60,12 +55,8 @@ namespace AlgoTest.LeetCode.NumberofLongestIncreasingSubsequence
 
             var maxCount = 0;
             for (var i = 0; i < nums.Length; i++)
-            {
-                if (nrOfLIS[i] == maxLength)
-                {
-                    maxCount += count[i];
-                }
-            }
+                if (nrOfLIS[i] == maxLength) maxCount += count[i];
+            
 
             return maxCount;
         }
