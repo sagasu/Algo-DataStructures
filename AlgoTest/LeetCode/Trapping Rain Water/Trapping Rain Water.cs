@@ -8,9 +8,9 @@ namespace AlgoTest.LeetCode.Trapping_Rain_Water
 {
     internal class Trapping_Rain_Water
     {
-        public int Trap(int[] heights)
+        public int Trap(int[] height)
         {
-            var n = heights.Length;
+            var n = height.Length;
             if (n == 0) return 0;
 
             var water = 0;
@@ -21,11 +21,11 @@ namespace AlgoTest.LeetCode.Trapping_Rain_Water
 
             while (left < right)
             {
-                seaLevel = Math.Max(seaLevel, Math.Min(heights[left], heights[right]));
+                seaLevel = Math.Max(seaLevel, Math.Min(height[left], height[right]));
 
-                water += Math.Max(0, seaLevel - heights[left]) + Math.Max(0, seaLevel - heights[right]);
+                water += Math.Max(0, seaLevel - height[left]) + Math.Max(0, seaLevel - height[right]);
 
-                if (heights[left] > heights[right]) right--;
+                if (height[left] > height[right]) right--;
                 else left++;
             }
 
