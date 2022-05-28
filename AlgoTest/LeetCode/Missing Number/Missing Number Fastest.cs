@@ -33,10 +33,9 @@ namespace AlgoTest.LeetCode.Missing_Number
             // normally it is (length -1) * length / 2 to calculate sum of all elements from 0
             // but here we know that one of them is missing, so it is extra number potentially the largest one so we do length * (length + 1) / 2
             var expectedSum = (nums.Length * (nums.Length + 1)) / 2;
-            for (var i = 0; i < nums.Length; i++)
-            {
-                actualSum += nums[i];
-            }
+            foreach (var t in nums)
+                actualSum += t;
+            
 
             return expectedSum - actualSum;
         }
