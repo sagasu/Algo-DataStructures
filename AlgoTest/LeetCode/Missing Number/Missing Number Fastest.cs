@@ -36,7 +36,6 @@ namespace AlgoTest.LeetCode.Missing_Number
             foreach (var t in nums)
                 actualSum += t;
             
-
             return expectedSum - actualSum;
         }
     }
