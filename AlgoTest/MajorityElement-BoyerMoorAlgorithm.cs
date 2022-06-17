@@ -23,9 +23,8 @@ namespace AlgoTest
             for (var i = 0; i < elements.Length; i++)
             {
                 if (counter == 0)
-                {
                     candidate = elements[i];
-                }
+                
 
                 counter += elements[i] == candidate ? 1 : -1;
             }
