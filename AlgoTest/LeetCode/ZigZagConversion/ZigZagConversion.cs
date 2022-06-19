@@ -33,11 +33,8 @@ namespace AlgoTest.LeetCode.ZigZagConversion
             {
                 if (currentLine < numRows)
                 {
-                    if (currentLine == 0)
-                    {
-                        currentZig = numRows - 2;
-                    }
-
+                    if (currentLine == 0) currentZig = numRows - 2;
+                    
                     index = currentLine;
                     currentLine += 1;
                 }
@@ -50,16 +47,8 @@ namespace AlgoTest.LeetCode.ZigZagConversion
                         currentLine = numRows == 2 ? 1 : 0;
                 }
 
-                if (dic.ContainsKey(index))
-                {
-                    dic[index] += s[i];
-                }
-                else
-                {
-                    dic.Add(index, s[i].ToString());
-                }
-
-
+                if (dic.ContainsKey(index))  dic[index] += s[i];
+                else dic.Add(index, s[i].ToString());
             }
 
             var ret = "";
