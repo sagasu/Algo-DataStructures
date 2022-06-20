@@ -29,9 +29,7 @@ namespace AlgoTest.LeetCode.Short_Encoding_of_Words
                 answer += word.Length + 1;
 
                 for (var i = 1; i < word.Length + 1; i++)
-                {
-                    lookup.Add(new String(word.TakeLast(i).ToArray()));
-                }
+                    lookup.Add(new string(word.TakeLast(i).ToArray()));
             }
 
             return answer;
