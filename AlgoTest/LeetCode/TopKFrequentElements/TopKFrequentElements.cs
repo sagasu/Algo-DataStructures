@@ -30,10 +30,8 @@ namespace AlgoTest.LeetCode.TopKFrequentElements
                     if (maxFreq < freq[key])
                         maxFreq = freq[key];
                 }
-                else
-                {
-                    freq.Add(key, 1);
-                }
+                else freq.Add(key, 1);
+                
             }
 
             // this should be a min heap
