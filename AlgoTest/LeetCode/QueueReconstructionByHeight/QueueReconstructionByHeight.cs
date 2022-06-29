@@ -21,10 +21,8 @@ namespace AlgoTest.LeetCode.QueueReconstructionByHeight
             var sorted = people.OrderByDescending(x => x[0]).ThenBy(x => x[1]);
             var ret = new List<int[]>(people.Length);
             foreach (var elements in sorted)
-            {
                 ret.Insert(elements[1], elements);
-            }
-
+            
             return ret.ToArray();
         }
     }
