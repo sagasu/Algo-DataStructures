@@ -22,19 +22,17 @@ namespace AlgoTest.LeetCode.Valid_Triangle_Number
             var dic = new Dictionary<int, int>();
             Array.Sort(nums);
             foreach (var num in nums)
-            {
                 if (!dic.TryAdd(num, 1)) dic[num] += 1;
-            }
+            
 
             var count = 0;
             for(var i =0;i<nums.Length;i++)
-            {
                 for (var j = i + 1; j < nums.Length; j++)
                 {
                     var sqrt = Math.Sqrt(Math.Pow(nums[i], 2) + Math.Pow(nums[j], 2));
                     if (sqrt % 1 == 0 && dic.ContainsKey((int)sqrt)) count += 1;
                 }
-            }
+            
 
             return count;
         }
