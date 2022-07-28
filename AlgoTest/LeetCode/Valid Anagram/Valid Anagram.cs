@@ -28,11 +28,11 @@ namespace AlgoTest.LeetCode.Valid_Anagram
         {
             var dic = new Dictionary<char, int>();
             foreach (var chars in s)
-                if (!dic.TryAdd(chars, 1)) dic[chars] = dic[chars] + 1;
+                if (!dic.TryAdd(chars, 1)) dic[chars] += 1;
 
             foreach (var chart in t)
             {
-                if (dic.ContainsKey(chart)) dic[chart] = dic[chart] - 1;
+                if (dic.ContainsKey(chart)) dic[chart] -= 1;
                 else return false;
             }
 
