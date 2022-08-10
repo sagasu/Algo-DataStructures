@@ -20,7 +20,7 @@ public class Convert_Sorted_Array_to_Binary_Search_Tree
             if(left == right) return new TreeNode(nums[left]);
             if(left > right) return null;
             
-            var middle = (int)((left + right) / 2);
+            var middle = (left + right) / 2;
             var current = new TreeNode(nums[middle]){
                 left = Build(left, middle -1),
                 right = Build(middle + 1, right)
