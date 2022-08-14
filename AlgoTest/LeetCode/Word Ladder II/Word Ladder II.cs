@@ -10,41 +10,80 @@ namespace AlgoTest.LeetCode.Word_Ladder_II
     {
         public IList<IList<string>> FindLadders(string beginWord, string endWord, IList<string> wordList)
         {
-            var wordSet = wordList.ToHashSet();
-            var res = new List<IList<string>>();
-            var level = new Dictionary<string, List<IList<string>>> { [beginWord] = new List<IList<string>> { new List<string> { beginWord } } };
-            while (level.Any())
+            List<IList<string>> ans = new List<IList<string>>();
+            var (shortestPathLength, graph) = ComputeGraph(beginWord, endWord, wordList);
+            if (graph == null) return ans;
+
+            string[] path = new string[shortestPathLength];
+            FindPaths(endWord, 0);
+            return ans;
+
+            void FindPaths(string w, int position)
             {
-                var newLevel = new Dictionary<string, List<IList<string>>>();
-                foreach (var word in level.Keys)
+                path[shortestPathLength - (position + 1)] = w;
+                if (position == shortestPathLength - 1) ans.Add(path.ToList());
+                else if (graph.ContainsKey(w))
+                    foreach (string nextWord in graph[w]) FindPaths(nextWord, position + 1);
+            }
+        }
+
+        private static (int ShortestPathLength, Dictionary<string, HashSet<string>> Graph) ComputeGraph(string beginWord, string endWord, IList<string> wordList)
+        {
+            Dictionary<string, HashSet<string>> graph = new Dictionary<string, HashSet<string>>();
+
+            Queue<string> q = new Queue<string>();
+            q.Enqueue(beginWord);
+
+            HashSet<string> used = new HashSet<string>(capacity: wordList.Count + 1);
+            HashSet<string> usedInIteration = new HashSet<string>(capacity: wordList.Count + 1);
+            bool endIsReached = false;
+            int pathLength = 1;
+            while (q.Count > 0)
+            {
+                int iterationCount = q.Count;
+
+                for (int i = 0; i < iterationCount; i++)
                 {
-                    if (word == endWord)
+                    string current = q.Dequeue();
+                    used.Add(current);
+
+                    foreach (string possibleContinuation in wordList.Where(w => !used.Contains(w) && HaveOneLetterDifference(w, current)))
                     {
-                        res.AddRange(level[word]);
-                    }
-                    else
-                    {
-                        for (var i = 0; i < word.Length; i++)
+                        if (possibleContinuation == endWord) endIsReached = true;
+                        else if (!usedInIteration.Contains(possibleContinuation))
                         {
-                            foreach (var c in "abcdefghijklmnopqrstuvwxyz")
-                            {
-                                var next = word[0..i] + c + word[(i + 1)..^0];
-                                if (wordSet.Contains(next))
-                                {
-                                    if (!newLevel.ContainsKey(next))
-                                    {
-                                        newLevel[next] = new List<IList<string>>();
-                                    }
-                                    newLevel[next].AddRange(level[word].Select(path => path.Append(next).ToList()));
-                                }
-                            }
+                            q.Enqueue(possibleContinuation);
+                            usedInIteration.Add(possibleContinuation);
                         }
+
+                        if (!graph.ContainsKey(possibleContinuation)) graph[possibleContinuation] = new HashSet<string>();
+                        graph[possibleContinuation].Add(current);
                     }
                 }
-                wordSet.ExceptWith(newLevel.Keys);
-                level = newLevel;
+
+                if (endIsReached) return (pathLength + 1, graph);
+
+                foreach (string usedContinuation in usedInIteration) used.Add(usedContinuation);
+                usedInIteration.Clear();
+                pathLength++;
             }
-            return res;
+
+            return (int.MaxValue, null);
         }
-	}
+
+        private static bool HaveOneLetterDifference(string a, string b)
+        {
+            bool hadDifference = false;
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] != b[i])
+                {
+                    if (hadDifference) return false;
+                    else hadDifference = true;
+                }
+            }
+
+            return hadDifference;
+        }
+    }
 }
