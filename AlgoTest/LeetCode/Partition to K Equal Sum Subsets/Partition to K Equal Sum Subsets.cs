@@ -25,9 +25,8 @@ namespace AlgoTest.LeetCode.Partition_to_K_Equal_Sum_Subsets
             if (sum > target) return false;
 
             if (sum == target)
-            {
                 return Helper(nums, 0, 0, target, k - 1, visitedIdx);
-            }
+            
 
             for (var i = startIdx; i < nums.Length; i++)
             {
@@ -35,9 +34,8 @@ namespace AlgoTest.LeetCode.Partition_to_K_Equal_Sum_Subsets
 
                 visitedIdx.Add(i);
                 if (Helper(nums, i + 1, sum + nums[i], target, k, visitedIdx))
-                {
                     return true;
-                }
+                
                 visitedIdx.Remove(i);
 
                 while (i + 1 < nums.Length && nums[i] == nums[i + 1])
