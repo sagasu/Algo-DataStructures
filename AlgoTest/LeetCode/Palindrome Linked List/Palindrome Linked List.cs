@@ -25,6 +25,7 @@ namespace AlgoTest.LeetCode.Palindrome_Linked_List
         {
             var current = head;
             var nodes = new List<int>();
+
             while (current != null)
             {
                 nodes.Add(current.val);
@@ -33,6 +34,7 @@ namespace AlgoTest.LeetCode.Palindrome_Linked_List
 
             var i = 0;
             var j = nodes.Count-1;
+            
             while (i < j)
             {
                 if (nodes[i] != nodes[j]) return false;
