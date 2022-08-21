@@ -28,9 +28,8 @@ namespace AlgoTest.LeetCode.MinimumHeightTrees
 
 
             for (var i = 0; i < n; i++)
-            {
                 adj[i] = new List<int>();
-            }
+            
 
             for (var i = 0; i < edges.Length; i++)
             {
