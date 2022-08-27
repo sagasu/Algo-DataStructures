@@ -40,9 +40,8 @@ namespace AlgoTest.LeetCode.ReconstructItinerary
             }
 
             foreach (var key in dic.Keys)
-            {
                 dic[key].Sort();
-            }
+            
 
             return FindPath("JFK", new List<string>{"JFK"}, new List<string>());
 
