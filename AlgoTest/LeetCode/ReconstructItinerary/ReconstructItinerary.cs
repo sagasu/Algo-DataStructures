@@ -32,10 +32,8 @@ namespace AlgoTest.LeetCode.ReconstructItinerary
             airportsNum = tickets.Count + 1;
             for (var i = 0; i < tickets.Count; i++)
             {
-                if(dic.ContainsKey(tickets[i][0]))
-                    dic[tickets[i][0]].Add(tickets[i][1]);
-                else
-                    dic.Add(tickets[i][0], new List<string>{ tickets[i][1] });
+                if(dic.ContainsKey(tickets[i][0])) dic[tickets[i][0]].Add(tickets[i][1]);
+                else dic.Add(tickets[i][0], new List<string>{ tickets[i][1] });
                 
             }
 
