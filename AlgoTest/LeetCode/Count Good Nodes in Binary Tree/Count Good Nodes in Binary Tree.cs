@@ -8,7 +8,7 @@ namespace AlgoTest.LeetCode.Count_Good_Nodes_in_Binary_Tree
     {
         public int GoodNodes(TreeNode root)
         {
-            if (root == null) { return 0; }
+            if (root == null) return 0; 
 
             var goodNodeCount = 0;
             Traverse(root, root.val, ref goodNodeCount);
@@ -17,7 +17,7 @@ namespace AlgoTest.LeetCode.Count_Good_Nodes_in_Binary_Tree
 
         private void Traverse(TreeNode node, int maxPathValue, ref int goodNodeCount)
         {
-            if (node == null) { return; }
+            if (node == null) return;
 
             if (maxPathValue <= node.val) { maxPathValue = node.val; goodNodeCount++; }
 
