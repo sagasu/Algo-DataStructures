@@ -43,9 +43,8 @@ namespace AlgoTest.LeetCode.Count_Primes
             }
 
             for (var i = 2; i < n; i++)
-            {
                 if (notPrime[i] == false) count += 1;
-            }
+            
 
             return count;
         }
