@@ -17,16 +17,13 @@ namespace AlgoTest.LeetCode.Basic_Calculator
                 {
                     var num = 0;
                     while (i < s.Length && char.IsDigit(s[i]))
-                    {
                         num = num * 10 + s[i++] - '0';
-                    }
+                    
                     i--;
                     res += num * sign;  
                 }
-                else if (s[i] == '+')
-                    sign = 1;
-                else if (s[i] == '-')
-                    sign = -1;
+                else if (s[i] == '+') sign = 1;
+                else if (s[i] == '-') sign = -1;
                 else if (s[i] == '(')
                 {
                     stack.Push(res);
