@@ -20,9 +20,8 @@ namespace AlgoTest.LeetCode.AnagramCheck
             var sa = s.ToCharArray();
             var ta = t.ToCharArray();
             foreach (var c in sa)
-            {
                 hs[c] = hs.ContainsKey(c) ? hs[c] + 1 : 1;
-            }
+            
 
             foreach (var i in ta)
             {
