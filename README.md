@@ -3,6 +3,6 @@
 
 ## LeetCode and HackerRank solutions
 
-Majority of problems are under [AlgoTest/LeetCode](./AlgoTest/LeetCode) folder.
+Majority of problems are under [AlgoTest/LeetCode](./AlgoTest/LeetCode) folder.🤔
 
 ![Leetcode profile](./leetcode.png)
