@@ -56,13 +56,13 @@ namespace AlgoTest.LeetCode.Maximum_Length_of_Repeated_Subarray
 
             var max = 0;
             var matrix = new int[nums1.Length + 1, nums2.Length + 1];
+
             for (var i = 0; i < nums1.Length; i++)
             for (var j = 0; j < nums2.Length; j++)
                 if (nums1[i] == nums2[j])
                 {
                     matrix[i + 1, j + 1] = matrix[i, j] + 1;
-                    if (matrix[i + 1, j + 1] > max)
-                        max = matrix[i + 1, j + 1];
+                    if (matrix[i + 1, j + 1] > max) max = matrix[i + 1, j + 1];
                 }
 
             return max;
