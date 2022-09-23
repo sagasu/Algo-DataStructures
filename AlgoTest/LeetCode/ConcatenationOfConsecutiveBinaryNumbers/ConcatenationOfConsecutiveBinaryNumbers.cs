@@ -31,9 +31,8 @@ namespace AlgoTest.LeetCode.ConcatenationOfConsecutiveBinaryNumbers
                         current++;
                     }
                     else if(good)
-                    {
                         current *= 2;
-                    }
+                    
 
                     current %= mod;
                 }
