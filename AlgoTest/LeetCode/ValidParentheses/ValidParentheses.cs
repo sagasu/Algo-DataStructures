@@ -19,13 +19,11 @@ namespace AlgoTest.LeetCode.ValidParentheses
             foreach (var character in s)
             {
                 if (dic.ContainsKey(character))
-                {
                     stack.Push(dic[character]);
-                }else if (dic.ContainsValue(character))
-                {
+                else if (dic.ContainsValue(character))
                     if (stack.Count == 0 || stack.Pop() != character)
                         return false;
-                }
+                
             }
 
             return stack.Count == 0 ? true : false;
