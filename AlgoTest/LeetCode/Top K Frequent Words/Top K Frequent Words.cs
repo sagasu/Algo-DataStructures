@@ -1,9 +1,9 @@
 public class Solution {
     public IList<string> TopKFrequent(string[] words, int k) {
         
-       Dictionary<string,int> dict = new  Dictionary<string,int>();
+       var dict = new  Dictionary<string,int>();
         
-        for(int i = 0; words.Length > i ; i++){
+        for(var i = 0; words.Length > i ; i++){
             
             if(dict.ContainsKey(words[i])){
                 dict[ words[i] ] = dict[ words[i] ] + 1;
