@@ -15,7 +15,7 @@ public class Solution {
         
       var di =  dict.OrderByDescending(i => i.Value).ThenBy(i =>i.Key).Take(k); 
         
-        IList<string> result = new  List<string>();
+        var result = new  List<string>();
         
         foreach(KeyValuePair<string,int> d in di)
                  result.Add(d.Key);
