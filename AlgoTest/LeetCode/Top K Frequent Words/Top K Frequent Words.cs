@@ -5,15 +5,11 @@ public class Solution {
         
         for(var i = 0; words.Length > i ; i++){
             
-            if(dict.ContainsKey(words[i])){
-                dict[ words[i] ] = dict[ words[i] ] + 1;
-            }else{
-                dict.Add( words[i], 1);
-            }
- 
+            if(dict.ContainsKey(words[i])) dict[ words[i] ] = dict[ words[i] ] + 1;
+            else dict.Add( words[i], 1);
         }
         
-      var di =  dict.OrderByDescending(i => i.Value).ThenBy(i =>i.Key).Take(k); 
+        var di =  dict.OrderByDescending(i => i.Value).ThenBy(i =>i.Key).Take(k); 
         
         var result = new  List<string>();
         
