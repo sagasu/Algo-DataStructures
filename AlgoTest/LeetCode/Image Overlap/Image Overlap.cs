@@ -4,9 +4,9 @@ public class Solution {
     var first = new HashSet<int>();
     var second = new HashSet<int>();
     int n = img1.Length;
-    for(int i = 0; i < n; ++i)
+    for(var i = 0; i < n; ++i)
     {
-        for(int j = 0; j < n; ++j)
+        for(var j = 0; j < n; ++j)
         {
             if(img1[i][j] == 1)
             {
