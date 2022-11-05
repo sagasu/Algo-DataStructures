@@ -2,8 +2,8 @@ public class Solution {
     public int[] FindBall(int[][] grid)
     {
 
-        int row = grid.Length;
-        int col = grid[0].Length;
+        var row = grid.Length;
+        var col = grid[0].Length;
         bool ballstuck = false;
         List<int> res = new List<int>();
 
