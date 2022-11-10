@@ -1,7 +1,7 @@
 public class Solution {
     public string MakeGood(string s) {
         
-        int i = 0;
+        var i = 0;
 
         while (i < s.Length - 1)
         {
@@ -10,10 +10,7 @@ public class Solution {
                 s = s.Remove(i, 2);
                 i = 0;
             }
-            else
-            {
-                i++;
-            }
+            else i++;
         }
 
 
