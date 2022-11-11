@@ -7,7 +7,7 @@ public class Solution {
         bool ballstuck = false;
         List<int> res = new List<int>();
 
-        for (int i = 0; i < col; i++)
+        for (var i = 0; i < col; i++)
         {
             int k = i;
             for (int j = 0; j < row; j++)
