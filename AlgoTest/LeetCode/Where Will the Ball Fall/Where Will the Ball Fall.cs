@@ -4,8 +4,8 @@ public class Solution {
 
         var row = grid.Length;
         var col = grid[0].Length;
-        bool ballstuck = false;
-        List<int> res = new List<int>();
+        var ballstuck = false;
+        var res = new List<int>();
 
         for (var i = 0; i < col; i++)
         {
