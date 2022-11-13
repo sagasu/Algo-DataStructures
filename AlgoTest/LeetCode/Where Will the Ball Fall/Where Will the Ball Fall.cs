@@ -10,7 +10,7 @@ public class Solution {
         for (var i = 0; i < col; i++)
         {
             int k = i;
-            for (int j = 0; j < row; j++)
+            for (var j = 0; j < row; j++)
             {
                 // check right
                 if (k + 1 <= col - 1 && grid[j][k] == 1 && grid[j][k + 1] == 1)
