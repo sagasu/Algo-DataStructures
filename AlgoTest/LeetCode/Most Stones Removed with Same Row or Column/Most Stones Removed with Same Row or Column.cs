@@ -12,7 +12,7 @@ public class Solution {
             {
                 continue;
             }
-            Queue<(int,int)> queue = new Queue<(int,int)>();
+            var queue = new Queue<(int,int)>();
 
             queue.Enqueue((s[0],s[1]));
             visited.Add((s[0],s[1]));
