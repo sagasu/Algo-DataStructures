@@ -1,9 +1,9 @@
 public class Solution {
     public int RemoveStones(int[][] stones) {
         
-        HashSet<(int,int)> visited = new HashSet<(int,int)>();
+        var visited = new HashSet<(int,int)>();
         
-        int Island = 0;
+        var Island = 0;
         
 
         foreach(var s in stones)
