@@ -1,6 +1,6 @@
 public class Solution {
     public int JobScheduling(int[] startTime, int[] endTime, int[] profit) {
-        Job[] jobs = new Job[startTime.Length];
+        var jobs = new Job[startTime.Length];
         for(int i = 0; i < startTime.Length; i++)
         {
             jobs[i] = new Job(startTime[i], endTime[i], profit[i]);            
