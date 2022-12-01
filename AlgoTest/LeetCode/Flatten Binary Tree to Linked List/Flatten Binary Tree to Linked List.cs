@@ -30,9 +30,12 @@ namespace AlgoTest.LeetCode.Flatten_Binary_Tree_to_Linked_List
 
                         cur.right = nextRight;
                     }
+
                     root.left = null;
                 }
+
                 root = root.right;
             }
         }
+    }
 }

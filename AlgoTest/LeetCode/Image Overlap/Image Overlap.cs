@@ -1,4 +1,7 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+
+public class Solution8 {
     public int LargestOverlap(int[][] img1, int[][] img2) 
 {
     var first = new HashSet<int>();

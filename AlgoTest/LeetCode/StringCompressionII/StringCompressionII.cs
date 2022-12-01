@@ -1,4 +1,6 @@
-public class Solution {
+using System;
+
+public class Solution19 {
     public int GetLengthOfOptimalCompression(string s, int k) {
         var memo = new int[s.Length, k + 1];
         return Helper(s, 0, k, memo);

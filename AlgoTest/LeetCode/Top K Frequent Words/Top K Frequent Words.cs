@@ -1,4 +1,7 @@
-public class Solution {
+using System.Collections.Generic;
+using System.Linq;
+
+public class Solution22 {
     public IList<string> TopKFrequent(string[] words, int k) {
         
        var dict = new  Dictionary<string,int>();

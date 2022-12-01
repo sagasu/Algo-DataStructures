@@ -1,4 +1,6 @@
-public class Solution {
+using System;
+
+public class Solution10 {
     public string MakeGood(string s) {
         
         var i = 0;

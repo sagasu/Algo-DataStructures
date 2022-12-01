@@ -1,4 +1,6 @@
-public class Solution {
+using System.Text;
+
+public class Solution11 {
     public int Maximum69Number (int num) {
         var n = new StringBuilder(num.ToString());
         var firstIndex = n.ToString().IndexOf('6');

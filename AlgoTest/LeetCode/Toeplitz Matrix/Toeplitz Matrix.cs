@@ -1,4 +1,4 @@
-public class Solution {
+public class Solution21 {
     public bool IsToeplitzMatrix(int[][] matrix)
     {
         for (var i = 0; i < matrix.Length - 1; i++)
