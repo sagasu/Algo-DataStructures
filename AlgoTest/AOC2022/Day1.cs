@@ -31,15 +31,17 @@ namespace AlgoTest.AOC2022
             public void Test2()
             {
                 var count = 0;
-                var prev = data[0] + data[1] + data[2];
-                for (var i = 1; i < data.Length - 2; i++)
-                {
-                    var sum = data[i] + data[i + 1] + data[i + 2];
-                    
-                    prev = sum;
-                }
-
-                Assert.AreEqual(1567, count);
+                var cal = new List<int>();
+                for (var i = 1; i < data.Length; i++)
+                    if (data[i] == string.Empty)
+                    {
+                        cal.Add(count);
+                        count = 0;
+                    }
+                    else count += int.Parse(data[i]);
+                cal.Sort();
+                var sumOfmostThreeCalories = cal[^1] + cal[^2] + cal[^3];
+                Assert.AreEqual(209481, sumOfmostThreeCalories);
             }
 
             private string[] data = new string[]
