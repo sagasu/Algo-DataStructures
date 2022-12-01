@@ -1,4 +1,6 @@
-public class Solution {
+using System;
+
+public class Solution18 {
     public int ComputeArea(int A, int B, int C, int D, int E, int F, int G, int H) 
     {
         var overlap = 0;

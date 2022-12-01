@@ -1,4 +1,8 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Solution9 {
     public int LongestPalindrome(string[] words) {
         Dictionary<string,int> map = new();
         HashSet<string> visited = new();

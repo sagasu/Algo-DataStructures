@@ -1,4 +1,4 @@
-public class Solution {
+public class Solution24 {
     public bool IsUgly(int n) {
         if(n <= 0)
             return false;

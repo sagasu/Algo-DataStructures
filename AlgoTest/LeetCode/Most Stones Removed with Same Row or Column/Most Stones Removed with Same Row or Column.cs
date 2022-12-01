@@ -1,4 +1,6 @@
-public class Solution {
+using System.Collections.Generic;
+
+public class Solution15 {
     public int RemoveStones(int[][] stones) {
         
         var visited = new HashSet<(int,int)>();

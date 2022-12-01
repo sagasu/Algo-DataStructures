@@ -1,4 +1,6 @@
-public class Solution {
+using System;
+
+public class Solution13 {
     public int JobScheduling(int[] startTime, int[] endTime, int[] profit) {
         var jobs = new Job[startTime.Length];
         for(int i = 0; i < startTime.Length; i++)

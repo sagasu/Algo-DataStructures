@@ -1,4 +1,6 @@
-public class Solution {
+using System.Collections.Generic;
+
+public class Solution16 {
     public int NearestExit(char[][] maze, int[] entrance) {
         int ROWS = maze.Length;
         int COLS = maze[0].Length;

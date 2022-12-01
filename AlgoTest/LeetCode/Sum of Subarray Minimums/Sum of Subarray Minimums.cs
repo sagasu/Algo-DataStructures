@@ -1,4 +1,4 @@
-public class Solution {
+public class Solution20 {
     public int SumSubarrayMins(int[] A) {
             const int mode = 1000000007;
             int len = A.Length;

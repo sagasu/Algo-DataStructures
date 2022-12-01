@@ -1,4 +1,6 @@
-public class Solution {
+using System.Collections.Generic;
+
+public class Solution25 {
     public int[] FindBall(int[][] grid)
     {
 

@@ -1,4 +1,4 @@
-public class Solution {
+public class Solution17 {
     public string ReverseVowels(string s) {
             var ss = s.ToCharArray();
 

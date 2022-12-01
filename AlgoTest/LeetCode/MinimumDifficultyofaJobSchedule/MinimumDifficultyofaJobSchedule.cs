@@ -1,4 +1,7 @@
-public class Solution {
+using System;
+using System.Linq;
+
+public class Solution14 {
     public int MinDifficulty(int[] jobDifficulty, int d) {
         var len = jobDifficulty.Length;
         if(len < d)

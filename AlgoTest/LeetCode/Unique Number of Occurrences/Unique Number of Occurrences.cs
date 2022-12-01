@@ -1,4 +1,6 @@
-public class Solution {
+using System.Collections.Generic;
+
+public class Solution23 {
     public bool UniqueOccurrences(int[] arr) {
         Dictionary<int, int> dic = new Dictionary<int, int>();
 

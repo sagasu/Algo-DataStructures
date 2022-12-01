@@ -1,4 +1,7 @@
-public class Solution {
+using System.Collections.Generic;
+using System.Linq;
+
+public class Solution12 {
     public int MinMutation(string start, string end, string[] bank) {
         var queue = new Queue<string>();
         var visited = new HashSet<string>();
