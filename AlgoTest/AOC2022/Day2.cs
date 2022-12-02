@@ -60,7 +60,19 @@ namespace AlgoTest.AOC2022
                 Assert.AreEqual(13809, score);
             }
 
+            [TestMethod]
+            public void Test2()
+            {
+                var data = realData;
+                var score = 0;
+                for (var i = 0; i < data.Length; i++)
+                {
+                    var sc = data[i].Item1 + data[i].Item2;
+                    score += score2Dic[sc].Item1 + playDic[score2Dic[sc].Item2];
+                }
 
+                Assert.AreEqual(12316, score);
+            }
 
             (string, string)[] realData = new[]
             {
