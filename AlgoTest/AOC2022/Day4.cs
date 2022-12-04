@@ -11,138 +11,24 @@ namespace AlgoTest.AOC2022
     namespace AlgoTest.AOC2021
     {
         [TestClass]
-        public class Day3
+        public class Day4
         {
 
-            Dictionary<char, int> alphabet = new Dictionary<char, int>()
-            {
-                {'a',1},
-                {'b',2},
-                {'c',3},
-                {'d',4},
-                {'e',5},
-                {'f',6},
-                {'g',7},
-                {'h',8},
-                {'i',9},
-                {'j',10},
-                {'k',11},
-                {'l',12},
-                {'m',13},
-                {'n',14},
-                {'o',15},
-                {'p',16},
-                {'q',17},
-                {'r',18},
-                {'s',19},
-                {'t',20},
-                {'u',21},
-                {'v',22},
-                {'w',23},
-                {'x',24},
-                {'y',25},
-                {'z',26},
-                {'A',27},
-                {'B',28},
-                {'C',29},
-                {'D',30},
-                {'E',31},
-                {'F',32},
-                {'G',33},
-                {'H',34},
-                {'I',35},
-                {'J',36},
-                {'K',37},
-                {'L',38},
-                {'M',39},
-                {'N',40},
-                {'O',41},
-                {'P',42},
-                {'Q',43},
-                {'R',44},
-                {'S',45},
-                {'T',46},
-                {'U',47},
-                {'V',48},
-                {'W',49},
-                {'X',50},
-                {'Y',51},
-                {'Z',52},
-            };
 
             [TestMethod]
             public void Test1()
             {
-                var data = realData;
-                var score = 0;
+                
 
-
-                for (var i = 0; i < data.Length; i++)
-                {
-                    var dic1 = new Dictionary<char, int>();
-                    var dic2 = new Dictionary<char, int>();
-                    var mid = data[i].Length / 2;
-
-                    var row = data[i];
-                    for (int j = 0; j < mid; j++)
-                    {
-                        var firstElement = row[j];
-                        var secondElement = row[mid + j];
-                        dic1.TryAdd(firstElement, 1);
-
-                        dic2.TryAdd(secondElement, 1);
-                        if (dic2.ContainsKey(firstElement))
-                        {
-                            score += alphabet[firstElement];
-                            break;
-                        }
-                        if (dic1.ContainsKey(secondElement))
-                        {
-                            score += alphabet[secondElement];
-                            break;
-                        }
-                    }
-                }
-
-                Assert.AreEqual(7742, score);
+                Assert.AreEqual(7742, 3);
             }
 
             [TestMethod]
             public void Test2()
             {
-                var data = realData;
-                var score = 0;
+               
 
-
-                for (var i = 0; i < data.Length; i+=3)
-                {
-                    var dic1 = new Dictionary<char, int>();
-
-                    var row = data[i];
-
-                    for (int j = 0; j < row.Length; j++)
-                    {
-                        dic1.TryAdd(row[j], 1);
-                    }
-                    row = data[i+1];
-                    for (int j = 0; j < row.Length; j++)
-                    {
-                        if (dic1.ContainsKey(row[j]) && dic1[row[j]] == 1) dic1[row[j]] = 2;
-                    }
-
-                    row = data[i + 2];
-                    for (int j = 0; j < row.Length; j++)
-                    {
-                        if (dic1.ContainsKey(row[j]) && dic1[row[j]] == 2)
-                        {
-                            score += alphabet[row[j]];
-                            break;
-                        }
-                    }
-
-                }
-
-                Assert.AreEqual(2276, score);
+                Assert.AreEqual(2276, 2);
             }
 
             private string[] realData = new[]
