@@ -16,6 +16,20 @@ namespace AlgoTest.AOC2022
 
 
             [TestMethod]
+            public void Test2()
+            {
+                var count = 0;
+                var data = realData;
+                for (var i = 0; i < data.Length; i++)
+                {
+                    var row = data[i];
+                    if (row[0] <= row[3] && row[2] <= row[1]) count++;
+                }
+
+                Assert.AreEqual(4, count);
+            }
+
+            [TestMethod]
             public void Test1()
             {
                 var count = 0;
@@ -23,19 +37,11 @@ namespace AlgoTest.AOC2022
                 for (var i = 0; i < data.Length; i++)
                 {
                     var row = data[i];
-                    if (row[0] >= row[2] && row[1] <= row[3]) count++;
-                    else if (row[2] >= row[0] && row[3] <= row[1]) count++;
+                    if (row[0] >= row[2] || row[1] <= row[3]) count++;
+                    else if (row[2] >= row[0] || row[3] <= row[1]) count++;
                 }
 
-                Assert.AreEqual(560, count);
-            }
-
-            [TestMethod]
-            public void Test2()
-            {
-               
-
-                Assert.AreEqual(2276, 2);
+                Assert.AreEqual(1000, count);
             }
 
             int[][] realData = new[]
