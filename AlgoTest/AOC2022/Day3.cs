@@ -136,7 +136,7 @@ namespace AlgoTest.AOC2022
                     }
                 }
 
-                Assert.AreEqual(157, score);
+                Assert.AreEqual(7742, score);
             }
 
             [TestMethod]
@@ -145,7 +145,36 @@ namespace AlgoTest.AOC2022
                 var data = realData;
                 var score = 0;
 
-                Assert.AreEqual(12316, score);
+
+                for (var i = 0; i < data.Length; i+=3)
+                {
+                    var dic1 = new Dictionary<char, int>();
+
+                    var row = data[i];
+
+                    for (int j = 0; j < row.Length; j++)
+                    {
+                        dic1.TryAdd(row[j], 1);
+                    }
+                    row = data[i+1];
+                    for (int j = 0; j < row.Length; j++)
+                    {
+                        if (dic1.ContainsKey(row[j]) && dic1[row[j]] == 1) dic1[row[j]] = 2;
+                    }
+
+                    row = data[i + 2];
+                    for (int j = 0; j < row.Length; j++)
+                    {
+                        if (dic1.ContainsKey(row[j]) && dic1[row[j]] == 2)
+                        {
+                            score += alphabet[row[j]];
+                            break;
+                        }
+                    }
+
+                }
+
+                Assert.AreEqual(2276, score);
             }
 
             private string[] realData = new[]
