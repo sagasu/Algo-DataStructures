@@ -52,17 +52,17 @@ namespace AlgoTest.AOC2022
                     cratesOnTop += stacks[i].Pop();
                 }
 
-                Assert.AreEqual("CMZ", cratesOnTop);
+                Assert.AreEqual("TQRFCBSJJ", cratesOnTop);
             }
 
             [TestMethod]
             public void Test2()
             {
                 var count = 0;
-                var stack = testStack;
-                var operations = testOperations;
+                var stack = realStack;
+                var operations = realOperations;
 
-                var stackNr = 3;
+                var stackNr = 9;
                 var stacks = new List<Stack<string>>();
                 for (var i = 0; i < stackNr; i++)
                 {
@@ -82,9 +82,15 @@ namespace AlgoTest.AOC2022
                 {
                     var toStack = stacks[operations[i][2] - 1];
                     var fromStack = stacks[operations[i][1] - 1];
+                    var list = new List<string>();
                     for (var j = 0; j < operations[i][0]; j++)
                     {
-                        toStack.Push(fromStack.Pop());
+                        list.Add(fromStack.Pop());
+                    }
+
+                    for (int j = list.Count-1; j >=0; j--)
+                    {
+                        toStack.Push(list[j]);
                     }
                 }
 
@@ -94,7 +100,7 @@ namespace AlgoTest.AOC2022
                     cratesOnTop += stacks[i].Pop();
                 }
 
-                Assert.AreEqual("CMZ", cratesOnTop);
+                Assert.AreEqual("RMHFJNVFP", cratesOnTop);
             }
 
             private string[][] realStack = new[]
