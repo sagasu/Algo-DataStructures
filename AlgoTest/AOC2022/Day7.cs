@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.AOC2022
@@ -30,6 +31,7 @@ namespace AlgoTest.AOC2022
             Assert.AreEqual(1644735, sumtotal);
         }
 
+        private int minDelete = int.MaxValue-1;
         private int sumtotal = 0;
         private int limit = 100000;
 
@@ -44,6 +46,20 @@ namespace AlgoTest.AOC2022
             }
 
             if (sum < limit) sumtotal += sum;
+            return sum;
+        }
+        
+        private int TraverseTree(TreeNode tree, int spaceToFree)
+        {
+            if (tree == null) return 0;
+
+            var sum = tree.val;
+            foreach (var key in tree.nodes.Keys)
+            {
+                TraverseTree(tree.nodes[key], spaceToFree);
+            }
+
+            if (sum > spaceToFree) minDelete = Math.Min(minDelete,sum);
             return sum;
         }
 
@@ -87,7 +103,15 @@ namespace AlgoTest.AOC2022
         [TestMethod]
         public void Test2()
         {
-            
+            var data = realData;
+            var tree = new TreeNode("");
+            BuildTree(data, 2, tree);
+            var diskLeft = 70000000 - tree.val;
+            var spaceToFree = 30000000 - diskLeft;
+
+            TraverseTree(tree, spaceToFree);
+
+            Assert.AreEqual(1300850, minDelete);
         }
 
         private string[] testData = new[]
