@@ -7,19 +7,6 @@ namespace AlgoTest.AOC2022
     [TestClass]
     public class Day8
     {
-        public class TreeNode
-        {
-            public int val;
-            public Dictionary<string, TreeNode> nodes = new();
-            public string path;
-            public TreeNode(string path, int val = 0)
-            {
-                this.path = path;
-                this.val = val;
-            }
-
-        }
-
         [TestMethod]
         public void Test1()
         {
@@ -37,7 +24,7 @@ namespace AlgoTest.AOC2022
                 }
             }
 
-            Assert.AreEqual(21, visible);
+            Assert.AreEqual(1787, visible);
         }
 
         private bool IsVisible(int treeLength, int[,] data, int i, int j, int iModifier, int jModifier)
@@ -53,14 +40,40 @@ namespace AlgoTest.AOC2022
                     jModifier > 0 ? jModifier + 1 : jModifier < 0 ? jModifier - 1 : 0);
             return false;
         }
+        
+        private int Sum(int treeLength, int[,] data, int i, int j, int iModifier, int jModifier)
+        {
+            if (iModifier > 0 && iModifier + i >= data.GetLength(0)) return 0;
+            if (iModifier < 0 && iModifier + i < 0) return 0;
+            if (jModifier > 0 && jModifier + j >= data.GetLength(1)) return 0;
+            if (jModifier < 0 && jModifier + j < 0) return 0;
 
+            if (treeLength > data[i + iModifier, j + jModifier])
+                return Sum(treeLength, data, i, j,
+                    iModifier > 0 ? iModifier + 1 : iModifier < 0 ? iModifier - 1 : 0,
+                    jModifier > 0 ? jModifier + 1 : jModifier < 0 ? jModifier - 1 : 0) + 1;
+            return 1;
+        }
+
+        private int max = 0;
         [TestMethod]
         public void Test2()
         {
             var data = realData;
+            for (int i = 1; i < data.GetLength(0) - 1; i++)
+            {
+                for (int j = 1; j < data.GetLength(1) - 1; j++)
+                {
+                    var length = data[i, j];
+                    
+                    max = Math.Max(max, Sum(length, data, i, j, -1, 0) *
+                        Sum(length, data, i, j, +1, 0) *
+                        Sum(length, data, i, j, 0, -1) *
+                        Sum(length, data, i, j, 0, +1));
+                }
+            }
 
-
-            Assert.AreEqual(1300850, 3);
+            Assert.AreEqual(440640, max);
         }
 
         private int[,] testData = new[,]
