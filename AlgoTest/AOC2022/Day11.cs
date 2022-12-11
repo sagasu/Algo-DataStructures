@@ -127,8 +127,70 @@ namespace AlgoTest.AOC2022
         public void Test2()
         {
             var data = realData;
-            
-            Assert.AreEqual("RFKZCPEF", "RFKZCPEF");
+
+            var line = 0;
+            int mcm = 1;
+            List<Monkey> monkeys = new();
+
+            while (line < data.Length)
+            {
+                int id = int.Parse(data[line++].Substring(7, 1));
+                string[] items = data[line++][18..].Split(", ");
+                string operation = data[line++][19..];
+                int divisor = int.Parse(data[line++][21..]);
+                int monkeyTrue = int.Parse(data[line++][29..]);
+                int monkeyFalse = int.Parse(data[line++][30..]);
+
+                mcm *= divisor;
+
+                monkeys.Add(new Monkey(
+                    id: id,
+                    items: items.Select(item => long.Parse(item)).ToArray(),
+                    operation: GetOperation(operation),
+                    test: GetTest(divisor),
+                    monkeyTrue,
+                    monkeyFalse
+                ));
+
+                line += 1;
+            }
+
+            long worryLevel;
+            int itemsCount;
+            int rounds = 10000;
+            for (int round = 0; round < rounds; round++)
+            {
+                foreach (Monkey monkey in monkeys)
+                {
+                    itemsCount = monkey.Items.Count;
+                    for (int i = 0; i < itemsCount; i++)
+                    {
+                        worryLevel = monkey.Items.Dequeue();
+
+                        worryLevel = monkey.Inspect(worryLevel);
+
+                        int toMonkey = monkey.Test(worryLevel);
+
+                        monkeys[toMonkey].Items.Enqueue(worryLevel % mcm);
+                    }
+                }
+            }
+
+            foreach (Monkey monkey in monkeys)
+            {
+                Console.WriteLine("Monkey " + monkey.Id + " inspected items " + monkey.InspectionsCount + " times.");
+            }
+
+            var topMonkeys = monkeys
+                .Select(item => item.InspectionsCount)
+                .OrderByDescending(item => item)
+                .Take(2)
+                .ToArray();
+
+            Console.WriteLine(topMonkeys[0]);
+            Console.WriteLine(topMonkeys[1]);
+            long multiply = (long)topMonkeys[0] * (long)topMonkeys[1];
+            Assert.AreEqual(11309046332, multiply);
         }
 
 
