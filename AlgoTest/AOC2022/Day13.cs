@@ -31,8 +31,7 @@ namespace AlgoTest.AOC2022
 
                 pairIndex++;
             }
-
-            Console.WriteLine($"Part 1: {part1}");
+            Assert.AreEqual(part1, 6415);
         }
 
       
@@ -42,10 +41,21 @@ namespace AlgoTest.AOC2022
         public void Test2()
         {
             var data = realData;
+            var lines = data.Chunk(3).Select(triplet => triplet.Take(2).ToList()).SelectMany(pair => pair).ToList();
+            const string divider1 = "[[2]]";
+            const string divider2 = "[[6]]";
 
-            
+            lines.Add(divider1);
+            lines.Add(divider2);
+            lines.Sort(Comparer);
 
-            Assert.AreEqual(321, 1);
+            var index1 = lines.IndexOf(divider1) + 1;
+            var index2 = lines.IndexOf(divider2) + 1;
+
+
+            var part2 = index1 * index2;
+
+            Assert.AreEqual(part2, 20056);
         }
 
         class PacketReader
