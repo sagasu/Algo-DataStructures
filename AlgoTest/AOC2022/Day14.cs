@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.AOC2022
@@ -33,11 +34,132 @@ namespace AlgoTest.AOC2022
         public void Test2()
         {
             var data = realData;
-            
 
-            Assert.AreEqual(2, 20056);
+            var rocks =
+                data.Select(line =>
+                        line.Split(" -> ")
+                            .Select(pair => pair.Split(",").Select(item => int.Parse(item)).ToArray())
+                            .Select(pair => (x: pair[0], y: pair[1]))
+                            .ToList())
+                    .SelectMany(ToPixels);
+
+            var map = new Map(rocks, new Pixel(500, 0, '+'));
+
+
+            var part2 = map.Simulate();
+            Assert.AreEqual(27625, part2);
         }
+        class Map
+        {
+            private readonly Dictionary<(int x, int y), Pixel> pixels;
+            private readonly int sourceX;
+            private readonly int sourceY;
+            private readonly int floorY;
 
+            public Map(IEnumerable<Pixel> rocks, Pixel source)
+            {
+                this.pixels = new Dictionary<(int x, int y), Pixel>();
+                this.sourceX = source.X;
+                this.sourceY = source.Y;
+
+                int maxY = 0;
+                foreach (var rock in rocks)
+                {
+                    this.pixels[(rock.X, rock.Y)] = rock;
+                    if (rock.Y > maxY)
+                    {
+                        maxY = rock.Y;
+                    }
+                }
+
+                this.pixels[(source.X, source.Y)] = source;
+
+                this.floorY = maxY + 2;
+            }
+
+            public int Simulate()
+            {
+                int sandCount = 0;
+                bool isFinished = false;
+                while (!isFinished)
+                {
+                    int i = sourceX;
+                    int j = sourceY;
+
+                    while (j < this.floorY)
+                    {
+                        var targetY = j + 1;
+
+                        if (this.IsSolid(i, targetY))
+                        {
+                            // roll left
+                            var targetX = i - 1;
+                            if (!this.IsSolid(targetX, targetY))
+                            {
+                                i = targetX;
+                                j = targetY;
+                                continue;
+                            }
+
+                            // roll right
+                            targetX = i + 1;
+                            if (!this.IsSolid(targetX, targetY))
+                            {
+                                i = targetX;
+                                j = targetY;
+                                continue;
+                            }
+
+                            sandCount++;
+                            this.pixels[(i, j)] = new Pixel(i, j, 'o');
+
+                            if (i == sourceX && j == sourceY)
+                            {
+                                isFinished = true;
+                            }
+                            break;
+                        }
+                        else
+                        {
+                            j = targetY;
+                            continue;
+                        }
+                    }
+                }
+
+                return sandCount;
+            }
+
+            private bool IsSolid(int x, int y) => y == this.floorY || this.pixels.ContainsKey((x, y));
+
+            public override string ToString()
+            {
+                var result = new StringBuilder();
+
+                var minX = this.pixels.Values.Min(item => item.X);
+                var maxX = this.pixels.Values.Max(item => item.X);
+
+                for (int y = 0; y < this.floorY; y++)
+                {
+                    for (int x = minX; x <= maxX; x++)
+                    {
+                        if (this.pixels.TryGetValue((x, y), out var value))
+                        {
+                            result.Append(value.Type);
+                        }
+                        else
+                        {
+                            result.Append('.');
+                        }
+                    }
+                    result.AppendLine();
+                }
+
+                result.AppendLine(new string('#', maxX - minX + 1));
+
+                return result.ToString();
+            }
+        }
         static int Part1Simulation(Pixel[,] map, int sourceX, int sourceY, int width, int height)
         {
             int sandCount = 0;
