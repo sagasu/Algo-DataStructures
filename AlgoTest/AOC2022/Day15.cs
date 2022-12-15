@@ -52,9 +52,61 @@ namespace AlgoTest.AOC2022
         public void Test2()
         {
             var data = realData;
+            var isInTestMode = false;
+            var minX = 0;
+            var minY = 0;
+            var maxX = isInTestMode ? 20 : 4000000;
+            var maxY = isInTestMode ? 20 : 4000000;
+            var sensors =
+                data.Select(line =>
+                        line.Split(new[] { "Sensor at x=", ", y=", ": closest beacon is at x=" }, StringSplitOptions.RemoveEmptyEntries)
+                            .Select(item => int.Parse(item))
+                            .ToArray()
+                    )
+                    .Select(row => new Sensor(row[0], row[1], new Beacon(row[2], row[3])));
 
+            (int x, int y) uncovered = default;
+            bool done = false;
+            for (int y = minY; y <= maxY && !done; y++)
+            {
+                var inRangeSensors = sensors.Where(item => y >= item.YLowerBound && y <= item.YUpperBound);
+                var xRangesCovered =
+                    inRangeSensors
+                        .Select(item => item.GetInfluenceRangeAtY(y, (minX, maxX)))
+                        .OrderBy(item => item.lowerBound)
+                        .ThenBy(item => item.upperBound)
+                        .ToList();
+
+                var coveredRange = xRangesCovered[0];
+                foreach (var range in xRangesCovered.Skip(1))
+                {
+                    if (coveredRange.upperBound + 1 < range.lowerBound)
+                    {
+                        done = true;
+                        uncovered = (coveredRange.upperBound + 1, y);
+                        break;
+                    }
+                    coveredRange = (Math.Min(coveredRange.lowerBound, range.lowerBound), Math.Max(coveredRange.upperBound, range.upperBound));
+                }
+
+                if (!done && coveredRange.lowerBound != minX)
+                {
+                    done = true;
+                    uncovered = (minX, y);
+                    break;
+                }
+
+                if (!done && coveredRange.upperBound != maxX)
+                {
+                    done = true;
+                    uncovered = (maxX, y);
+                    break;
+                }
+            }
             
-            Assert.AreEqual(27625, 3);
+            var part2 = (uncovered.x * 4000000L + uncovered.y);
+
+            Assert.AreEqual(13622251246513, part2);
         }
         record Sensor(int X, int Y, Beacon NearestBeacon)
         {
