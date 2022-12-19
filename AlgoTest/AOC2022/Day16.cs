@@ -146,15 +146,73 @@ namespace AlgoTest.AOC2022
 
         }
 
+        public Dictionary<int, int> pathValues = new Dictionary<int, int>();
 
+        public void RecursiveExplorePartB(int current, int tLeft, int visitable, int cummulFlow)
+        {
+            pathValues[visitable] = Math.Max(pathValues.GetValueOrDefault(visitable, 0), cummulFlow);
+
+            for (int i = 0; i < nzNodes.Length; i++)
+            {
+                int flag = 1 << i;
+                if ((visitable & flag) == 0)
+                {
+                    continue;
+                }
+
+                var dist = nodeDist[current, nzNodes[i]];
+                var remaining = tLeft - dist - 1;
+                if (remaining < 0)
+                {
+                    continue;
+                }
+
+                var newFlow = cummulFlow + (remaining * nodesFlow[nzNodes[i]]);
+                RecursiveExplorePartB(nzNodes[i], remaining, visitable - flag, newFlow);
+            }
+        }
 
         [TestMethod]
         public void Test2()
         {
-            var data = realData;
+            var defs = ParseInput();
+            ComputeNodeDistances(defs);
 
+            //bitmask des nodes non-zero
+            int visitable = 0;
+            for (int i = 0; i < nzNodes.Length; i++)
+            {
+                visitable += 1 << i;
+            }
 
-            Assert.AreEqual(27625, 2);
+            RecursiveExplorePartB(namesIndex["AA"], 26, visitable, 0);
+
+            int best = -1;
+            foreach (var kvA in pathValues.Where(kv => kv.Key > 0 && kv.Key < visitable))
+            {
+                var cA = visitable - kvA.Key;
+
+                foreach (var kvB in pathValues.Where(kv => kv.Key > 0 && kv.Key < visitable))
+                {
+                    var cB = visitable - kvB.Key;
+
+                    if ((cA & cB) != 0)
+                    {
+                        // on cherche un complement elephant + player tel que les nodes ne sont
+                        // visitees qu une seule fois
+                        continue;
+                    }
+
+                    var cur = kvA.Value + kvB.Value;
+                    if (cur > best)
+                    {
+                        // Console.WriteLine("{0}({1}) + {2}({3}) = {4}   {5}", kvA.Key, kvA.Value, kvB.Key, kvB.Value, cur, kvA.Key & kvB.Key);
+                        best = cur;
+                    }
+                }
+            }
+
+            Assert.AreEqual(2705, best);
         }
         public struct ValveDefinition
         {
