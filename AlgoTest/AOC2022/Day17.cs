@@ -172,9 +172,54 @@ namespace AlgoTest.AOC2022
         [TestMethod]
         public void Test2()
         {
-            
+            var movementPattern = ParseInput();
+            var grid = new Dictionary<long, char[]>();
 
-            Assert.AreEqual(2705, 8);
+            // warm up
+            for (long i = 0; i < 10000; i++)
+            {
+                grid[i] = Enumerable.Repeat('.', width).ToArray();
+            }
+
+            long maxlevel = -1;
+            int p = 0;
+            long measure = 0;
+            long skippedLevels = 0;
+
+            const long upperBound = 1000000000000;
+            for (long r = 0; r < upperBound; r++)
+            {
+                if (r == 3376)
+                {
+                    // in my data , there is a repeating pattern starting at this point
+                    // every 1720 rows will yield 2732 height
+                    while (r + 1720 < upperBound)
+                    {
+                        r += 1720;
+                        skippedLevels += 2738;
+                    }
+                }
+                
+                int rock = (int)(r % (long)nbrocks);
+                long y = maxlevel + 1 + startHeight;
+
+                if (rock == 0 && maxlevel > 0 && grid[y - 4][3] != '.')
+                {
+                    measure = maxlevel;
+                }
+
+                p = SimulateBlock(grid, movementPattern, p, maxlevel, r);
+
+                foreach (var kv in grid)
+                {
+                    if (kv.Key >= maxlevel && kv.Value.Any(c => c != '.'))
+                    {
+                        maxlevel = kv.Key;
+                    }
+                }
+            }
+            
+            Assert.AreEqual(2705, skippedLevels + maxlevel + 1);
         }
         
 
