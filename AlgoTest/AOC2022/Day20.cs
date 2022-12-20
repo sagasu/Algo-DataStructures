@@ -48,8 +48,7 @@ namespace AlgoTest.AOC2022
             var first = zero.GetNthNext(1000);
             var second = zero.GetNthNext(2000);
             var third = zero.GetNthNext(3000);
-            Console.WriteLine($"Part 1: {first + second + third}");
-
+          
 
 Assert.AreEqual(7004, first + second + third);
         }
@@ -58,7 +57,50 @@ Assert.AreEqual(7004, first + second + third);
         [TestMethod]
         public void Test2()
         {
-            
+            var decryptionKey = 811589153L;
+            NumberNode? zero = null;
+            var nodeQueue = new Queue<NumberNode>();
+            NumberNode? previous = null;
+            foreach (string thisLine in realData)
+            {
+                NumberNode newNode = new NumberNode(long.Parse(thisLine) * decryptionKey);
+                nodeQueue.Enqueue(newNode);
+                if (newNode.GetValue() == 0L)
+                {
+                    zero = newNode;
+                }
+                if (previous != null)
+                {
+                    previous.SetNext(newNode);
+                    newNode.SetPrevious(previous);
+                }
+                previous = newNode;
+            }
+            if (previous != null)
+            {
+                previous.SetNext(nodeQueue.Peek());
+                nodeQueue.Peek().SetPrevious(previous);
+            }
+            NumberNode.nodeCount = nodeQueue.Count;
+            var mixRound = 1;
+            var nextRoundQueue = new Queue<NumberNode>();
+            while (mixRound <= 10)
+            {
+                var nextNode = nodeQueue.Dequeue();
+                nextRoundQueue.Enqueue(nextNode);
+                nextNode.Mix();
+                if (nodeQueue.Count == 0)
+                {
+                    nodeQueue = nextRoundQueue;
+                    nextRoundQueue = new();
+                    mixRound++;
+                }
+            }
+            var first = zero.GetNthNext(1000);
+            var second = zero.GetNthNext(2000);
+            var third = zero.GetNthNext(3000);
+           
+            Assert.AreEqual(2444, first + second + third);
         }
 
         internal class NumberNode
