@@ -172,56 +172,242 @@ namespace AlgoTest.AOC2022
         [TestMethod]
         public void Test2()
         {
-            var movementPattern = ParseInput();
-            var grid = new Dictionary<long, char[]>();
-
-            // warm up
-            for (long i = 0; i < 10000; i++)
+            var totalCycles = 1000000000000L;
+            var theTower = new RockTower(realData);
+            var rock = 1;
+            var cycleStart = -1;
+            var cycleLength = 0L;
+            var heightAtCycleStart = 0L;
+            var heightOfCycle = 0L;
+            var cycleEnd = -1L;
+            var towerEnd = -1L;
+            var heightAtTowerEnd = 0L;
+            var sequentialHeights = new List<long>();
+            var previousRows = new Dictionary<(int, int, int, int, int, int, int, int, int), int>();
+            while (heightAtTowerEnd == 0)
             {
-                grid[i] = Enumerable.Repeat('.', width).ToArray();
+                var nextRockData = theTower.NextRock();
+                if (previousRows.ContainsKey(nextRockData) && cycleLength == 0L)
+                {
+                    cycleLength = rock - previousRows[nextRockData];
+                    cycleStart = previousRows[nextRockData];
+                    heightAtCycleStart = sequentialHeights[cycleStart];
+                    cycleEnd = cycleStart + cycleLength;
+                    towerEnd = (totalCycles - cycleStart) % cycleLength + cycleStart + cycleLength;
+                }
+                else
+                {
+                    previousRows[nextRockData] = rock;
+                }
+                theTower.Push();
+                while (theTower.CanFall())
+                {
+                    theTower.Fall();
+                    theTower.Push();
+                }
+                theTower.UpdateCavern();
+                if (cycleLength == 0)
+                {
+                    sequentialHeights.Add(theTower.GetTowerHeight());
+                }
+                if (rock == cycleEnd)
+                {
+                    heightOfCycle = theTower.GetTowerHeight() - heightAtCycleStart;
+                }
+                if (rock == towerEnd)
+                {
+                    heightAtTowerEnd = theTower.GetTowerHeight() - (heightAtCycleStart + heightOfCycle);
+                }
+                rock++;
             }
-
-            long maxlevel = -1;
-            int p = 0;
-            long measure = 0;
-            long skippedLevels = 0;
-
-            const long upperBound = 1000000000000;
-            for (long r = 0; r < upperBound; r++)
-            {
-                if (r == 3376)
-                {
-                    // in my data , there is a repeating pattern starting at this point
-                    // every 1720 rows will yield 2732 height
-                    while (r + 1720 < upperBound)
-                    {
-                        r += 1720;
-                        skippedLevels += 2738;
-                    }
-                }
-                
-                int rock = (int)(r % (long)nbrocks);
-                long y = maxlevel + 1 + startHeight;
-
-                if (rock == 0 && maxlevel > 0 && grid[y - 4][3] != '.')
-                {
-                    measure = maxlevel;
-                }
-
-                p = SimulateBlock(grid, movementPattern, p, maxlevel, r);
-
-                foreach (var kv in grid)
-                {
-                    if (kv.Key >= maxlevel && kv.Value.Any(c => c != '.'))
-                    {
-                        maxlevel = kv.Key;
-                    }
-                }
-            }
-            
-            Assert.AreEqual(2705, skippedLevels + maxlevel + 1);
+            var cycleCount = (totalCycles - cycleStart) / cycleLength;
+            var totalTowerSize = heightAtCycleStart + cycleCount * heightOfCycle + heightAtTowerEnd;
+            Console.WriteLine($"Part 2: {totalTowerSize}");
+            //to low
+            Assert.AreEqual(1502339181289, totalTowerSize);
         }
-        
+        internal class RockTower
+        {
+            private string wind = "";
+            private int windIndex = 0;
+            private int rockType = -1;
+            private (int, int) location;
+            private static readonly int rockTypeCount = 5;
+            private static readonly int cavernWidth = 7;
+            private static readonly int[] rockWidths = new int[] { 4, 3, 3, 1, 2 };
+            private readonly List<HashSet<int>> settledRocks = new List<HashSet<int>>();
+            private static readonly Dictionary<int, (int, int)[]> relativeLocations = new()
+            {
+                [0] = new (int, int)[] { (0, 0), (1, 0), (2, 0), (3, 0) },
+                [1] = new (int, int)[] { (1, 2), (0, 1), (1, 1), (2, 1), (1, 0) },
+                [2] = new (int, int)[] { (2, 2), (2, 1), (0, 0), (1, 0), (2, 0) },
+                [3] = new (int, int)[] { (0, 3), (0, 2), (0, 1), (0, 0) },
+                [4] = new (int, int)[] { (0, 1), (1, 1), (0, 0), (1, 0) }
+            };
+            private static readonly Dictionary<int, (int, int)[]> relativeBottomLocations = new()
+            {
+                [0] = new (int, int)[] { (0, 0), (1, 0), (2, 0), (3, 0) },
+                [1] = new (int, int)[] { (0, 1), (1, 0), (2, 1) },
+                [2] = new (int, int)[] { (0, 0), (1, 0), (2, 0) },
+                [3] = new (int, int)[] { (0, 0) },
+                [4] = new (int, int)[] { (0, 0), (1, 0) }
+            };
+            private static readonly Dictionary<int, (int, int)[]> relativeLeftLocations = new()
+            {
+                [0] = new (int, int)[] { (0, 0) },
+                [1] = new (int, int)[] { (1, 2), (0, 1), (1, 0) },
+                [2] = new (int, int)[] { (2, 2), (2, 1), (0, 0) },
+                [3] = new (int, int)[] { (0, 3), (0, 2), (0, 1), (0, 0) },
+                [4] = new (int, int)[] { (0, 1), (0, 0) },
+            };
+            private static readonly Dictionary<int, (int, int)[]> relativeRightLocations = new()
+            {
+                [0] = new (int, int)[] { (3, 0) },
+                [1] = new (int, int)[] { (1, 2), (2, 1), (1, 0) },
+                [2] = new (int, int)[] { (2, 2), (2, 1), (2, 0) },
+                [3] = new (int, int)[] { (0, 3), (0, 2), (0, 1), (0, 0) },
+                [4] = new (int, int)[] { (1, 1), (1, 0) },
+            };
+
+            public RockTower(string wind)
+            {
+                this.wind = wind;
+                for (int i = 0; i < cavernWidth; i++)
+                {
+                    settledRocks.Add(new HashSet<int>());
+                }
+            }
+
+            public (int, int, int, int, int, int, int, int, int) NextRock()
+            {
+                rockType = (rockType + 1) % rockTypeCount;
+                location = (2, GetTowerHeight() + 4);
+                var minColumnHeight = settledRocks.Select(x => x.Count == 0 ? 0 : x.Max()).Min();
+                var relativeColumnHeights = new List<int>();
+                foreach (HashSet<int> thisColumn in settledRocks)
+                {
+                    if (thisColumn.Count == 0)
+                    {
+                        relativeColumnHeights.Add(0);
+                    }
+                    else
+                    {
+                        relativeColumnHeights.Add(thisColumn.Max() - minColumnHeight);
+                    }
+                }
+                return (rockType, windIndex,
+                    relativeColumnHeights[0],
+                    relativeColumnHeights[1],
+                    relativeColumnHeights[2],
+                    relativeColumnHeights[3],
+                    relativeColumnHeights[4],
+                    relativeColumnHeights[5],
+                    relativeColumnHeights[6]);
+            }
+
+            public bool CanFall()
+            {
+                if (location.Item2 == 1)
+                {
+                    return false;
+                }
+                else
+                {
+                    for (int i = 0; i < relativeBottomLocations[rockType].Length; i++)
+                    {
+                        var absoluteX = location.Item1 + relativeBottomLocations[rockType][i].Item1;
+                        var absoluteY = location.Item2 + relativeBottomLocations[rockType][i].Item2;
+                        if (settledRocks[absoluteX].Contains(absoluteY - 1))
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+
+            public void Fall()
+            {
+                location = (location.Item1, location.Item2 - 1);
+            }
+
+            public bool CanSlideLeft()
+            {
+                if (location.Item1 == 0)
+                {
+                    return false;
+                }
+                else
+                {
+                    for (int i = 0; i < relativeLeftLocations[rockType].Length; i++)
+                    {
+                        var absoluteX = location.Item1 + relativeLeftLocations[rockType][i].Item1;
+                        var absoluteY = location.Item2 + relativeLeftLocations[rockType][i].Item2;
+                        if (settledRocks[absoluteX - 1].Contains(absoluteY))
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+
+            public bool CanSlideRight()
+            {
+                if (location.Item1 + rockWidths[rockType] == cavernWidth)
+                {
+                    return false;
+                }
+                else
+                {
+                    for (int i = 0; i < relativeRightLocations[rockType].Length; i++)
+                    {
+                        var absoluteX = location.Item1 + relativeRightLocations[rockType][i].Item1;
+                        var absoluteY = location.Item2 + relativeRightLocations[rockType][i].Item2;
+                        if (settledRocks[absoluteX + 1].Contains(absoluteY))
+                        {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+            }
+
+            public void Push()
+            {
+                var nextWind = GetNextWind();
+                if (nextWind == '<' && CanSlideLeft())
+                {
+                    location = (Math.Max(location.Item1 - 1, 0), location.Item2);
+                }
+                else if (nextWind == '>' && CanSlideRight())
+                {
+                    location = (Math.Min(location.Item1 + 1, cavernWidth - rockWidths[rockType]), location.Item2);
+                }
+            }
+
+            public void UpdateCavern()
+            {
+                for (int i = 0; i < relativeLocations[rockType].Length; i++)
+                {
+                    var absoluteX = location.Item1 + relativeLocations[rockType][i].Item1;
+                    var absoluteY = location.Item2 + relativeLocations[rockType][i].Item2;
+                    settledRocks[absoluteX].Add(absoluteY);
+                }
+            }
+
+            public int GetTowerHeight()
+            {
+                return settledRocks.Select(x => x.Count == 0 ? 0 : x.Max()).Max();
+            }
+
+            public char GetNextWind()
+            {
+                char nextChar = wind[windIndex];
+                windIndex = (windIndex + 1) % wind.Length;
+                return nextChar;
+            }
+        }
 
         private string testData = ">>><<><>><<<>><>>><<<>>><<<><<<>><>><<>>";
         
