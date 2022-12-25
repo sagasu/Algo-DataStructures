@@ -183,8 +183,15 @@ namespace AlgoTest.AOC2022
         [TestMethod]
         public void Test2()
         {
-
-            Assert.AreEqual(1306, 2);
+            var bluePrints = BluePrint.ParseBluePrints(realData);
+            var timeLimit = 32;
+            var result = bluePrints
+                .Take(3)
+                .Select(bluePrint => bluePrint.GetMaxGeodeCount(bluePrint, timeLimit))
+                .ToArray();
+             ;
+            Assert.AreEqual(1306, result
+                .Aggregate(1, (acc, current) => acc * current));
         }
 
 
