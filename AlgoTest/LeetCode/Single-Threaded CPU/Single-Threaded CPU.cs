@@ -24,7 +24,7 @@ public class Solution {
             var aval = new PriorityQueue<int, singleTask>(Comparer<singleTask>.Create((st1, st2) => st1.compare(st2)));
 
 
-            var cur = 0;
+            int cur = 0;
             while (waiting.Count > 0 || aval.Count > 0)
             {
                 if (aval.Count == 0 && cur< waiting.Peek().en)
