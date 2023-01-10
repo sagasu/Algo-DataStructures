@@ -4,12 +4,12 @@ public class Solution {
         if (points.Length < 3)
             return points.Length;
         
-        int max = 0;
+        var max = 0;
         var map = new Dictionary<long, int>();        
         for (int i = 0; i < points.Length; i++)
         {
             map.Clear();
-            int dup = 1;
+            var dup = 1;
             for (int j = i + 1; j < points.Length; j++)
             {
                 int dx = points[j][0] - points[i][0];
