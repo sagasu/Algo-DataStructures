@@ -5,7 +5,7 @@ public class Solution {
         if(pattern.Length != arr.Length)
             return false;
         Dictionary<char,string> dic = new Dictionary<char,string>();
-        for(int i = 0; i < pattern.Length; i++)
+        for(var i = 0; i < pattern.Length; i++)
         {
             if(dic.ContainsKey(pattern[i]))
             {
