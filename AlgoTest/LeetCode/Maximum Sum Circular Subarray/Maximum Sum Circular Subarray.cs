@@ -10,7 +10,7 @@ public class Solution {
         forward[0] = current;
         int[] reverse = new int[n];
 
-        for (int i = 1; i < n; i++) {
+        for (var i = 1; i < n; i++) {
             current = Math.Max(current + nums[i], nums[i]);
             max = Math.Max(current, max);
             sum[i] = sum[i-1] + nums[i];
