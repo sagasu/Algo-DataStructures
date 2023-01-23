@@ -17,11 +17,11 @@ public class Solution {
             forward[i] = Math.Max(forward[i-1], sum[i]);
         }
         reverse[n-1] = nums[n-1];
-        for (int i = n-2; i >= 0; i--) {
+        for (var i = n-2; i >= 0; i--) {
             reverse[i] = Math.Max(reverse[i+1], sum[n-1] - (i > 0 ? sum[i-1] : 0));
         }
 
-        for (int i = 0; i < n; i++) {
+        for (var i = 0; i < n; i++) {
             max = Math.Max(max, reverse[i] + (i > 0 ? forward[i-1] : 0));
         }
 
