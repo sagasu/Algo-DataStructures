@@ -1,4 +1,7 @@
-public class Solution {
+using System.Collections.Generic;
+
+public class MinStoneSumSolution
+{
     public int MinStoneSum(int[] piles, int k) {
         PriorityQueue<int,int> heap = new();
         int ans=0;

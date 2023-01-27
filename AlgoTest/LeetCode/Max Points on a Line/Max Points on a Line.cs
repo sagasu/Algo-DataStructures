@@ -1,4 +1,8 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+
+public class MaxPointsSolution
+{
     public int MaxPoints(int[][] points)
     {
         if (points.Length < 3)

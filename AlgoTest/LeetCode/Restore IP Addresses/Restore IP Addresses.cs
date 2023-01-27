@@ -1,4 +1,7 @@
-public class Solution
+using System.Collections.Generic;
+using System.Linq;
+
+public class RestoreIpAddressesSolution
 {
     public IList<string> RestoreIpAddresses(string s)
     {

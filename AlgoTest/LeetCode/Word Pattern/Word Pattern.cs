@@ -1,4 +1,8 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+
+public class WordPatternSolution
+{
     public bool WordPattern(string pattern, string s) {
         
         string[] arr = s.Split(" ", StringSplitOptions.RemoveEmptyEntries);

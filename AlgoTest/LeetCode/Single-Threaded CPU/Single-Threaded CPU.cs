@@ -1,4 +1,7 @@
-public class Solution {
+using System.Collections.Generic;
+
+public class GetOrderSolution
+{
           public class singleTask
         {
             public int index;

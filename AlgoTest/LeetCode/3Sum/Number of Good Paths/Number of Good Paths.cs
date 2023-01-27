@@ -1,4 +1,8 @@
-public class Solution
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class NumberOfGoodPathsSolution
 {
     public int NumberOfGoodPaths(int[] vals, int[][] edges)
     {

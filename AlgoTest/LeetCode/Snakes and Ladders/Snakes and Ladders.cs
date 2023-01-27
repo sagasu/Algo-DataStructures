@@ -1,4 +1,9 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class SnakesAndLaddersSolution
+{
      public int SnakesAndLadders(int[][] board) {
         var bLength = board.Length;
         Array.Reverse(board);

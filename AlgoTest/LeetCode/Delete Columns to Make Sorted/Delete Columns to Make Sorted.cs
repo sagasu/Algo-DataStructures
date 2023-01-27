@@ -1,4 +1,7 @@
-public class Solution {
+using System.Linq;
+
+public class MinDeletionSizeSolution
+{
     public int MinDeletionSize(string[] strs) {
         return Enumerable
 		.Range(0, strs[0].Length)
