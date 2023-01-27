@@ -1,4 +1,6 @@
-public class Solution
+using System.Collections.Generic;
+
+public class FindSubsequencesSolution
 {
   public IList<IList<int>> FindSubsequences(int[] nums)
   {

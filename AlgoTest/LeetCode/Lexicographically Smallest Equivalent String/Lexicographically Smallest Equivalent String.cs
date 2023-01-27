@@ -1,4 +1,7 @@
-public class Solution {
+using System;
+
+public class SmallestEquivalentStringSolution
+{
     
      //union find;
     //use sets to group the characters and look up the parents;

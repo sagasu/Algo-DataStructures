@@ -1,4 +1,8 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+
+public class LongestPathSolution
+{
     public int LongestPath(int[] parent, string s) {
         int n = parent.Length;
         int[] childrenCount = new int[n];

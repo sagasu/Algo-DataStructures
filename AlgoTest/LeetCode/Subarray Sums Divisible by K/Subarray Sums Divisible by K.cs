@@ -1,4 +1,6 @@
-public class Solution
+using System.Linq;
+
+public class SubarraysDivByKSolution
 {
     public int SubarraysDivByK(int[] nums, int K) {
         int[] sum = new int[nums.Length + 1];

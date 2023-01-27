@@ -1,4 +1,8 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+
+public class ClosestMeetingNodeSolution
+{
     public int ClosestMeetingNode(int[] edges, int node1, int node2) {
         Dictionary<int, int> dict1 = new Dictionary<int, int>();
         Dictionary<int, int> dict2 = new Dictionary<int, int>();

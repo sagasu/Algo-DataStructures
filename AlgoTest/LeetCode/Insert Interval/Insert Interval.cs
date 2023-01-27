@@ -1,4 +1,8 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+
+public class InsertSolution
+{
     public int[][] Insert(int[][] intervals, int[] newInterval) {
         
         if(intervals == null || intervals.Length == 0)

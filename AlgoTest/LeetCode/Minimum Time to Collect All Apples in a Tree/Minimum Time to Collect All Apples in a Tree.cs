@@ -1,4 +1,7 @@
-public class Solution {
+using System.Collections.Generic;
+
+public class MinTimeSolution
+{
     public int MinTime(int n, int[][] edges, IList<bool> hasApple) {
         var adj = new List<int>[n];
         var degree = new int[n];

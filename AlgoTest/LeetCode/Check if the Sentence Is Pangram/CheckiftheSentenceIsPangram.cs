@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
-public class Solution {
+public class CheckIfPangramSolution
+{
     public bool CheckIfPangram(string sentence)
     {
                 HashSet<char> visited = new HashSet<char>();

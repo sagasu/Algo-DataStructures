@@ -1,4 +1,7 @@
-public class Solution {
+using System;
+
+public class MaxSubarraySumCircularSolution
+{
     public int MaxSubarraySumCircular(int[] nums) {
         int n = nums.Length;
 

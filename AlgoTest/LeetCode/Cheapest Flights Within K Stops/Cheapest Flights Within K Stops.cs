@@ -1,4 +1,8 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+
+public class FindCheapestPriceSolution
+{
     private int minPrice = Int32.MaxValue;
 
     public int FindCheapestPrice(int n, int[][] flights, int src, int dst, int k) {

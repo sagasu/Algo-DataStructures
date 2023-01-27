@@ -1,4 +1,7 @@
-public class Solution {
+using System.Collections.Generic;
+
+public class CountSubTreesSolution
+{
     private List<List<int>> _tree;
     private string _labels;
 
