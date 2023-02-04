@@ -25,7 +25,7 @@ public class ClosestMeetingNodeSolution
             cur = edges[cur];
         }
 
-        foreach (int key in dict1.Keys) {
+        foreach (var key in dict1.Keys) {
             if (dict2.ContainsKey(key)) {
                 var tempMin = Math.Max(dict1[key], dict2[key]);
                 
