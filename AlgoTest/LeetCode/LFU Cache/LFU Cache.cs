@@ -8,9 +8,9 @@ public class LFUCache {
     private int capacity;
 
     public void Insert(int key, int frequency, int value) {
-        if (!frequencies.ContainsKey(frequency)) {
+        if (!frequencies.ContainsKey(frequency)) 
             frequencies[frequency] = new List<Pair<int, int>>();
-        }
+        
         frequencies[frequency].Add(new Pair<int, int>(key, value));
         cache[key] = new Pair<int, Pair<int, int>>(frequency, frequencies[frequency].Last());
     }
@@ -23,24 +23,24 @@ public class LFUCache {
     }    
     
     public int Get(int key) {
-        if (!cache.ContainsKey(key)) {
+        if (!cache.ContainsKey(key)) 
             return -1;
-        }        
+        
         var pair = cache[key];
         int f = pair.Key;
         var kv = pair.Value;
         frequencies[f].Remove(kv);
-        if (frequencies[f].Count == 0 && minf == f) {
+        if (frequencies[f].Count == 0 && minf == f)
             ++minf;
-        }
+        
         Insert(key, f + 1, kv.Value);
         return kv.Value;            
     }
     
     public void Put(int key, int value) {
-        if (capacity <= 0) {
+        if (capacity <= 0)
             return;
-        }
+        
         if (cache.ContainsKey(key)) {
             var it = cache[key];
             it.Value.Value = value;
