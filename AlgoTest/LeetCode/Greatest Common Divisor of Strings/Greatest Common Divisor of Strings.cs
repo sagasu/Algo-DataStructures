@@ -1,4 +1,4 @@
-public class Solution {
+public class GreatestCommonDivisorofStrings {
     public string GcdOfStrings(string str1, string str2)  => 
         str1 + str2 == str2 + str1 ? str1.Substring(0, Gcd(str1.Length, str2.Length)) : string.Empty;
 

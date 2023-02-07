@@ -1,4 +1,5 @@
-public class Solution {
+public class ShuffletheArray
+{
     public int[] Shuffle(int[] nums, int n) {
         var ret = new int[nums.Length];
         for(var i = 0; i < n;i++){

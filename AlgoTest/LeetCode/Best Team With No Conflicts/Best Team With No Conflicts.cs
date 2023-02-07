@@ -1,4 +1,8 @@
-public class Solution {
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class BestTeamWithNoConflicts {
     List<Player> teamList=new List<Player>();
     public int BestTeamScore(int[] scores, int[] ages) {
         var length=ages.Length;
