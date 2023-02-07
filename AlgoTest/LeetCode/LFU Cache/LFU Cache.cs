@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 public class LFUCache {
 
     private Dictionary<int, Pair<int, Pair<int, int>>> cache;

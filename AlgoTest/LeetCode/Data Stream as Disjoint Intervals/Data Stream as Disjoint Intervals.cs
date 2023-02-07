@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class SummaryRanges {
 
     private SortedSet<int> values;
