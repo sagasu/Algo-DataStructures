@@ -10,7 +10,7 @@ public class FindCheapestPriceSolution
         if(flights?.Length == 0) return 0;
         
         
-        bar flightsMap = new Dictionary<int, List<GraphListNode>>();
+        var flightsMap = new Dictionary<int, List<GraphListNode>>();
         var price = new int[n];
         
         foreach(int[] flight in flights){
