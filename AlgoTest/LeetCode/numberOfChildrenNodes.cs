@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 public class Solution
 {
     private readonly Dictionary<int, List<int>> _graph = new();

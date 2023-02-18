@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AlgoTest.LeetCode.RotateList;
+﻿using AlgoTest.LeetCode.RotateList;
 
 namespace AlgoTest.LeetCode.Intersection_of_Two_Linked_Lists
 {
@@ -34,7 +29,7 @@ namespace AlgoTest.LeetCode.Intersection_of_Two_Linked_Lists
             return null;
         }
 
-        public int GetListLength(ListNode? listNode)
+        public int GetListLength(ListNode listNode)
         {
             var length = 0;
             while (listNode != null)

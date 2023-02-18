@@ -1,4 +1,8 @@
-public class Solution {
+using System.Collections.Generic;
+using AlgoTest.LeetCode;
+
+public class MinimumDistanceBetweenBSTNodes
+{
     public int MinDiffInBST(TreeNode root) {
         var list = new List<int>();
         InOrder(root, list);

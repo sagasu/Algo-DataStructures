@@ -212,7 +212,7 @@ namespace AlgoTest.AOC2022
                 this.Y = y;
             }
 
-            internal void Connect(params Vertex?[] neighbours)
+            internal void Connect(params Vertex[] neighbours)
             {
                 this.NavigableNeighbours.AddRange(neighbours.Where(item => item is not null && item.Height <= this.Height + 1)!);
                 this.ReverseNavigableNeighbours.AddRange(neighbours.Where(item => item is not null && this.Height <= item.Height + 1)!);
