@@ -17,9 +17,9 @@ namespace AlgoTest.AOC2022
         [TestMethod]
         public void Test1()
         {
-            NumberNode? zero = null;
+            NumberNode zero = null;
             var nodeQueue = new Queue<NumberNode>();
-            NumberNode? previous = null;
+            NumberNode previous = null;
             foreach (string thisLine in realData)
             {
                 NumberNode newNode = new NumberNode(long.Parse(thisLine));
@@ -58,9 +58,9 @@ Assert.AreEqual(7004, first + second + third);
         public void Test2()
         {
             var decryptionKey = 811589153L;
-            NumberNode? zero = null;
+            NumberNode zero = null;
             var nodeQueue = new Queue<NumberNode>();
-            NumberNode? previous = null;
+            NumberNode previous = null;
             foreach (string thisLine in realData)
             {
                 NumberNode newNode = new NumberNode(long.Parse(thisLine) * decryptionKey);
@@ -107,8 +107,8 @@ Assert.AreEqual(7004, first + second + third);
         {
             public static int nodeCount = 0;
             private readonly long value;
-            private NumberNode? previous = null;
-            private NumberNode? next = null;
+            private NumberNode previous = null;
+            private NumberNode next = null;
 
             public NumberNode(long value)
             {
