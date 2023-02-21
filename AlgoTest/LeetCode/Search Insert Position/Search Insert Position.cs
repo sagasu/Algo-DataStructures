@@ -13,7 +13,7 @@ namespace AlgoTest.LeetCode.Search_Insert_Position
             var low = 0;
             var high = nums.Length - 1;
 
-            if (target >= nums[^1]) return nums.Length;
+            if (target > nums[^1]) return nums.Length;
 
             while (low < high)
             {

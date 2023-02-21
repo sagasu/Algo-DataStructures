@@ -1,4 +1,4 @@
-public class Search_Insert_Position
+public class Search_Insert_Position_QuickAndSlow
 {
     // this is O(n) but leetcode approves it :)
     public int SearchInsert(int[] nums, int target)
