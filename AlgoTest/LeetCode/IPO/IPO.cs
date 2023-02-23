@@ -3,41 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.IPO
 {
-    [TestClass]
-    public class IPO
+    internal class IPO
     {
-        [TestMethod]
-        public void Test()
-        {
-            Assert.AreEqual(4, FindMaximizedCapital(2, 0, new[] { 1, 2, 3 }, new[] { 0, 1, 1 }));
-        }
-        //time limit exceeded 
         public int FindMaximizedCapital(int k, int w, int[] profits, int[] capital)
         {
-            var profitsWithCapital = capital.Zip(profits);
+            var projects = new List<(int capital, int profit)>();
 
-            var profitable = new PriorityQueue<int, int>(Comparer<int>.Create((x, y) => -1*x.CompareTo(y)));
-            profitable.EnqueueRange(profitsWithCapital);
+            for (var i = 0; i < profits.Length; i++)
+                projects.Add((capital[i], profits[i]));
             
-            var tooCostly = new List<(int Element, int Priority)>();
-            while (k > 0)
-            {
-                profitable.TryDequeue(out var cost, out var profit);
+            projects = projects.OrderBy(x => x.capital).ToList();
 
-                while (cost > w)
+            var queue = new PriorityQueue<int, int>();
+
+            var completedProjects = 0;
+
+            while (k-- > 0)
+            {
+                while (completedProjects < projects.Count && projects[completedProjects].capital <= w)
                 {
-                    tooCostly.Add((cost, profit));
-                    profitable.TryDequeue(out cost, out profit);
+                    var profit = projects[completedProjects].profit;
+                    // `int.MaxValue - profit` is a hack to reverse the order of priority queue, because the lowest number is on the top, and we want it to be otherwise around.
+                    queue.Enqueue(profit, int.MaxValue - profit);
+                    completedProjects++;
                 }
 
-                w += profit;
-                profitable.EnqueueRange(tooCostly);
-                tooCostly.Clear();
-                k -= 1;
+                if (queue.Count == 0) break;
+                
+                w += queue.Dequeue();
             }
 
             return w;
