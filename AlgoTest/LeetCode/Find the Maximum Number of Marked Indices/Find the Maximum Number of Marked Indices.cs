@@ -44,14 +44,14 @@ namespace AlgoTest.LeetCode.Find_the_Maximum_Number_of_Marked_Indices
             for (var i = 0; i < halfN; i++)
                 smallNumbers.Push(nums[i]);
 
-            for (var i = halfN + 1; i < nums.Length; i++)
+            for (var i = halfN; i < nums.Length; i++)
                 largeNumbers.Push(nums[i]);
             
             while (smallNumbers.TryPop(out var small) && largeNumbers.TryPop(out var large))
             {
                 while (small * 2 > large)
                 {
-                    if(!smallNumbers.TryPop(out small)) break;
+                    if(!smallNumbers.TryPop(out small)) return pairs;
                 }
                 pairs += 2;
             }
