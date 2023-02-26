@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AlgoTest.LeetCode.Find_the_Maximum_Number_of_Marked_Indices
 {
     [TestClass]
-    public class Find_the_Maximum_Number_of_Marked_Indices
+    public class Find_the_Maximum_Number_of_Marked_Indices_Nicer
     {
         [TestMethod]
         public void Test1()
@@ -34,28 +34,27 @@ namespace AlgoTest.LeetCode.Find_the_Maximum_Number_of_Marked_Indices
 
         public int MaxNumOfMarkedIndices(int[] nums)
         {
-            if(nums.Length <= 1) return 0;
-            var pairs = 0;
-            var smallNumbers = new Stack<int>();
-            var largeNumbers = new Stack<int>();
+            var markedIndices = 0;
+            
             Array.Sort(nums);
             var halfN = nums.Length/2;
-
-            for (var i = 0; i < halfN; i++)
-                smallNumbers.Push(nums[i]);
-
-            for (var i = halfN; i < nums.Length; i++)
-                largeNumbers.Push(nums[i]);
+            var smallNumbers = new Stack<int>(nums.Take(halfN));
+            var largeNumbers = new Stack<int>(nums.Skip(halfN));
             
-            while (smallNumbers.TryPop(out var small) && largeNumbers.TryPop(out var large))
+            while (smallNumbers.Count > 0 && largeNumbers.Count > 0)
             {
-                while (small * 2 > large)
-                    if(!smallNumbers.TryPop(out small)) return pairs;
-                
-                pairs += 2;
+                if (smallNumbers.Peek() * 2 <= largeNumbers.Peek())
+                {
+                    markedIndices += 2;
+                    smallNumbers.Pop();
+                    largeNumbers.Pop();
+                    continue;
+                }
+
+                smallNumbers.Pop();
             }
 
-            return pairs;
+            return markedIndices;
         }
     }
 }
