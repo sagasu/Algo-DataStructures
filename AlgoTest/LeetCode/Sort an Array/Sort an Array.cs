@@ -30,10 +30,37 @@ namespace AlgoTest.LeetCode.Sort_an_Array
         public void Test3()
         {
             int[] arr = { 5, 1, 1, 2, 0, 0 };
-            QuickSort(arr);
+            QuickSort2(arr);
             Assert.IsTrue(arr is [ 0, 0, 1, 1, 2, 5 ]);
         }
 
+        public void QuickSort2(int[] arr)
+        {
+            void QuickSort2(int left, int right)
+            {
+                var i = left;
+                var j = right;
+                var pivot = arr[left];
+
+                while (i <= j)
+                {
+                    while (arr[i] < pivot) i++;
+                    while (arr[j] > pivot) j--;
+
+                    if (i <= j)
+                    {
+                        (arr[i], arr[j]) = (arr[j], arr[i]);
+                        i++;
+                        j--;
+                    }
+                }
+
+                if (left < j) QuickSort2(left, j);
+                if (i < right) QuickSort2( i, right);
+            }
+
+            QuickSort2( 0, arr.Length - 1);
+        }
 
         public void QuickSort(int[] arr)
         {
