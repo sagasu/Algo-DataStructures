@@ -8,50 +8,59 @@ namespace AlgoTest.LeetCode.Jump_Game_IV
 {
     public class Jump_Game_IV
     {
-        //not working
         public int MinJumps(int[] arr)
         {
-            var N = arr.Length;
-            var q = new Queue<int>();
-            var best = new int[N];
+            if (arr == null || arr.Length <= 1) return 0;
 
-            var dic = new Dictionary<int, IList<int>>();
-
-            for (var i = 0; i < N; i++)
-                if(!dic.TryAdd(arr[i], new List<int> {i})) dic[arr[i]].Add(i);
-
-            q.Enqueue(0);
-            best[0] = 0;
-            var done = new HashSet<int>();
-
-            while (q.Count > 0)
+            var dic = new Dictionary<int, List<int>>();
+            for (var i = 0; i < arr.Length; i++)
             {
-                var current = q.Dequeue();
-                if (current == N - 1) return best[current];
+                if (!dic.ContainsKey(arr[i])) dic.Add(arr[i], new List<int>() { i });
+                else dic[arr[i]].Add(i);
+            }
 
-                foreach (var i in new List<int> { current - 1, current + 1 })
+            var queue = new Queue<int>();
+            queue.Enqueue(0);
+
+            var visited = new bool[arr.Length];
+            visited[0] = true;
+            var res = 0;
+
+            while (queue.Count > 0)
+            {
+                var size = queue.Count;
+                for (var i = 0; i < size; i++)
                 {
-                    if (0 <= i && i < N && best[current] + 1 < best[i])
+                    var curr = queue.Dequeue();
+                    if (curr == arr.Length - 1) return res;
+
+                    var left = curr - 1;
+                    var right = curr + 1;
+                    if (left >= 0 && !visited[left])
                     {
-                        q.Enqueue(i);
-                        best[i] = best[current] + 1;
+                        queue.Enqueue(left);
+                        visited[left] = true;
                     }
-                }
 
-                if (!done.Contains(arr[current]))
-                {
-                    done.Add(arr[current]);
-
-                    foreach (var i in dic[arr[current]])
+                    if (right < arr.Length && !visited[right])
                     {
-                        if (best[current] + 1 < best[i])
+                        queue.Enqueue(right);
+                        visited[right] = true;
+                    }
+
+                    foreach (var next in dic[arr[curr]])
+                    {
+                        if (!visited[next])
                         {
-                            q.Enqueue(i);
-                            best[i] = best[current] + 1;
+                            queue.Enqueue(next);
+                            visited[next] = true;
                         }
                     }
+                    dic[arr[curr]].Clear(); 
                 }
+                res++;
             }
+
             return -1;
         }
     }
