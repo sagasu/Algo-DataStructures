@@ -50,8 +50,7 @@ namespace AlgoTest.LeetCode.Koko_Eating_Bananas
 
             var left = 1L;
             long right = int.MaxValue;
-                        
-
+            
             while (left < right)
             {
                 var mid = left + (right - left) / 2;
