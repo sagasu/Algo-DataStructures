@@ -78,7 +78,7 @@ namespace AlgoTest.AOC2022
                 return minPathLength;
             }
 
-            Assert.AreEqual(321, minPathLength);
+            Assert.AreEqual<int>(321, (int)minPathLength);
         }
         static uint SolvePathLength(IEnumerable<Vertex> vertices, Vertex start, Vertex end, uint abortThreshold = int.MaxValue)
         {
