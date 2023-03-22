@@ -14,7 +14,7 @@ namespace AlgoTest.LeetCode.Number_of_Zero_Filled_Subarrays
             long curr = 0;
 
             foreach (var n in nums)
-                if (n == 0) res += curr + 1;
+                if (n == 0) res += ++curr;
                 else curr = 0;
 
             return res;
