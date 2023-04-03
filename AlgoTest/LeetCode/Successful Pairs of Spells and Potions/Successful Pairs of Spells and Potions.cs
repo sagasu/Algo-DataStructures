@@ -1,4 +1,6 @@
-public class Successful PairsofSpellsandPotions {
+using System;
+
+public class SuccessfulPairsofSpellsandPotions {
     public int[] SuccessfulPairs(int[] spells, int[] potions, long success) {
         Array.Sort(potions);
         var result = new int [spells.Length];
@@ -12,9 +14,6 @@ public class Successful PairsofSpellsandPotions {
 
         return result;
     }
-    
-
-    
     
     public int BinarySearch (int[] arr, int low, int high, long key) {
        if(key < arr[0])  return arr.Length ;
