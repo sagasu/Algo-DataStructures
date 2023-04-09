@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Solution
+public class NumberOfChildrenNodes
 {
     private readonly Dictionary<int, List<int>> _graph = new();
     private int _seats;
