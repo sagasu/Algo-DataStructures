@@ -1,4 +1,6 @@
-public class Minimum ScoreofaPathBetweenTwoCities {
+using System.Collections.Generic;
+
+public class MinimumScoreofaPathBetweenTwoCities {
     public int MinScore(int n, int[][] roads) {
         List<List<(int x, int d)>> graph = new List<List<(int x, int d)>>();
         InitializeGraph(n, roads, graph);

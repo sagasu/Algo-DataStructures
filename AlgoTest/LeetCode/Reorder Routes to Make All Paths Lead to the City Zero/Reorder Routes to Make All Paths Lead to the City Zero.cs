@@ -1,4 +1,6 @@
-public class Reorder RoutestoMakeAllPathsLeadtotheCityZero {
+using System.Collections.Generic;
+
+public class ReorderRoutestoMakeAllPathsLeadtotheCityZero {
     public int MinReorder(int n, int[][] connections) {
         
         HashSet<(int from, int to)> edges = new();
