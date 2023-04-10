@@ -11,96 +11,70 @@ namespace AlgoTest.LeetCode.Number_of_Closed_Islands
     public class Number_of_Closed_Islands
     {
         [TestMethod]
-        public void Test()
+        public void FirstTest()
         {
-            var t = new int[][]
+
+            int[][] A =
             {
-                new []{1, 1, 1, 1, 1, 1, 1, 0},
-                new []{1, 0, 0, 0, 0, 1, 1, 0},
-                new []{1, 0, 1, 0, 1, 1, 1, 0},
-                new []{1, 0, 0, 0, 0, 1, 0, 1},
-                new []{1, 1, 1, 1, 1, 1, 1, 0}
+                new[] { 0, 0, 0, 0 },
+                new[] { 1, 0, 1, 0 },
+                new[] { 0, 1, 1, 0 },
+                new[] { 0, 0, 0, 0 }
             };
-            Assert.AreEqual(2, ClosedIsland(t));
+            var expected = 3;
+            Assert.AreEqual(expected, NumEnclaves(A));
+
         }
-        
+
         [TestMethod]
-        public void Test3()
+        public void FailedTest()
         {
-            var t = new int[][]
+
+            int[][] A =
             {
-                new []{1, 0, 1, 1, 1, 1, 0, 0, 1, 0},
-                new []{1, 0, 1, 1, 0, 0, 0, 1, 1, 1},
-                new []{0, 1, 1, 0, 0, 0, 1, 0, 0, 0},
-                new []{1, 0, 1, 1, 0, 1, 0, 0, 1, 0},
-                new []{0, 1, 1, 1, 0, 1, 0, 1, 0, 0},
-                new []{1, 0, 0, 1, 0, 0, 1, 0, 0, 0},
-                new []{1, 0, 1, 1, 1, 0, 0, 1, 1, 0},
-                new []{1, 1, 0, 1, 1, 0, 1, 0, 1, 1},
-                new []{0, 0, 1, 1, 1, 0, 1, 0, 1, 1},
-                new []{1, 0, 0, 1, 1, 1, 1, 0, 1, 1}
+                new[] { 0, 1, 1, 0 },
+                new[] { 0, 0, 1, 0 },
+                new[] { 0, 0, 1, 0 },
+                new[] { 0, 0, 0, 0 }
             };
-            Assert.AreEqual(3, ClosedIsland(t));
-        }
-        
-        [TestMethod]
-        public void Test2()
-        {
-            var t = new int[][]
-            {
-                new []{0,0,1,0,0},new []{0, 1, 0, 1, 0},new []{0, 1, 1, 1, 0}
-            };
-            Assert.AreEqual(1, ClosedIsland(t));
+            var expected = 0;
+            Assert.AreEqual(expected, NumEnclaves(A));
+
         }
 
-        public int ClosedIsland(int[][] grid)
+        public int NumEnclaves(int[][] A)
         {
-            var nrOfClosedIslands = 0;
-            var ni =grid.Length-1;
-            var nj = grid[0].Length-1;
+            var count = 0;
 
-            bool IsClosedIsland(int i, int j)
+            for (var i = 0; i < A[0].Length; i++)
             {
-                if (i == 0 || i == ni) return grid[i][j] == 1;
-                if (j == 0 || j == nj) return grid[i][j] == 1;
-
-                var isClosed = true;
-
-                if (grid[i - 1][j] == 0)
-                {
-                    grid[i - 1][j] = 3;
-                    isClosed = IsClosedIsland(i - 1, j);
-                }
-
-                if (grid[i + 1][j] == 0)
-                {
-                    grid[i + 1][j] = 3;
-                    isClosed = IsClosedIsland(i + 1, j) && isClosed;
-                }
-
-                if (grid[i][j - 1] == 0)
-                {
-                    grid[i][j - 1] = 3;
-                    isClosed = IsClosedIsland(i, j-1) && isClosed;
-                }
-
-                if (grid[i][j + 1] == 0)
-                {
-                    grid[i][j + 1] = 3;
-                    isClosed = IsClosedIsland(i, j+1) && isClosed;
-                }
-                
-                return isClosed;
+                Dfs(A, 0, i); //first line
+                Dfs(A, A.Length - 1, i); //last line
             }
 
-            
-            for (int i = 1; i < ni; i++)
-            for (int j = 1; j < nj; j++)
-                if (grid[i][j] == 0 && IsClosedIsland(i, j)) nrOfClosedIslands++;
-                
-            
+            for (var i = 0; i < A.Length; i++)
+            {
+                Dfs(A, i, 0); //first col
+                Dfs(A, i, A[0].Length - 1); //last col
+            }
 
-            return nrOfClosedIslands;
+            for (var i = 0; i < A.Length; i++)
+            for (var j = 0; j < A[i].Length; j++)
+                if (A[i][j] == 1) count++;
+
+            return count;
+        }
+
+        public void Dfs(int[][] arr, int i, int j)
+        {
+            if (i < 0 || i >= arr.Length || j < 0 || j >= arr[i].Length || arr[i][j] == 0) return;
+
+            arr[i][j] = 0;
+
+            Dfs(arr, i, j + 1);//find right
+            Dfs(arr, i, j - 1);//find left
+            Dfs(arr, i + 1, j);//find top
+            Dfs(arr, i - 1, j);//find bottom
         }
     }
 }

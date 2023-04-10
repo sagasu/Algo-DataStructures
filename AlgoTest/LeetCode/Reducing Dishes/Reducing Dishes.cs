@@ -1,3 +1,5 @@
+using System;
+
 public class ReducingDishes {
     public int MaxSatisfaction(int[] satisfaction) {
         Array.Sort(satisfaction);
