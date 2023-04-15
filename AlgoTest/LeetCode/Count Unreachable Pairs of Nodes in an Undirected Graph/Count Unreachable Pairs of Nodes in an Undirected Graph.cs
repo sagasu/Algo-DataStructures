@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class Solution {
     public long CountPairs(int n, int[][] edges) {
         var dsu = new UnionFindSet(n);
