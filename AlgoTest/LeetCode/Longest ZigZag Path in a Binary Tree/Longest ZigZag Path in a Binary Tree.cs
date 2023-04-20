@@ -23,7 +23,6 @@ namespace AlgoTest.LeetCode.Longest_ZigZag_Path_in_a_Binary_Tree
                 if (node.right != null) DFS(node.right, false, isLeft ? localMax+1 : 1);
             }
 
-            if (root.left == null && root.right == null) return 0;
             if (root.left != null) DFS(root.left, true, 1);
             if (root.right != null) DFS(root.right, false, 1);
 
