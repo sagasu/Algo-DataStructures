@@ -1,3 +1,5 @@
+using System.Linq;
+
 public class ScrambleString {
     public bool IsScramble(string s1, string s2) {
         var count = new int[26];
