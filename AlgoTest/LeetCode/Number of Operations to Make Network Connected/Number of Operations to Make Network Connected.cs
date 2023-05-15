@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class NumberofOperationstoMakeNetworkConnected {
     public int MakeConnected(int n, int[][] connections) {
         if(connections.Length < n - 1) return -1;
