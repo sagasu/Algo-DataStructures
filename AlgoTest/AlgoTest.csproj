@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="LeetCode\Dungeon Game\" />
-    <Folder Include="LeetCode\NewFolder1\" />
     <Folder Include="LeetCode\Spiral Matrix\" />
     <Folder Include="Problems\" />
   </ItemGroup>
