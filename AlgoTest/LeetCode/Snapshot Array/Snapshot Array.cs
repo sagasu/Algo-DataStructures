@@ -15,7 +15,7 @@ namespace AlgoTest.LeetCode.Snapshot_Array
         {
             var sa = new SnapshotArray(1);
             sa.Set(0, 15);
-            sa.Snap();
+            Assert.AreEqual(0, sa.Snap());
             Assert.AreEqual(1, sa.Snap());
             Assert.AreEqual(2, sa.Snap());
             Assert.AreEqual(15, sa.Get(0, 2));
@@ -24,14 +24,40 @@ namespace AlgoTest.LeetCode.Snapshot_Array
             Assert.AreEqual(15, sa.Get(0, 0));
         }
     }
-    
-    // out of memory solution
+
+    // also out of memory solution
     public class SnapshotArray
+    {
+
+        private Dictionary<int,Dictionary<int,int>> snaps = new();
+        private int snapId = 0;
+
+        public SnapshotArray(int length)
+        {
+            snaps[snapId] = new Dictionary<int, int>();
+        }
+
+        public void Set(int index, int val) => snaps[snapId][index] = val;
+        
+        public int Snap()
+        {
+            var snap = new Dictionary<int, int>(snaps[snapId]);
+
+            snaps.Add(++snapId, snap);
+            return snapId-1;
+        }
+
+        public int Get(int index, int snap_id) => snaps[snap_id].ContainsKey(index) ? snaps[snap_id][index]: 0;
+        
+    }
+
+    // out of memory solution
+    public class SnapshotArray_Timeout
     {
         private int[] curr;
         private List<int[]> snaps = new();
         private int snapId = 0;
-        public SnapshotArray(int length)
+        public SnapshotArray_Timeout(int length)
         {
             curr = new int[length];
         }
