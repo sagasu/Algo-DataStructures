@@ -21,10 +21,8 @@ namespace AlgoTest.LeetCode.CourseSchedule
             var pre = new int[numCourses];
 
             for (var i = 0; i < prerequisites.Length; i++)
-            {
                 pre[prerequisites[i][0]] += 1;
-            }
-
+            
             var courses = 0;
             Stack<int> st = new Stack<int>(numCourses);
             for (var i = 0; i < numCourses; i++)
