@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AlgoTest.LeetCode.Minimum_Speed_to_Arrive_on_Time
 {
-    internal class Minimum_Speed_to_Arrive_on_Time
+    internal class Minimum_Speed_to_Arrive_on_Time2
     {
         public int MinSpeedOnTime(int[] dist, double hour)
         {
