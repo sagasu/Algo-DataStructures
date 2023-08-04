@@ -41,13 +41,9 @@ namespace AlgoTest.LeetCode._4Sum
                     while (i > start && i < len - 1 && nums[i] == nums[i - 1]) { i++; };
                     var temp = kSum(nums, i + 1, k - 1, target - nums[i]);
                     foreach (var element in temp)
-                    {
                         element.Add(nums[i]);
-                    }
                     foreach (var val in temp)
-                    {
                         res.Add(val);
-                    }
                 }
             }
 
