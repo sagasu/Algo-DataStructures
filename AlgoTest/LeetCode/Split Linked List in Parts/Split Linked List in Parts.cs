@@ -13,8 +13,8 @@ namespace AlgoTest.LeetCode.Split_Linked_List_in_Parts
                 return new ListNode[k];
 
             var res = new ListNode[k];
-            int len = 0,
-                mod = 0;
+            var len = 0;
+            var mod = 0;
             var head = root;
 
             while (head != null)
@@ -28,7 +28,7 @@ namespace AlgoTest.LeetCode.Split_Linked_List_in_Parts
 
             for (var i = 0; i < k; i++)
             {
-                ListNode cur = head;
+                var cur = head;
                 if (head != null)
                 {
                     var curLen = 0;
