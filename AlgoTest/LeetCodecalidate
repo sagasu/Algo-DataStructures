@@ -1,0 +1,25 @@
+int count = 0;
+    
+    public bool ValidateBinaryTreeNodes(int n, int[] leftChild, int[] rightChild) {
+        var inDegrees = Enumerable.Range(0, n).ToDictionary(i => i, i => 0);
+        foreach (var i in leftChild.Concat(rightChild)) {
+            if (i != -1) {
+                inDegrees[i]++;
+            }
+        }
+        var roots = inDegrees.Where(p => p.Value == 0).Select(p => p.Key).ToArray();
+        if (roots.Length != 1 || inDegrees.Values.Count(v => v == 1) != n - 1) {
+            return false;
+        }
+        Helper(roots[0], leftChild, rightChild);
+        return count == n;
+    }
+    
+    void Helper(int i, int[] left, int[] right) {
+        if (i == -1) {
+            return;
+        }
+        count++;
+        Helper(left[i], left, right);
+        Helper(right[i], left, right);
+    }
