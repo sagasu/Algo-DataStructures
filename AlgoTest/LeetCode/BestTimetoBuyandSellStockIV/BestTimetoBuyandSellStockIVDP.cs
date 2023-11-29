@@ -51,9 +51,8 @@ namespace AlgoTest.LeetCode.BestTimetoBuyandSellStockIV
 
             for(var i = 1;i < prices.Length;i++)
             for (var j = 0; j < k; j++)
-            {
                 matrix[i, j] = Math.Max(matrix[i-1, j], matrix[i-1, j] + (prices[i] - prices[i - 1]));
-            }
+            
 
             return matrix[prices.Length - 1, k - 1];
         }
