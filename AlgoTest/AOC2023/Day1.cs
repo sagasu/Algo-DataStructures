@@ -51,7 +51,8 @@ public class Day1
                     if (num > 0)
                     {
                         numbers.Add(num);
-                        i += stringNumbers[num-1].Length-1;
+                        //we can't jump in line below because of zoneight234  here it is: one eight... even if one and eight share e together
+                        //i += stringNumbers[num-1].Length-1;
                     }
                 }
             }
