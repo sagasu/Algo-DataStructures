@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -75,13 +77,174 @@ public class Day3
             return true;
         }
     }
+
+
+    [TestMethod]
+    public void Test2()
+    {
+        var sidePaddedInput = data1
+            .Split("\r\n")
+            .Select(line => line.Prepend('.').Append('.').ToArray())
+            .ToArray();
+
+        var paddedInput = sidePaddedInput
+            .Prepend(Enumerable.Range(0, sidePaddedInput.Length).Select(_ => '.').ToArray())
+            .Append(Enumerable.Range(0, sidePaddedInput.Length).Select(_ => '.').ToArray())
+            .ToArray();
+
+        var partNumbers = new List<(int number, int y, int x, int length)>();
+        var gears = new List<(int y, int x)>();
+
+        for (var row = 1; row < paddedInput.Length - 1; row++)
+        {
+            for (var col = 1; col < paddedInput[0].Length - 1; col++)
+            {
+                var number = "";
+                while (paddedInput[row][col] is '0' or '1' or '2' or '3' or '4' or '5' or '6' or '7' or '8' or '9')
+                {
+                    number += paddedInput[row][col];
+                    col++;
+                }
+                if (paddedInput[row][col] is '*')
+                    gears.Add((row, col));
+                
+                if (number.Length is not 0)
+                    partNumbers.Add((int.Parse(number), row, col - number.Length, number.Length));
+                
+            }
+        }
+
+        var sum = 0;
+
+        foreach (var gear in gears)
+            if (partNumbers.Where(part => part.y >= gear.y - 1 && part.y <= gear.y + 1 && part.x <= gear.x + 1 && part.x + part.length >= gear.x).ToArray() is { Length: >= 2} parts)
+                sum += parts[0].number * parts[1].number;
+        
+        Console.WriteLine(sum);
+    }
+
+    [TestMethod]
+    public void Test22()
+    {
+        var rows = data1.Split('\n', StringSplitOptions.TrimEntries);
+        var nrColumns = rows[0].Length;
+        var sum = 0;
+        for (var i = 0; i < rows.Length; i++)
+        {
+            var row = rows[i];
+            var stringBuilder = new StringBuilder();
+            var gearNumber = 0;
+            for (var column = 0; column < row.Length; column++)
+            {
+                if (int.TryParse(row[column].ToString(), out var num))
+                {
+                    if(gearNumber == 0)
+                        gearNumber = GetAdjGearNumber(i, column);
+                    stringBuilder.Append(num);
+                    
+                    if (column == row.Length - 1)
+                    {
+                        FinishNumber(gearNumber, stringBuilder);
+                        gearNumber = 0;
+                    }
+                }
+                else if (stringBuilder.Length > 0)
+                {
+                    FinishNumber(gearNumber, stringBuilder);
+                    gearNumber = 0;
+                }
+            }
+        }
+        
+        Console.Out.WriteLine(sum);
+
+        void FinishNumber(int gearNumber, StringBuilder stringBuilder)
+        {
+            if (gearNumber != 0)
+            {
+                var parsedNum = int.Parse(stringBuilder.ToString());
+                sum += parsedNum * gearNumber;
+            }
+
+            stringBuilder.Clear();
+        }
+
+        int GetAdjGearNumber(int row, int col)
+        {
+            // if (row > 1 && IsStar(row - 1, col)) return GetGearNumber(row - 1, col);
+            // if (row > 1 && col > 0 && IsStar(row - 1, col-1)) return GetGearNumber(row - 1, col-1);
+            // if (row > 1 && col < nrColumns - 1 && IsStar(row - 1, col+1)) return GetGearNumber(row - 1, col+1);
+            
+            if (row < rows.Length-1 && IsStar(row + 1, col)) return GetGearNumber(row + 1, col);
+            if (row < rows.Length-1 && col > 0 && IsStar(row + 1, col-1)) return GetGearNumber(row + 1, col-1);
+            if (row < rows.Length-1 && col < nrColumns - 1 && IsStar(row + 1, col+1)) return GetGearNumber(row + 1, col+1);
+            
+            if(col > 0 && IsStar(row, col-1)) return GetGearNumber(row , col-1, false, false);
+            if(col < nrColumns-1 && IsStar(row, col+1)) return GetGearNumber(row, col+1, true, false);
+            return 0;
+        }
+
+        int GetGearNumber(int row, int col, bool isCheckRight = true, bool isCheckLeft = true)
+        {
+            if (row < rows.Length-1 && IsNumber(row + 1, col)) return GetNumber(row + 1, col);
+            if (row < rows.Length-1 && col > 0 && IsNumber(row + 1, col-1)) return GetNumber(row + 1, col-1);
+            if (row < rows.Length-1 && col < nrColumns - 1 && IsNumber(row + 1, col+1)) return GetNumber(row + 1, col+1);
+            
+            if(isCheckRight && col < nrColumns-1 && IsNumber(row, col+1)) return GetNumber(row, col+1);
+            if(isCheckLeft && col > 0  && IsNumber(row, col-1)) return GetNumber(row, col-1);
+            return 0;
+        }
+
+        int GetNumber(int row, int col)
+        {
+            var startCol = col;
+            while (startCol > 0)
+            {
+                startCol -= 1;
+                if (!int.TryParse(rows[row][startCol].ToString(), out var _))
+                {
+                    startCol += 1;
+                    break;
+                }
+            }
+
+            var sb = new StringBuilder();
+            while (startCol < nrColumns)
+            {
+                if (int.TryParse(rows[row][startCol].ToString(), out var nr))
+                {
+                    sb.Append(nr);
+                    startCol += 1;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return int.Parse(sb.ToString());
+        }
+        
+        bool IsNumber(int row, int col)
+        {
+            if (int.TryParse(rows[row][col].ToString(), out var nr)) return true;
+            return false;
+        }
+        
+        bool IsStar(int row, int col)
+        {
+            if (rows[row][col] == '*') return true;
+            return false;
+        }
+    }
+    
     
     private string testData =
         """
         467..114..
         ...*......
         ..35..633.
-        ......#...
+        ....1.#...
         617*......
         .....+.58.
         ..592.....
