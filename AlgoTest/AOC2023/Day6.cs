@@ -31,4 +31,23 @@ public class Day6
 
         Console.WriteLine(multSum);
     }
+
+    [TestMethod]
+    public void Test2()
+    {
+        (long time, long distance) race = (40828492, 233101111101487);
+
+        long solutions = 0, lastSolution = 0, hold = 0;
+        
+        while (true)
+        {
+            long currSolution = (race.time - hold) * hold;
+            if (currSolution < lastSolution && currSolution < race.distance) break;
+            if (currSolution > race.distance) solutions++;
+            lastSolution = currSolution;
+            hold++;
+        }
+
+        Console.WriteLine(solutions);
+    }
 }
