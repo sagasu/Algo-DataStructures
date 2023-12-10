@@ -29,9 +29,8 @@ public class Day10
         } while (forward != backward);
 
         Console.WriteLine(moves);
-        
     }
-    
+
     private static void Move(Point point, Size vector, string[] lines, out Size nextVector)
     {
         nextVector = vector;
@@ -58,9 +57,9 @@ public class Day10
         var next = GetMapValue(point.X, point.Y, lines);
         nextVector = next switch
         {
-            '|' => new (0, -1),
-            '7' => new (-1, 0),
-            'F' => new (1, 0),
+            '|' => new(0, -1),
+            '7' => new(-1, 0),
+            'F' => new(1, 0),
             _ => throw new ArgumentNullException($"Invalid character enountered - {next}")
         };
     }
@@ -70,9 +69,9 @@ public class Day10
         var next = GetMapValue(point.X, point.Y, lines);
         nextVector = next switch
         {
-            '|' => new (0, 1),
-            'L' => new (1, 0),
-            'J' => new (-1, 0),
+            '|' => new(0, 1),
+            'L' => new(1, 0),
+            'J' => new(-1, 0),
             _ => throw new ArgumentNullException($"Invalid character enountered - {next}")
         };
     }
@@ -82,9 +81,9 @@ public class Day10
         var next = GetMapValue(point.X, point.Y, lines);
         nextVector = next switch
         {
-            '-' => new (-1, 0),
-            'L' => new (0, -1),
-            'F' => new (0, 1),
+            '-' => new(-1, 0),
+            'L' => new(0, -1),
+            'F' => new(0, 1),
             _ => throw new ArgumentNullException($"Invalid character enountered - {next}")
         };
     }
@@ -94,9 +93,9 @@ public class Day10
         var next = GetMapValue(point.X, point.Y, lines);
         nextVector = next switch
         {
-            '-' => new (1, 0),
-            'J' => new (0, -1),
-            '7' => new (0, 1),
+            '-' => new(1, 0),
+            'J' => new(0, -1),
+            '7' => new(0, 1),
             _ => throw new ArgumentNullException($"Invalid character enountered - {next}")
         };
     }
@@ -109,7 +108,7 @@ public class Day10
             var x = lines[y].IndexOf('S');
             if (x >= 0)
             {
-                start = new (x, y);
+                start = new(x, y);
             }
         }
 
@@ -118,12 +117,12 @@ public class Day10
         var left = GetMapValue(start.X - 1, start.Y, lines);
         var right = GetMapValue(start.X + 1, start.Y, lines);
 
-        List<Size> vectors = new ();
+        List<Size> vectors = new();
         if ("|7F".Contains(up))
         {
             vectors.Add(new(0, -1));
         }
-        
+
         if ("|LJ".Contains(down))
         {
             vectors.Add(new(0, 1));
@@ -134,7 +133,7 @@ public class Day10
             vectors.Add(new(-1, 0));
         }
 
-        if("-J7".Contains(right))
+        if ("-J7".Contains(right))
         {
             vectors.Add(new(1, 0));
         }
@@ -150,6 +149,131 @@ public class Day10
         }
 
         return lines[y][x];
+    }
+
+    [TestMethod]
+    public void Test2()
+    {
+        string oldpipes = "|-LJ7F", newpipes = "│─└┘┐┌";
+        string[] validPipes = { "|7F", "-J7", "|LJ", "-LF" };
+        string[] nextDirection = { "NWE", "ENS", "SEW", "WNS" };
+        var directions = "NESW";
+        int[] lookSN = { -1, 0, 1, 0 };
+        int[] lookEW = { 0, 1, 0, -1 };
+        int[] upordownvalues = { 2, 0, 1, -1, 1, -1 };
+
+
+        int answer = 0, answer2 = 0;
+
+        var ground = new List<char[]>();
+        var pipeline = new List<char[]>();
+
+        int startEW = -1, startSN = 0;
+        foreach (var line in data.Split('\n', StringSplitOptions.TrimEntries))
+        {
+            var groundline = line.ToCharArray();
+            ground.Add(groundline);
+            if (startEW == -1)
+                startEW = line.IndexOf('S');
+            if (startEW == -1)
+                startSN++;
+
+            pipeline.Add(new string('.', line.Length).ToCharArray());
+        }
+
+        Console.WriteLine("Found S at {0} east and {1} south (0-indexed from NW corner)", startEW, startSN);
+
+        int traceEW = startEW, traceSN = startSN, stepcount = 0;
+        pipeline[traceSN][traceEW] = newpipes[oldpipes.IndexOf('7')];
+        ;
+        var looknext = 0;
+        var foundFirst = false;
+        do
+        {
+            stepcount++;
+            Console.Write("Step {0} @ (E{1},S{2}) on '{3}:", stepcount, traceEW, traceSN, ground[traceSN][traceEW]);
+            int pipeHit;
+
+            do
+            {
+                if (traceEW + lookEW[looknext] >= 0 && traceEW + lookEW[looknext] < ground[traceSN].Length &&
+                    traceSN + lookSN[looknext] >= 0 && traceSN + lookSN[looknext] < ground.Count)
+                {
+                    var groundChar = ground[traceSN + lookSN[looknext]][traceEW + lookEW[looknext]];
+                    pipeHit = validPipes[looknext].IndexOf(groundChar);
+
+                    if (pipeHit != -1)
+                    {
+                        // Console.WriteLine("\nFound {0} looking '{1}': Full loop completed in {2} steps.", groundChar, looking[i], stepcount);
+                        Console.Write("Found {0} looking '{1}' Going E{2}, S{3}", groundChar, directions[looknext],
+                            lookEW[looknext], lookSN[looknext]);
+                        traceEW += lookEW[looknext];
+                        traceSN += lookSN[looknext];
+                        pipeline[traceSN][traceEW] = newpipes[oldpipes.IndexOf(groundChar)];
+                        looknext = directions.IndexOf(nextDirection[looknext][pipeHit]);
+                        Console.WriteLine(" and looking next to '{0}'.", directions[looknext]);
+                        foundFirst = true;
+                        break;
+                    }
+
+                    if (groundChar == 'S')
+                    {
+                        Console.WriteLine("\nFull loop completed after {0} steps.", stepcount);
+                        traceEW += lookEW[looknext];
+                        traceSN += lookSN[looknext];
+                        break;
+                    }
+                }
+
+                looknext++; // Loop until fornd first pipe
+                if (looknext > 3)
+                {
+                    Console.WriteLine("Failed to fint a starting pipe!");
+                    break;
+                }
+            } while (!foundFirst);
+        } while ((traceEW != startEW || traceSN != startSN));
+
+        answer = stepcount / 2;
+        Console.WriteLine("The answer to part one is: {0}", answer);
+
+        bool inside;
+        int upordown, pipeIndex;
+        Console.WriteLine("PIPELINE MAP WITH ENCLOSED TILES ('0'):");
+        foreach (char[] groundline in pipeline)
+        {
+            inside = false;
+            upordown = 0;
+            foreach (char c in groundline)
+            {
+                if (inside && c == '.')
+                {
+                    Console.BackgroundColor = ConsoleColor.Red;
+                    Console.Write('I');
+                    answer2++;
+                }
+                else
+                {
+                    pipeIndex = newpipes.IndexOf(c);
+                    if (pipeIndex >= 0)
+                    {
+                        upordown += upordownvalues[pipeIndex];
+                        if (Math.Abs(upordown) == 2)
+                        {
+                            upordown = 0;
+                            inside = !inside;
+                        }
+                    }
+
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.Write(c);
+                }
+            }
+
+            Console.WriteLine();
+        }
+
+        Console.WriteLine("The answer to part two is: {0}", answer2);
     }
 
     private string data = """
@@ -294,5 +418,4 @@ public class Day10
                             LJ-LJ.F-|.7|...||7F77|F|J-.|FLFL77-|J.|.|JLJJ|LLLJ|-F|77-||L|.F-FJJ.|-LJ7L7J.F--7LLLJ.FJJ.F|J-|||.F|FFJ|||7.|-J-LJ.L--7L--|FFJJ7.F7J|-JL-.F7
                             7JFF.FF-L-LJJJ-7JL7LLL|7JJ.LJJLLLFJLFJ7JJL.LL--JJLJ..JLL-FF---J.J.F.L.J.|-|LFF--7-L|-LF.J-JJJLLF--L-|J.L|L|.J-J.LLJJ-L|.|-L-F---J.LJJJ.FJL|7
                           """;
-
 }
