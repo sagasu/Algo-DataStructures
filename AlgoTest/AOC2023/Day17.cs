@@ -16,6 +16,14 @@ public class Day17
         Console.WriteLine(result);
     }
     
+    [TestMethod]
+    public void Test2()
+    {
+        ReadData();
+        var result = Bfs2(0, 0);
+        Console.WriteLine(result);
+    }
+    
     public void ReadData()
     {
         var lines = data.Split('\n', StringSplitOptions.TrimEntries);
@@ -35,7 +43,6 @@ public class Day17
         }
 
         private static readonly bool _useTestData = false;
-        private static readonly string _className = "Day17";
         private List<List<int>> _data = new();
 
         private int Bfs(int x, int y)
@@ -75,7 +82,141 @@ public class Day17
 
             return sums.Min();
         }
+        
+        private int Bfs2(int x, int y)
+        {
+            PriorityQueue<(int x, int y, Direction direction, int directionCount, int sum), int> queue = new();
+            HashSet<(int x, int y, Direction direction, int directionCount)> seen = new();
 
+            var sumDown = 0;
+            queue.Enqueue((x, y, Direction.DOWN, 1, sumDown), sumDown);
+            seen.Add((x, y, Direction.DOWN, 1));
+
+            var sumRight = 0;
+            queue.Enqueue((x, y, Direction.RIGHT, 1, sumRight), sumRight);
+            seen.Add((x, y, Direction.RIGHT, 1));
+
+            List<int> sums = new();
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+
+                if (current.x == _data.Count - 1 && current.y == _data.First().Count - 1)
+                {
+                    if (current.directionCount >= 4)
+                    {
+                        sums.Add(current.sum);
+                    }
+
+                    continue;
+                }
+
+                var neighbours = GetNeighbours2(current.x, current.y, current.direction, current.directionCount);
+                foreach (var item in neighbours)
+                {
+                    if (seen.Add((item.x, item.y, item.direction, item.directionCount)))
+                    {
+                        var sum = _data[item.x][item.y] + current.sum;
+                        queue.Enqueue((item.x, item.y, item.direction, item.directionCount, sum), sum);
+                    }
+                }
+            }
+
+            Console.WriteLine(string.Join(", ", sums.Distinct()));
+
+            return sums.Min();
+        }
+
+        private List<(int x, int y, Direction direction, int directionCount)> GetNeighbours2(int x, int y, Direction direction, int directionCount)
+        {
+            var dirs = GetDirs2(direction, directionCount);
+
+            List<(int x, int y, Direction direction, int directionCount)> validDirs = new();
+            foreach (var item in dirs)
+            {
+                var dx = item.x + x;
+                var dy = item.y + y;
+                if (dx < 0 || dx >= _data.Count || dy < 0 || dy >= _data.First().Count)
+                {
+                    continue;
+                }
+
+                validDirs.Add((dx, dy, item.direction, item.directionCount));
+            }
+
+            return validDirs;
+        }
+
+        private List<(int x, int y, Direction direction, int directionCount)> GetDirs2(Direction direction, int directionCount)
+        {
+            List<(int x, int y, Direction direction, int directionCount)> dirs = new();
+            switch (direction)
+            {
+                case Direction.UP:
+                    if (directionCount + 1 <= 4)
+                    {
+                        dirs.Add((-1, 0, Direction.UP, directionCount + 1));
+                    }
+                    else
+                    {
+                        if (directionCount + 1 <= 10)
+                        {
+                            dirs.Add((-1, 0, Direction.UP, directionCount + 1));
+                        }
+                        dirs.Add((0, -1, Direction.LEFT, 1));
+                        dirs.Add((0, 1, Direction.RIGHT, 1));
+                    }
+                    break;
+                case Direction.DOWN:
+                    if (directionCount + 1 <= 4)
+                    {
+                        dirs.Add((1, 0, Direction.DOWN, directionCount + 1));
+                    }
+                    else
+                    {
+                        if (directionCount + 1 <= 10)
+                        {
+                            dirs.Add((1, 0, Direction.DOWN, directionCount + 1));
+                        }
+                        dirs.Add((0, -1, Direction.LEFT, 1));
+                        dirs.Add((0, 1, Direction.RIGHT, 1));
+                    }
+                    break;
+                case Direction.LEFT:
+                    if (directionCount + 1 <= 4)
+                    {
+                        dirs.Add((0, -1, Direction.LEFT, directionCount + 1));
+                    }
+                    else
+                    {
+                        if (directionCount + 1 <= 10)
+                        {
+                            dirs.Add((0, -1, Direction.LEFT, directionCount + 1));
+                        }
+                        dirs.Add((1, 0, Direction.DOWN, 1));
+                        dirs.Add((-1, 0, Direction.UP, 1));
+                    }
+                    break;
+                case Direction.RIGHT:
+                    if (directionCount + 1 <= 4)
+                    {
+                        dirs.Add((0, 1, Direction.RIGHT, directionCount + 1));
+                    }
+                    else
+                    {
+                        if (directionCount + 1 <= 10)
+                        {
+                            dirs.Add((0, 1, Direction.RIGHT, directionCount + 1));
+                        }
+                        dirs.Add((1, 0, Direction.DOWN, 1));
+                        dirs.Add((-1, 0, Direction.UP, 1));
+                    }
+                    break;
+            }
+
+            return dirs;
+        }
+        
         private List<(int x, int y, Direction direction, int directionCount)> GetNeighbours(int x, int y, Direction direction, int directionCount)
         {
             var dirs = GetDirs(direction, directionCount);
