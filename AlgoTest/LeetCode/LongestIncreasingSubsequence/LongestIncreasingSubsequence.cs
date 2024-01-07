@@ -46,9 +46,8 @@ namespace AlgoTest.LeetCode.LongestIncreasingSubsequence
             var nrOfLIS = new int[nums.Length];
 
             for (var i = 0; i < nums.Length; i++)
-            {
                 nrOfLIS[i] = 1;
-            }
+            
 
             var maxLength = 0;
             for (var i = 1; i < nums.Length; i++)
