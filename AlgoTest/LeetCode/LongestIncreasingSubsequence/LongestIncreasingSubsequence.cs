@@ -53,15 +53,12 @@ namespace AlgoTest.LeetCode.LongestIncreasingSubsequence
             for (var i = 1; i < nums.Length; i++)
             {
                 for (var j = 0; j < i; j++)
-                {
                     if (nums[i] > nums[j])
-                    {
                         if (nrOfLIS[j] + 1 > nrOfLIS[i])
-                        {
                             nrOfLIS[i] = nrOfLIS[j] + 1;
-                        }
-                    }
-                }
+                        
+                    
+                
 
                 maxLength = Math.Max(maxLength, nrOfLIS[i]);
             }
