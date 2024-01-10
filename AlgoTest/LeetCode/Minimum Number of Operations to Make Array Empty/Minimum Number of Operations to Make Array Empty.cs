@@ -18,7 +18,6 @@ public class Minimum_Number_of_Operations_to_Make_Array_Empty
 
     public int MinOperations(int[] nums)
     {
-        Array.Sort(nums);
         var dic = new Dictionary<int, int>();
         for (var i = 0; i < nums.Length; i++)
             if (!dic.TryAdd(nums[i], 1))
