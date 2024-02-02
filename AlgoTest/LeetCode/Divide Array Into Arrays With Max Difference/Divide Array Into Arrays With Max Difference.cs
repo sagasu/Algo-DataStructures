@@ -15,9 +15,7 @@ public class Divide_Array_Into_Arrays_With_Max_Difference
             temp[1] = nums[i*3+1];
             temp[2] = nums[i*3+2];
             
-            if(temp[2] - temp[1] <= k
-               && temp[1] - temp[0] <= k
-               && temp[2] - temp[0] <= k)
+            if(temp[2] - temp[1] <= k && temp[1] - temp[0] <= k && temp[2] - temp[0] <= k)
                 res[i] = temp;
             else 
                 return Array.Empty<int[]>(); 
