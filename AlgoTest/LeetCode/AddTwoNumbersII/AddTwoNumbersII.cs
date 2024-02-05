@@ -39,8 +39,8 @@ namespace AlgoTest.LeetCode.AddTwoNumbersII
             }
 
             
-            int v1 = 0;
-            int v2 = 0;
+            var v1 = 0;
+            var v2 = 0;
             var carry = 0;
             var stack = new Stack<int>();
             ListNode head = null;
