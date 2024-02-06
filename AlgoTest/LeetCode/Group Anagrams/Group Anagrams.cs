@@ -32,9 +32,7 @@ namespace AlgoTest.LeetCode.Group_Anagrams
             }
 
             foreach (var dicKey in dic.Keys)
-            {
                 ret.Add(dic[dicKey]);
-            }
 
             return ret;
         }
