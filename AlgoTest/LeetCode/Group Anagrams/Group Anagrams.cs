@@ -23,7 +23,6 @@ namespace AlgoTest.LeetCode.Group_Anagrams
 
         public IList<IList<string>> GroupAnagrams(string[] strs)
         {
-            var ret = new List<IList<string>>();
             var dic = new Dictionary<string, IList<string>>();
             foreach (var str in strs)
             {
@@ -31,10 +30,7 @@ namespace AlgoTest.LeetCode.Group_Anagrams
                 if(!dic.TryAdd(key,new List<string>(){ str })) dic[key].Add(str);
             }
 
-            foreach (var dicKey in dic.Keys)
-                ret.Add(dic[dicKey]);
-
-            return ret;
+            return dic.Keys.Select(dicKey => dic[dicKey]).ToList();
         }
 
         class EqualityComparerIList : IEqualityComparer<IList<string>>
