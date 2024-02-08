@@ -35,10 +35,8 @@ namespace AlgoTest.LeetCode.Group_Anagrams
 
         class EqualityComparerIList : IEqualityComparer<IList<string>>
         {
-            public bool Equals(IList<string> x, IList<string> y)
-            {
-                return x.SequenceEqual(y);
-            }
+            public bool Equals(IList<string> x, IList<string> y) => x.SequenceEqual(y);
+            
 
             public int GetHashCode(IList<string> obj)
             {
