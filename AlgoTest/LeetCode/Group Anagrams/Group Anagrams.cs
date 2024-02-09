@@ -37,11 +37,8 @@ namespace AlgoTest.LeetCode.Group_Anagrams
         {
             public bool Equals(IList<string> x, IList<string> y) => x.SequenceEqual(y);
             
-
-            public int GetHashCode(IList<string> obj)
-            {
-                return obj.GetHashCode();
-            }
+            public int GetHashCode(IList<string> obj) => obj.GetHashCode();
+            
         }
     }
 }
