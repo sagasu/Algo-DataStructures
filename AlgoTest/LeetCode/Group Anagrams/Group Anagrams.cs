@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.Group_Anagrams
@@ -38,7 +35,6 @@ namespace AlgoTest.LeetCode.Group_Anagrams
             public bool Equals(IList<string> x, IList<string> y) => x.SequenceEqual(y);
             
             public int GetHashCode(IList<string> obj) => obj.GetHashCode();
-            
         }
     }
 }
