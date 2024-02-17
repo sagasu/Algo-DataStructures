@@ -31,8 +31,8 @@ namespace AlgoTest.LeetCode.Minimum_Falling_Path_Sum
                 }
             }
 
-            int res = dp[m - 1, 0];
-            for (int j = 0; j < n; j++)
+            var res = dp[m - 1, 0];
+            for (var j = 0; j < n; j++)
                 res = Math.Min(res, dp[m - 1, j]);
 
             return res;
