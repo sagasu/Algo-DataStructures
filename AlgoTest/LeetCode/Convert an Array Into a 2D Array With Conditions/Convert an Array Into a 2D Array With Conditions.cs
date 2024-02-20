@@ -9,11 +9,10 @@ public class Convert_an_Array_Into_a_2D_Array_With_Conditions
         List<HashSet<int>> unique = new();
 
         foreach (var item in nums) {
-            bool found = false;
+            var found = false;
 
-            foreach (HashSet<int> hs in unique)
-                if (found = hs.Add(item)) 
-                    break;
+            foreach (var hs in unique.Where(hs => found = hs.Add(item)))
+                break;
 
             if (!found)
                 unique.Add(new HashSet<int>() {item});
