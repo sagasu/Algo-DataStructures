@@ -15,7 +15,7 @@ public class Convert_an_Array_Into_a_2D_Array_With_Conditions
                 break;
 
             if (!found)
-                unique.Add(new HashSet<int>() {item});
+                unique.Add(new HashSet<int> { item });
         }     
 
         return unique
