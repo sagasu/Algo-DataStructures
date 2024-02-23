@@ -41,7 +41,6 @@ namespace AlgoTest.LeetCode.CheapestFlightsWithinKStops
                 var curr = sl.First();
                 sl.Remove(curr);
 
-
                 if (curr.Src == dst)
                     return curr.Cost;
 
@@ -50,9 +49,7 @@ namespace AlgoTest.LeetCode.CheapestFlightsWithinKStops
                     if (nexts != null)
                     {
                         foreach (var next in nexts)
-                        {
                             sl.Add(new Node(next.Item1, curr.Cost + next.Item2, curr.Stop + 1));
-                        }
                     }
                 }
 
