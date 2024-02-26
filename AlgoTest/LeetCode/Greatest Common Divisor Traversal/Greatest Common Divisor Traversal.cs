@@ -13,6 +13,7 @@ public class Greatest_Common_Divisor_Traversal
             count = n;
             _par = new int[n];
             _size = new int[n];
+            
             for(var i=0;i<n;i++){
                 _par[i]=i;
                 _size[i]=1;
@@ -36,8 +37,7 @@ public class Greatest_Common_Divisor_Traversal
             if(_size[px]<_size[py]){
                 _par[px] = py;
                 _size[py] += _size[px];
-            }
-            else{
+            } else {
                 _par[py] = px;
                 _size[px] += _size[py];
             }
