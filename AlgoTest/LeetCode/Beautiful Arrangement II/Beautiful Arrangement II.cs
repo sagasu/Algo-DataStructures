@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AlgoTest.LeetCode.Beautiful_Arrangement_II
@@ -38,6 +35,7 @@ namespace AlgoTest.LeetCode.Beautiful_Arrangement_II
         {
             var ans = new List<int>(){1};
             var sign = 1;
+            
             for (var delta = k; delta >= 1; delta -= 1)
             {
                 ans.Add(ans[ans.Count - 1] + sign * delta);
