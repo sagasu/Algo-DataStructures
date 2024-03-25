@@ -10,8 +10,7 @@ public class Minimum_Operations_to_Exceed_Threshold_Value_II
         PriorityQueue<long, long> pq = new();
         var count = 0;
         
-        foreach(var num in nums)
-            pq.Enqueue(num, num);
+        foreach(var num in nums) pq.Enqueue(num, num);
     
         while(pq.Peek() < k)
         {
