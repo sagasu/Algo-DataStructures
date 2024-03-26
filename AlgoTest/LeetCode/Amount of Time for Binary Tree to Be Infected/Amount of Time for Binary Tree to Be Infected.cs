@@ -22,9 +22,8 @@ public class Amount_of_Time_for_Binary_Tree_to_Be_Infected
             {
                 var curr = toInfect.Dequeue();
                 if (infected.Add(curr))
-                    foreach (var next in adjDict[curr])
-                        if (!infected.Contains(next))
-                            toInfect.Enqueue(next);
+                    foreach (var next in adjDict[curr].Where(next => !infected.Contains(next)))
+                        toInfect.Enqueue(next);
             }
         }
 
