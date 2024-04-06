@@ -5,8 +5,7 @@ namespace AlgoTest.LeetCode.Maximum_Nesting_Depth_of_the_Parentheses;
 
 public class Maximum_Nesting_Depth_of_the_Parentheses
 {
-    public int MaxDepth(string s) => s
-        .Aggregate(
+    public int MaxDepth(string s) => s.Aggregate(
             (depth: 0, max: 0),
             (acc, next) => (
                 acc.depth += next switch {
