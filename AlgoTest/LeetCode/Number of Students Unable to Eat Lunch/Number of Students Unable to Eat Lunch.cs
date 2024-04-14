@@ -11,7 +11,7 @@ public class Number_of_Students_Unable_to_Eat_Lunch
             sandwiches
                 .TakeWhile(sanwich => counts[sanwich]-- > 0)
                 .Count()
-        )(new[] {
+        )(new[] { 
             students.Count(student => student == 0),
             students.Count(student => student == 1),
         });
