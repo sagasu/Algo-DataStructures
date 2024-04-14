@@ -15,7 +15,6 @@ namespace AlgoTest.LeetCode.Minimum_Falling_Path_Sum
 
             int m = matrix.Length, n = matrix[0].Length;
 
-            // dp[i,j]: min falling path sum ending at matrix[i,j]
             var dp = new int[m, n];
             for (var j = 0; j < n; j++)
                 dp[0, j] = matrix[0][j];
