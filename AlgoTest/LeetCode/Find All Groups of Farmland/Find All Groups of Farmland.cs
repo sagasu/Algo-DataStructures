@@ -12,18 +12,14 @@ public class Find_All_Groups_of_Farmland
         List<int[]> ans = new();
         
         for(var i=0; i<m; i++)
-        {
             for(var j=0; j<n; j++)
-            {
                 if(land[i][j]==1)
                 {
                     int[] farmLand = {i,j,-1,-1};
                     Dfs(land,i,j,farmLand);
                     ans.Add(farmLand);
                 }
-            }
-        }
-        
+     
         return ans.ToArray();
     }
     
