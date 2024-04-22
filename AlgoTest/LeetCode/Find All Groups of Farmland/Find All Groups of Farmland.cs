@@ -37,6 +37,5 @@ public class Find_All_Groups_of_Farmland
         Dfs(land,x+1,y,farmLand);
         Dfs(land,x,y-1,farmLand);
         Dfs(land,x,y+1,farmLand);
-        
     }
 }
