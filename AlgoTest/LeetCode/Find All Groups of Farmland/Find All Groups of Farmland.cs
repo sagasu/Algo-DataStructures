@@ -28,7 +28,7 @@ public class Find_All_Groups_of_Farmland
         if(x<0 || x>=land.Length || y<0 || y>=land[0].Length || land[x][y]==0 || land[x][y]==-1)
             return;
         
-        land[x][y] = -1;
+        land[x][y] = -1; 
         
         farmLand[2] = Math.Max(farmLand[2],x);
         farmLand[3] = Math.Max(farmLand[3],y);
