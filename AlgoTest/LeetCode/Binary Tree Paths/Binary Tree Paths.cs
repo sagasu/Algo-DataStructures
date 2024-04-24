@@ -14,7 +14,7 @@ public class Binary_Tree_Paths
         if (root == null) return;
         oneResult.Add($"{root.val}");
         if (root.left == null && root.right == null) {
-            result.Add(string.Join("->", oneResult));
+            result.Add(string.Join("->", oneResult)); 
         } else {
             DFS(root.left, oneResult, result);
             DFS(root.right, oneResult, result);
