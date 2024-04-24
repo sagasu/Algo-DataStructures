@@ -19,7 +19,6 @@ public class Find_All_Groups_of_Farmland
                     Dfs(land,i,j,farmLand);
                     ans.Add(farmLand);
                 }
-     
         return ans.ToArray();
     }
     
