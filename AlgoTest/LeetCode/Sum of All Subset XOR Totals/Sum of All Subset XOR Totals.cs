@@ -9,7 +9,7 @@ public class Sum_of_All_Subset_XOR_Totals
     }
     
     void Backtracking(int[] nums, ref int xorSum, int xor, int index) {
-        for (int i=index; i<nums.Length; i++) {
+        for (var i=index; i<nums.Length; i++) {
             xor = xor^nums[i];
             xorSum += xor;
             Backtracking(nums, ref xorSum, xor, i+1);
