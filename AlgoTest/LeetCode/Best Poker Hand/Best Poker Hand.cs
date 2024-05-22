@@ -25,7 +25,6 @@ public class Best_Poker_Hand
     
     public string BestHand(int[] ranks, char[] suits)
     {
-        var max = 0;
         var dic = ranks.GroupBy(rank=> rank).ToDictionary(grouping => grouping.Key, grouping => grouping.Count());
         var firstSuit = suits[0];
         if (suits.All(suit => suit == firstSuit)) return "Flush";
