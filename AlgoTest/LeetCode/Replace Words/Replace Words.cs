@@ -10,11 +10,11 @@ public class Replace_Words
 
         foreach(var word in dictionary)
             set.Add(word);
-        
 
         foreach(var word in sentence.Split(' '))
         {
             var prefix = "";
+            
             foreach (var t in word)
             {
                 prefix += t;
