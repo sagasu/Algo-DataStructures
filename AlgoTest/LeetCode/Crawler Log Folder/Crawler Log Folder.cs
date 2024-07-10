@@ -7,7 +7,7 @@ public class Crawler_Log_Folder
         var level = 0;       
         foreach(var l in logs)
         {
-            if (l == "../") {             
+            if (l == "../") {
                 if(level > 0) level--;
             } else if(l != "./")
                 level++;
