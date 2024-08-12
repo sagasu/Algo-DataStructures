@@ -17,7 +17,7 @@ public class Spiral_Matrix_III
             if(d==0 || d==2)
                 len++;
             
-            for(int k=0; k<len; k++)
+            for(var k=0; k<len; k++)
             {
                 rStart += directions[d,0];
                 cStart += directions[d,1];
