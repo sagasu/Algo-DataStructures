@@ -37,7 +37,9 @@ public class Build_a_Matrix_With_Conditions
       var pos = matrixOrder[i];
       var r = pos[0] >= 0 ? pos[0]: lastRow++;
       var c = pos[1] >= 0 ? pos[1]: lastColumn++;
-      if(res[r] == null) res[r] = new int[k];
+      if(res[r] == null)
+        res[r] = new int[k];
+      
       res[r][c] = i;
     }
     
