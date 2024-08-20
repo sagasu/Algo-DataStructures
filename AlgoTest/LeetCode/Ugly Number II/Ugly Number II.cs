@@ -1,4 +1,7 @@
-﻿namespace AlgoTest.LeetCode.Ugly_Number_II;
+﻿using System;
+using System.Collections.Generic;
+
+namespace AlgoTest.LeetCode.Ugly_Number_II;
 
 public class Ugly_Number_II
 {
