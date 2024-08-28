@@ -12,7 +12,7 @@ public class Count_Pairs_of_Points_With_Distance_k
             var x1 = t[0];
             var y1 = t[1];
             var key1 = (x1,y1);
-            for (int j = 0; j <= k; j++){
+            for (var j = 0; j <= k; j++){
                 var x2 = x1^j;
                 var y2 = y1^(k-j);
                 var key2 = (x2,y2);
