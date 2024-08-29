@@ -28,11 +28,7 @@ namespace AlgoTest.LeetCode.Add_Digits
             while (sum >= 10)
             {
                 num = sum;
-                sum = 0;
-                foreach (var n in num.ToString())
-                {
-                    sum += int.Parse(n.ToString());
-                }
+                sum = num.ToString().Sum(n => int.Parse(n.ToString()));
             }
             return sum;
         }
