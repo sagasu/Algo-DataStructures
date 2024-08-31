@@ -19,9 +19,9 @@ namespace AlgoTest.LeetCode.Minimum_Falling_Path_Sum
             for (var j = 0; j < n; j++)
                 dp[0, j] = matrix[0][j];
 
-            for (int i = 1; i < m; i++)
+            for (var i = 1; i < m; i++)
             {
-                for (int j = 0; j < n; j++)
+                for (var j = 0; j < n; j++)
                 {
                     var path1 = j - 1 < 0 ? Int32.MaxValue : dp[i - 1, j - 1];
                     var path2 = dp[i - 1, j];
