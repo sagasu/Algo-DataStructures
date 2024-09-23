@@ -5,7 +5,7 @@ namespace AlgoTest.LeetCode.K_th_Smallest_in_Lexicographical_Order;
 public class K_th_Smallest_in_Lexicographical_Order
 {
     public int FindKthNumber(int n, int k) {
-        int cur = 1;
+        var cur = 1;
         k--;
 
         while(k > 0){
