@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace AlgoTest.LeetCode.Target_Sum;
 
 public class Target_Sum
 {
-    Dictionary<(int, int, int), int> memo = new Dictionary<(int, int, int), int>();
+    Dictionary<(int, int, int), int> memo = new();
     
     public int FindTargetSumWays(int[] nums, int S) => HowManyWays(nums, 0, nums.Length - 1, S);
     
