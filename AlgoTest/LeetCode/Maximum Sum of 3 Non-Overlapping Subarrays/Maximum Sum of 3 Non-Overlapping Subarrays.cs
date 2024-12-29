@@ -29,8 +29,8 @@ public class Maximum_Sum_of_3_Non_Overlapping_Subarrays
             }
         }
 
-        for(int i=0; i<n; i++){
-            for(int j=i+k; j<n; j++){
+        for(var i=0; i<n; i++){
+            for(var j=i+k; j<n; j++){
                 var sum = sums[i] + dp[j][0];
 
                 if(sum > maxSum){
