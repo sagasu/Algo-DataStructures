@@ -6,10 +6,10 @@ public class Maximum_Sum_of_3_Non_Overlapping_Subarrays
         var n=nums.Length;
         var sums = new int[n];
 
-        for(int i=0; i<k; i++)
+        for(var i=0; i<k; i++)
             sums[0] += nums[i];
 
-        for(int i=k; i<n; i++)
+        for(var i=k; i<n; i++)
             sums[i-k+1] = sums[i-k] - nums[i-k] + nums[i];
 
         var maxSum = 0;
@@ -29,8 +29,8 @@ public class Maximum_Sum_of_3_Non_Overlapping_Subarrays
             }
         }
 
-        for(int i=0; i<n; i++){
-            for(int j=i+k; j<n; j++){
+        for(var i=0; i<n; i++){
+            for(var j=i+k; j<n; j++){
                 var sum = sums[i] + dp[j][0];
 
                 if(sum > maxSum){
