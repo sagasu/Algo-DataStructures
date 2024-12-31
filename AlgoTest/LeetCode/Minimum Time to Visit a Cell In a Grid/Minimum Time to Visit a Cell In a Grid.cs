@@ -7,9 +7,7 @@ public class Minimum_Time_to_Visit_a_Cell_In_a_Grid
     public int MinimumTime(int[][] grid)
     {
         if (grid[0][1] > 1 && grid[1][0] > 1)
-        {
             return -1;
-        }
 
         int row = grid.Length, col = grid[0].Length;
         var directions = new int[][] {
@@ -21,9 +19,7 @@ public class Minimum_Time_to_Visit_a_Cell_In_a_Grid
 
         var visited = new bool[row][];
         for (int i = 0; i < row; i++)
-        {
             visited[i] = new bool[col];
-        }
 
         var pq = new PriorityQueue<(int, int, int), int>();
         pq.Enqueue((0, 0, 0), 0);
@@ -34,9 +30,7 @@ public class Minimum_Time_to_Visit_a_Cell_In_a_Grid
             var (i, j, currentTime) = pq.Dequeue();
 
             if (i == row - 1 && j == col - 1)
-            {
                 return currentTime;
-            }
 
             foreach (var direction in directions)
             {
@@ -46,16 +40,12 @@ public class Minimum_Time_to_Visit_a_Cell_In_a_Grid
                 if (newI >= 0 && newI < row && newJ >= 0 && newJ < col && !visited[newI][newJ])
                 {
                     if (currentTime + 1 >= grid[newI][newJ])
-                    {
                         pq.Enqueue((newI, newJ, currentTime + 1), currentTime + 1);
-                    }
                     else
                     {
                         var newTime = grid[newI][newJ] - currentTime;
                         if (newTime % 2 == 0)
-                        {
                             newTime += 1;
-                        }
 
                         pq.Enqueue((newI, newJ, newTime + currentTime), newTime + currentTime);
                     }
