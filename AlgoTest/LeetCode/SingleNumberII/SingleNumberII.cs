@@ -18,10 +18,7 @@ namespace AlgoTest.LeetCode.SingleNumberII
                     if (dic[num] == 3)
                         dic.Remove(num);
                 }
-                else
-                {
-                    dic.Add(num,1);
-                }
+                else dic.Add(num,1);
             }
 
             return dic.First().Key;

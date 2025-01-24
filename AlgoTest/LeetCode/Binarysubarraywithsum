@@ -1,0 +1,24 @@
+public class Solution {
+    public int NumSubarraysWithSum(int[] A, int S) {
+        int count = 0, num = 0;
+
+      Dictionary<int, int> dictionary = new Dictionary<int, int>();
+
+      foreach (var item in A)
+      {
+        num += item;
+        if (S == num) count++;
+
+        if (dictionary.ContainsKey(num - S))
+        {
+          count += dictionary[num - S];
+        }
+
+        if (dictionary.ContainsKey(num)) dictionary[num]++;
+        else
+          dictionary.Add(num, 1);
+      }
+
+      return count;
+    }
+}
