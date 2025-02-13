@@ -14,7 +14,7 @@ public class Max_Sum_of_a_Pair_With_Equal_Sum_of_Digits
 
     public int DigSums(int num)
     {
-        int ans = 0;
+        var ans = 0;
         while (num > 0)
         {
             ans += num % 10;
