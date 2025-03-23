@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public class LRUCache 
 {
     private readonly int _capacity;
