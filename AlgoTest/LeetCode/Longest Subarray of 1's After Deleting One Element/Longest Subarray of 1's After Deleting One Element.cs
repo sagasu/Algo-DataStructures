@@ -1,4 +1,6 @@
-public class Longest Subarrayof1AfterDeletingOneElement {
+using System;
+
+public class LongestSubarrayofAfterDeletingOneElement {
     public int LongestSubarray(int[] nums) {
         int li = 0, hi = 0, zero = 0, res = 0;
         while (hi < nums.Length) {
