@@ -1,4 +1,4 @@
-public class Solution {
+public class SolutionKnightProbability {
 int[] dirR = new int[]{2, 2, 1, 1, -1, -1, -2, -2};
 int[] dirC = new int[]{1, -1, 2, -2, 2, -2, 1, -1};
 public double KnightProbability(int N, int K, int r, int c) {
