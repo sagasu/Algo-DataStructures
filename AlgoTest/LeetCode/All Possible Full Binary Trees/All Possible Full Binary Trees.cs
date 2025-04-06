@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using AlgoTest.LeetCode;
 public class AllPossibleFullBinaryTrees {
     public IList<TreeNode> AllPossibleFBT(int n) {
         if (n % 2 == 0) return new List<TreeNode>();
