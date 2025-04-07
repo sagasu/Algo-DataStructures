@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 public class BuddyString {
     public bool BuddyStrings(string s, string t) =>
     s == t && s.ToHashSet().Count < s.Length ||
