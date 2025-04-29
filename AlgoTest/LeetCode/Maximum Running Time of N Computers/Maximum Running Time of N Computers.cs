@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 public class MaximumRunningTimeofNComputers {
     bool CheckTime(long time, int n, int[] batteries) {
         long sum = 0;
