@@ -1,4 +1,6 @@
-﻿namespace AlgoTest.LeetCode.Find_Numbers_with_Even_Number_of_Digits;
+﻿using System;
+
+namespace AlgoTest.LeetCode.Find_Numbers_with_Even_Number_of_Digits;
 
 public class Find_Numbers_with_Even_Number_of_Digits
 {
