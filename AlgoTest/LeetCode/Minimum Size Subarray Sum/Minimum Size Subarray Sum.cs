@@ -1,3 +1,5 @@
+using System;
+
 public class MinimumSizeSubarraySum {
     public int MinSubArrayLen(int s, int[] nums) {
         if (nums.Length == 0)
