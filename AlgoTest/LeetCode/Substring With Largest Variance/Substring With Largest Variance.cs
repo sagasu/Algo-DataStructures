@@ -1,3 +1,5 @@
+using System;
+
 public class SubstringWithLargestVariance {
     public int LargestVariance(string s) {
         int[] freq = new int[26];
