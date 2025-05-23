@@ -1,4 +1,6 @@
-public class StrangePrinter {
+using System;
+
+public class StrangePrinters {
     public int StrangePrinter(string s) 
     {
         if(s.Length < 2) return s.Length;
