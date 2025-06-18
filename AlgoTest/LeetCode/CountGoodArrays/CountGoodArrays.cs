@@ -1,6 +1,6 @@
 ﻿namespace AlgoTest.LeetCode.CountGoodArrays;
 
-public class CountGoodArrays
+public class CountGoodArrays2
 {
     const int MOD = 1000000007;
 
