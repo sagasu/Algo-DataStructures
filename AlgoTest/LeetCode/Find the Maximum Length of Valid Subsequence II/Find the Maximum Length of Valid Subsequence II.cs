@@ -9,7 +9,7 @@ public class Find_the_Maximum_Length_of_Valid_Subsequence_II
         ushort max=0;
         foreach (var t in nums)
         {
-            int si=t % k;
+            var si=t % k;
             int di=si * k; 
             int dl=di + k;
             for (; di < dl; si += k, di++) {
