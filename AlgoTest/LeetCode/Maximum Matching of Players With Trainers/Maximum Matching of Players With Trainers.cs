@@ -8,7 +8,7 @@ public class Maximum_Matching_of_Players_With_Trainers
         Array.Sort(players);
         Array.Sort(trainers);
 
-        int count = 0; 
+        var count = 0; 
         int i=0, j=0;
 
         while (i < players.Length && j < trainers.Length) {
