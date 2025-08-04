@@ -1,3 +1,5 @@
+using System;
+
 public class MinimumSpeedtoArriveonTime {
     public int MinSpeedOnTime(int[] dist, double hour) {
         int low = 1;
