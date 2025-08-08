@@ -1,4 +1,6 @@
-﻿namespace AlgoTest.LeetCode.Find_the_Maximum_Number_of_Fruits_Collected;
+﻿using System;
+
+namespace AlgoTest.LeetCode.Find_the_Maximum_Number_of_Fruits_Collected;
 
 public class Find_the_Maximum_Number_of_Fruits_Collected
 {
