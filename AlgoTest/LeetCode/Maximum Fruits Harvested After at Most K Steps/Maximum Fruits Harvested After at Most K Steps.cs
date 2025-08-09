@@ -1,4 +1,6 @@
-﻿namespace AlgoTest.LeetCode.Maximum_Fruits_Harvested_After_at_Most_K_Steps;
+﻿using System;
+
+namespace AlgoTest.LeetCode.Maximum_Fruits_Harvested_After_at_Most_K_Steps;
 
 public class Maximum_Fruits_Harvested_After_at_Most_K_Steps
 {
