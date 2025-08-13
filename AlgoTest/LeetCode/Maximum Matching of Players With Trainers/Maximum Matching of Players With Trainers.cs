@@ -16,9 +16,9 @@ public class Maximum_Matching_of_Players_With_Trainers
                 count++;
                 i++;
                 j++;
-            } else {
+            } else 
                 j++;
-            }
+            
         }
         return count;
     }
