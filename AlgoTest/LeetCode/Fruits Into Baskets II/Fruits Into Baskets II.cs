@@ -1,4 +1,6 @@
-﻿namespace AlgoTest.LeetCode.Fruits_Into_Baskets_II;
+﻿using System.Linq;
+
+namespace AlgoTest.LeetCode.Fruits_Into_Baskets_II;
 
 public class Fruits_Into_Baskets_II
 {
@@ -12,12 +14,7 @@ public class Fruits_Into_Baskets_II
                 }
             }
         }
-        int ans=0;
-        foreach(var u in fruits){
-            if(u!=-1){
-                ans++;
-            }
-        }
-        return ans;
+
+        return fruits.Count(u => u != -1);
     }
 }
