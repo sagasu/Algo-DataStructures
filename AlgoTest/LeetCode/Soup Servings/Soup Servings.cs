@@ -1,4 +1,4 @@
-public class SoupServings {
+public class SoupServingss {
     public double SoupServings(int n) {
         var probabilities = new double[5000, 5000];
         if (n >= 5000) return 1;
