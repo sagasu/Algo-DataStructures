@@ -1,4 +1,6 @@
-﻿namespace AlgoTest.LeetCode.Minimum_Time_to_Repair_Cars;
+﻿using System;
+
+namespace AlgoTest.LeetCode.Minimum_Time_to_Repair_Cars;
 
 public class Minimum_Time_to_Repair_Cars
 {
