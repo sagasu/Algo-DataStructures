@@ -8,7 +8,7 @@ public class A24_Game {
 
     public bool JudgePoint24(int[] cards)
     {
-        double[] nums = new double[cards.Length];
+        var nums = new double[cards.Length];
         for (int i = 0; i < cards.Length; i++) nums[i] = cards[i];
         return Dfs(nums, nums.Length);
     }
@@ -23,8 +23,8 @@ public class A24_Game {
             {
                 double a = nums[i], b = nums[j];
 
-                double[] next = new double[n - 1];
-                int idx = 0;
+                var next = new double[n - 1];
+                var idx = 0;
                 for (int k = 0; k < n; k++) if (k != i && k != j) next[idx++] = nums[k];
 
                 next[idx] = a + b; if (Dfs(next, n - 1)) return true;
