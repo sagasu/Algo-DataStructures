@@ -7,8 +7,8 @@ public class Find_Minimum_Time_to_Finish_All_Jobs
 {
     public int MinimumTimeRequired(int[] jobs, int k) {
         Array.Sort(jobs);
-        int left = jobs.Max();
-        int right = jobs.Sum();
+        var left = jobs.Max();
+        var right = jobs.Sum();
 
         while(left< right){
             var mid = left+ (right-left)/2;
