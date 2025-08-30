@@ -2,11 +2,11 @@ using System;
 
 public class SubstringWithLargestVariance {
     public int LargestVariance(string s) {
-        int[] freq = new int[26];
+        var freq = new int[26];
         foreach(char ch in s) freq[ch-'a']++;
-        int largestDiff = 0;
-        for(char ch1 = 'a'; ch1 <= 'z'; ch1++){
-            for(char ch2 = 'a'; ch2 <= 'z'; ch2++){
+        var largestDiff = 0;
+        for(var ch1 = 'a'; ch1 <= 'z'; ch1++){
+            for(var ch2 = 'a'; ch2 <= 'z'; ch2++){
                 if(ch1 == ch2 || freq[ch1-'a'] == 0 || freq[ch2-'a'] == 0) continue;
                 int hiFreq = 0, loFreq = 0;
                 foreach(char ch in s){
