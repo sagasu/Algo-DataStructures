@@ -1,59 +1,68 @@
 ﻿using System.Collections.Generic;
 
-namespace AlgoTest.LeetCode.Design_Task_Manager;
+public class Task{
+    public int userId;
+    public int taskId;
+    public int priority;
 
-public class TaskManager
-{
-    private Dictionary<int, (int userId, int priority)> taskMap;
-    private SortedSet<(int priority, int taskId, int userId)> taskSet;
+    public Task(int userId ,int taskId, int priority) {
+        this.userId = userId;
+        this.taskId = taskId;
+        this.priority = priority;
+    }
+}
+
+public class TaskManager {
+
+    SortedSet<Task> task_set;
+    Dictionary<int, Task> idTotask_map;
+
     public TaskManager(IList<IList<int>> tasks) {
-        taskMap = new Dictionary<int, (int, int)>();
-        taskSet = new SortedSet<(int, int, int)>(new TaskComparer());
+        task_set = new SortedSet<Task>(new TaskComparer());
+        idTotask_map = new Dictionary<int, Task>();
 
-        foreach (var t in tasks) {
-            int userId = t[0], taskId = t[1], priority = t[2];
-            taskMap[taskId] = (userId, priority);
-            taskSet.Add((priority, taskId, userId));
+        for (int i = 0; i < tasks.Count; i++) {
+            Task t = new Task(tasks[i][0], tasks[i][1], tasks[i][2]);
+            task_set.Add(t);
+            if (!idTotask_map.ContainsKey(tasks[i][1])) {
+                idTotask_map[tasks[i][1]] = t;
+            }
         }
     }
     
     public void Add(int userId, int taskId, int priority) {
-        taskMap[taskId] = (userId, priority);
-        taskSet.Add((priority, taskId, userId));
+        Task t = new Task(userId, taskId, priority);
+        task_set.Add(t);
+        idTotask_map[taskId] = t;
     }
     
     public void Edit(int taskId, int newPriority) {
-        if (!taskMap.ContainsKey(taskId)) return;
-        var (userId, oldPriority) = taskMap[taskId];
-
-        taskSet.Remove((oldPriority, taskId, userId));
-
-        taskMap[taskId] = (userId, newPriority);
-        taskSet.Add((newPriority, taskId, userId));
+        Task t = idTotask_map[taskId];
+        task_set.Remove(t);
+        t.priority = newPriority;
+        task_set.Add(t);
     }
     
     public void Rmv(int taskId) {
-        if (!taskMap.ContainsKey(taskId)) return;
-        var (userId, priority) = taskMap[taskId];
-        taskSet.Remove((priority, taskId, userId));
-        taskMap.Remove(taskId);
+        Task t = idTotask_map[taskId];
+        task_set.Remove(t);
+        idTotask_map.Remove(taskId);
     }
     
     public int ExecTop() {
-        if (taskSet.Count == 0) return -1;
-
-        var top = taskSet.Max; 
-        taskSet.Remove(top);
-        taskMap.Remove(top.taskId);
-        return top.userId;
+        if (task_set.Count == 0) return -1;
+        Task maxt = task_set.Max;
+        int maxId = maxt.userId;
+        Rmv(maxt.taskId);
+        return maxId;
     }
-    private class TaskComparer : IComparer<(int priority, int taskId, int userId)> {
-        public int Compare((int priority, int taskId, int userId) a, (int priority, int taskId, int userId) b) {
-            if (a.priority != b.priority)
+
+    private class TaskComparer : IComparer<Task> {
+        public int Compare(Task a, Task b) {
+            if (a.priority != b.priority) {
                 return a.priority.CompareTo(b.priority);
-            if (a.taskId != b.taskId)
-                return a.taskId.CompareTo(b.taskId);
-            return a.userId.CompareTo(b.userId);
+            }
+            return a.taskId.CompareTo(b.taskId);
         }
     }
 }
