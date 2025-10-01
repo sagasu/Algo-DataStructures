@@ -1,4 +1,7 @@
-public class SmallestSufficientTeam {
+using System;
+using System.Collections.Generic;
+
+public class SmallestSufficientTeams {
     public int[] SmallestSufficientTeam(string[] req_skills, IList<IList<string>> people) {
         var dict = new Dictionary<string, int>();
         int n = req_skills.Length, max = (int) Math.Pow(2, n);
