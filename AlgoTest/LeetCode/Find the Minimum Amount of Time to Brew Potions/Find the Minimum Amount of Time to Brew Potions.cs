@@ -1,4 +1,6 @@
-﻿namespace AlgoTest.LeetCode.Find_the_Minimum_Amount_of_Time_to_Brew_Potions;
+﻿using System;
+
+namespace AlgoTest.LeetCode.Find_the_Minimum_Amount_of_Time_to_Brew_Potions;
 
 public class Find_the_Minimum_Amount_of_Time_to_Brew_Potions
 {
