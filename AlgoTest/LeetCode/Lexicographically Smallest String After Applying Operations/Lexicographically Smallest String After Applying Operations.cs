@@ -12,7 +12,7 @@ public class Lexicographically_Smallest_String_After_Applying_Operations
         vis.Add(s);
 
         while (q.Count > 0) {
-            string cur = q.Dequeue();
+            var cur = q.Dequeue();
             if (string.Compare(cur, smallest) < 0) smallest = cur;
 
             char[] chars = cur.ToCharArray();
