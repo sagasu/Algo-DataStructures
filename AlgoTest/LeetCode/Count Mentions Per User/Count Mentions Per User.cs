@@ -42,19 +42,13 @@ public class Count_Mentions_Per_User
                 else if(e[2][0] == 'A')
                 {
                     for(int i = 0; i < response.Length; i++)
-                    {
                         response[i]++;
-                    }
                 }
                 else
                 {
                     for(int i = 0; i < response.Length; i++)
-                    {
                         if(!isOffline[i])
-                        {
                             response[i]++;
-                        }
-                    }
                 }
             }
         }
