@@ -43,8 +43,8 @@ public class Count_Covered_Buildings
         {
             int x = b[0], y = b[1];
 
-            bool hasLeft  = rowMin[x] < y;
-            bool hasRight = rowMax[x] > y;
+            var hasLeft  = rowMin[x] < y;
+            var hasRight = rowMax[x] > y;
             bool hasUp    = colMin[y] < x;
             bool hasDown  = colMax[y] > x;
 
