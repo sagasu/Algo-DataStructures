@@ -38,15 +38,15 @@ public class Count_Covered_Buildings
             }
         }
 
-        int covered = 0;
+        var covered = 0;
         foreach (var b in buildings) 
         {
             int x = b[0], y = b[1];
 
             var hasLeft  = rowMin[x] < y;
             var hasRight = rowMax[x] > y;
-            bool hasUp    = colMin[y] < x;
-            bool hasDown  = colMax[y] > x;
+            var hasUp    = colMin[y] < x;
+            var hasDown  = colMax[y] > x;
 
             if (hasLeft && hasRight && hasUp && hasDown)
                 covered++;
