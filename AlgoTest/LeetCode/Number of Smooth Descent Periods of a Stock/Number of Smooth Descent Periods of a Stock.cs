@@ -7,13 +7,10 @@ public class Number_of_Smooth_Descent_Periods_of_a_Stock
         long totalLength = 1;
         for(int right = 1; right < prices.Length; right++) {
             if(prices[right] == prices[right - 1] - 1)
-            {
                 len++;
-            }
             else
-            {
                 len = 1;
-            }
+            
             totalLength += len;
         }
         return totalLength;
